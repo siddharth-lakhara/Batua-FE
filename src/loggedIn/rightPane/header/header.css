@@ -1,0 +1,28 @@
+.Header-main {
+    display: flex;
+    background-color: #ffffff;
+    height: 62px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Header-titleText {
+    width: 50%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    color: #797979;
+    padding-left: 20px;
+}
+
+.Header-userinfoPane {
+    display: flex;
+    width: 50%;
+}
+
+.Header-infoItems {
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    color: #797979;
+}
