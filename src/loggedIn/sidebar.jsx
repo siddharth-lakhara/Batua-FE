@@ -11,7 +11,7 @@ const Sidebar = () => (
     <Logo />
     <Home />
     <Transactions />
-    <Accounts />
+    {/* <Accounts /> */}
     <Contact />
   </div>
 );
