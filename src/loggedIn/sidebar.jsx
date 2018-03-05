@@ -1,9 +1,9 @@
 import React from 'react';
-import Logo from './logo/logo';
-import Home from './home/home';
-import Transactions from './transactions/transactions';
-import Accounts from './accounts/accounts';
-import Contact from './contacts/contacts';
+import Logo from './sidebar/logo/logo';
+import Home from './sidebar/home/home';
+import Transactions from './sidebar/transactions/transactions';
+// import Accounts from './sidebar/accounts/accounts';
+import Contact from './sidebar/contacts/contacts';
 import './sidebar.css';
 
 const Sidebar = () => (
