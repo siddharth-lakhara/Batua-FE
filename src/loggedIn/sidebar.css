@@ -1,0 +1,8 @@
+.sidebar-main {
+  width: 250px;
+  background-image: linear-gradient(to top, #002960, #24283e);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
