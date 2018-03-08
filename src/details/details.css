@@ -1,0 +1,38 @@
+.email-textArea{
+  background: transparent;
+  color: hsl(0, 0%, 100%);
+  border: 0px;
+  font-size: 1.1rem;
+  padding-left: 30px;
+  resize: none;
+  outline:0px none transparent;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+.email{
+  display: flex;
+  flex-direction: row;
+  padding-left: 50px;
+  min-width: 100%;
+  min-height: 20%;
+}
+.line {
+  width: 80%;
+  height: 2px;
+  opacity: 0.3;
+  border: solid 1px #ffffff;
+  margin-left: 10%;
+}
+.email-main{
+  display: flex;
+  flex-direction: column;
+}
+.material-icons{
+  font-size: 2.1rem;
+}
+::selection {
+  border: 0px;
+  background:none;
+}

@@ -1,0 +1,88 @@
+.login-main{
+width: 100%;
+height: 100%;
+  display: flex;
+  background-image: url(bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.loginBox{
+  background: url(background.png);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  /* min-width: 28%;
+  min-height: 70%; */
+  /* background-size: 200%; */
+  border-radius: 2px;
+  background-image: linear-gradient(to left, #00bcd9, #0078ae);
+  box-shadow: 0 60px 120px 0 rgba(0, 0, 0, 0.3);
+
+}
+@media only screen and (max-width: 50%) {
+  [class="loginBox"]{
+    min-width: 15%;
+    min-height: 40%;
+  }
+}
+.img{
+  /* min-width: 100%;
+  min-height: 100%; */
+}
+.login-title{
+  min-width: 25vw;
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+.forget-password{
+  width: 100%;
+  height: 25px;
+  font-family: SFProText;
+  font-size: 1.2rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192442;
+  margin-left: 10%;
+  margin-bottom: 8%;
+}
+
+.login-details{
+  margin-top: 5%;
+  min-width: 25vh;
+  min-height: 40vh;
+  /* min-height: 50%; */
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.login-button{
+  width: 65%;
+  min-height: 6vh;
+  height: 50%;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.login-button-div{
+  margin-left: 20%;
+  /* min-height: 6vh; */
+  min-width: 80%;
+}
