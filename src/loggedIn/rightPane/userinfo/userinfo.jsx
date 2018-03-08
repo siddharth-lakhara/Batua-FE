@@ -1,9 +1,25 @@
 import React from 'react';
-// import './accounts.css';
+import './userinfo.css';
 
 const UserInfo = () => (
   <div className="UserInfo-main">
-    UserInfo displayed here
+    <div className="UserInfo-box">
+      UserInfo box
+    </div>
+    <div className="UserInfo-Actions">
+      <div className="UserInfo-balance">
+        <div>Total Balance</div>
+        <div>Rs "Current Balance"</div>
+      </div>
+      <div className="UserInfo-txn">
+        <button>
+          Send
+        </button>
+        <button>
+          Receive
+        </button>
+      </div>
+    </div>
   </div>
 );
 

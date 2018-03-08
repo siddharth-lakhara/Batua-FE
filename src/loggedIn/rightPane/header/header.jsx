@@ -8,13 +8,16 @@ const Header = () => (
     </div>
     <div className="Header-userinfoPane">
       <div className="Header-infoItems">
-        text2
+        Notification bell
       </div>
       <div className="Header-infoItems">
-        text3
+        User photo
       </div>
       <div className="Header-infoItems">
-          text4
+        User Name
+      </div>
+      <div className="Header-infoItems">
+        Arrow
       </div>
     </div >
 

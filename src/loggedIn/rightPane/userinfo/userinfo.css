@@ -1,0 +1,24 @@
+.UserInfo-main {
+    width: 100%;
+    display: flex;
+}
+
+.UserInfo-box {
+    background-image: linear-gradient(to left, #05e0fa, rgba(2, 189, 242, 0));
+}
+
+.UserInfo-Actions {
+    display: flex;
+    background-color: #05e0fa;
+    /* background-color: #73F5FF; */
+}
+
+.UserInfo-txn {
+    display: flex;
+    flex-direction: column;
+}
+
+.UserInfo-balance {
+    display: flex;
+    flex-direction: column;
+}

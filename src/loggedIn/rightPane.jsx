@@ -1,22 +1,22 @@
 import React from 'react';
 import Header from './rightPane/header/header';
 import UserInfo from './rightPane/userinfo/userinfo';
-import RecentTransactions from './rightPane/transactions/transactions';
-import BottomPane from './rightPane/bottom/bottom';
+import ContentCard from './rightPane/contentCard';
 import './rightPane.css';
 
-const rightPane = () => (
+const RightPane = () => (
   <div className="rightPane-main">
     <div className="rightPane-headerPane">
       <Header />
     </div>
-    <div className="rightPane-body">
+    <div className="rightPane-UserInfo">
       <UserInfo />
-      <RecentTransactions />
-      <BottomPane />
+    </div>
+    <div className="rightPane-body">
+      <ContentCard />
     </div>
   </div>
 );
 
-export default rightPane;
+export default RightPane;
 

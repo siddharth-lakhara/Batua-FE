@@ -1,5 +1,5 @@
 import React from 'react';
-// import './accounts.css';
+import './bottom.css';
 
 const Bottom = () => (
   <div className="Bottom-main">
