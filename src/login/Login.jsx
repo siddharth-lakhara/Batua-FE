@@ -19,6 +19,10 @@ class Login extends Component {
             </div>
           </div>
         </div>
+        <div className="newuser-div" >
+          <div className="new-user">New User</div>
+          <button href="" onClick={this.props.changeToRegister} className="register-now"><u>Register Now</u></button>
+        </div>
       </div>
     );
   }

@@ -18,10 +18,15 @@ class Login extends Component {
             <Details icon="phone_iphone" placeholder="Phone Number" />
             <Details icon="assignment_ind" placeholder="User Name" />
             <Details icon="vpn_key" placeholder="password" />
+            <Details icon="vpn_key" placeholder="Confirm password" />
             <div className="register-button-div">
-              <button className="register-button">register</button>
+              <button className="register-button">Register</button>
             </div>
           </div>
+        </div>
+        <div className="olduser-div" >
+          <div className="old-user">Already a User?</div>
+          <button href="" onClick={this.props.changeToRegister} className="login-now"><u>Login Now</u></button>
         </div>
       </div>
     );
