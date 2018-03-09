@@ -1,12 +1,17 @@
 .UserInfo-main {
     width: 100%;
     display: flex;
+    flex-direction: row;
     flex-grow: 1;
+    flex-wrap: 1;
 }
-
+.UserInfo-social{
+    border-radius: 50%;
+}
 .UserInfo-box {
     background-image: linear-gradient(to left,#05e0fa,#89effa );
-    min-width: 60%;
+    /* min-width: 60%; */
+    flex-grow: 1;
     padding: 20px;
 }
 
