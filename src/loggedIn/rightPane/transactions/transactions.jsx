@@ -1,9 +1,15 @@
 import React from 'react';
+import TransactionsHeader from './transactionHeader';
+// import TransactionsDisplayer from './transactionDisplayer';
 import './transactions.css';
 
 const Transactions = () => (
   <div className="Transactions2-main">
-        Transactions displayed here
+    <TransactionsHeader />
+    <div>
+
+      {/* <TransactionsDisplayer /> */}
+    </div>
   </div>
 );
 
