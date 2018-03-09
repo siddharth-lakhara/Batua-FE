@@ -7,3 +7,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.sidebar-contacts {
+  margin-left: -10%;
+}

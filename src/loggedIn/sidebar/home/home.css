@@ -1,7 +1,3 @@
-.Home-main {
- align-items: center;
- text-align: center;
-}
 
 .Home-button {
   width: 128.4px;
@@ -12,5 +8,6 @@
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  background: #002960;
+  background-color: Transparent;
+  border: none;
 }

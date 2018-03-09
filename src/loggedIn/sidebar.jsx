@@ -1,18 +1,36 @@
 import React from 'react';
 import Logo from './sidebar/logo/logo';
 import Home from './sidebar/home/home';
-import Transactions from './sidebar/transactions/transactions';
-// import Accounts from './sidebar/accounts/accounts';
-import Contact from './sidebar/contacts/contacts';
+import Head from './sidebar/sidebarHeader';
+import Content from './sidebar/sidebarContents';
 import './sidebar.css';
 
 const Sidebar = () => (
   <div className="sidebar-main">
     <Logo />
     <Home />
-    <Transactions />
-    {/* <Accounts /> */}
-    <Contact />
+
+    <div>
+      <Head
+        title="Transactions"
+      />
+      <div>
+        <Content item="All Transactions" />
+        <Content item="Send" />
+        <Content item="Recieve" />
+      </div>
+    </div>
+
+    <div className="sidebar-contacts">
+      <Head
+        title="Contacts"
+      />
+      <div>
+        <Content item="All Contacts" />
+        <Content item="Groups" />
+      </div>
+    </div>
+
   </div>
 );
 
