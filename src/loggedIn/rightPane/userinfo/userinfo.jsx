@@ -8,14 +8,15 @@ const UserInfo = () => (
     </div>
     <div className="UserInfo-Actions">
       <div className="UserInfo-balance">
-        <div>Total Balance</div>
-        <div>Rs "Current Balance"</div>
+        <div className="UserInfo-totalBalance">Total Balance</div>
+        <div className="UserInfo-currentBalance">Rs 3000</div>
       </div>
+      <div className="UserInfo-line" />
       <div className="UserInfo-txn">
-        <button>
+        <button className="UserInfo-send-button">
           Send
         </button>
-        <button>
+        <button className="UserInfo-receive-button">
           Receive
         </button>
       </div>
