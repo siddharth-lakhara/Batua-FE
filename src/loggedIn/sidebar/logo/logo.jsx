@@ -3,8 +3,8 @@ import './logo.css';
 
 const Logo = () => (
   <div className="Logo-main">
-    <div>
-      <img src="logo.jpg" alt="batua logo" />
+    <div className="Logo-icon" />
+    <div className="Logo-batua">
       Batua
     </div>
   </div>

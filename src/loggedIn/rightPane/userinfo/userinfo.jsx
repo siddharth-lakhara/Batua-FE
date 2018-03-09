@@ -4,7 +4,12 @@ import './userinfo.css';
 const UserInfo = () => (
   <div className="UserInfo-main">
     <div className="UserInfo-box">
-      UserInfo box
+      <div className="UserInfo-social">
+        <img
+          src="social.jpg"
+          className="UserInfo-social-img"
+        />
+      </div>
     </div>
     <div className="UserInfo-Actions">
       <div className="UserInfo-balance">
