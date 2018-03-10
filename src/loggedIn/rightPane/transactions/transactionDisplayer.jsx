@@ -24,7 +24,6 @@ const TableHead = (props) => {
   );
 };
 
-
 const TableData = (props) => {
   const rows = [];
   const currentUser = 'user1';
@@ -43,7 +42,7 @@ const TableData = (props) => {
     });
   }
 
-  for (let i = 0; i < data.length; i += 1) {
+  for (let i = 0; i < Math.min(data.length, 5); i += 1) {
     const rowele = [];
     for (const key in data[i]) {
       if (data[i].hasOwnProperty(key)) {
@@ -77,18 +76,15 @@ class TransactionsDisplayer extends React.Component {
       .then((data) => {
         const { history } = data;
         this.updateHistory(history);
-        console.log('Original data: ', data);
-        console.log('History: ', history);
       });
   }
 
   updateHistory(history) {
     this.setState({
       history,
-    }, () => {
-      console.log('New State: ', this.state.history);
     });
   }
+
   render() {
     const dataAll = [{
       toUser: 'user1',
@@ -115,6 +111,7 @@ class TransactionsDisplayer extends React.Component {
       <TableData
         mode={this.props.displayTab}
         data={dataAll}
+        // data={this.state.history}
       />
     );
 
