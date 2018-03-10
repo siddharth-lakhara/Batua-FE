@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import Sidebar from './loggedIn/sidebar';
 import RightPane from './loggedIn/rightPane';
+import SendPage from './components/SendPage';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentState: 1,
+      currentState: 'send',
     };
   }
 
   render() {
-    if (this.state.currentState) { // when user is loggid in
+    if (this.state.currentState === 'main') { // when user is loggid in
       return (
         <div className="app-main">
           <Sidebar />
@@ -22,8 +23,9 @@ class App extends Component {
     }
 
     return ( // show login page
-      <div className="App">
-        <p>Login page will be displayed here</p>
+      <div className="app-main">
+        <Sidebar />
+        <SendPage />
       </div>
     );
   }
