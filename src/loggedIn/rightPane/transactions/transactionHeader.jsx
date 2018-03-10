@@ -15,7 +15,7 @@ const TransactionsHeader = props => (
               props.changeTab(0);
             }}
       >
-            All
+        All
       </button>
 
       <button
@@ -25,7 +25,7 @@ const TransactionsHeader = props => (
               props.changeTab(1);
             }}
       >
-            Sent
+        Sent
       </button>
 
       <button
@@ -35,7 +35,7 @@ const TransactionsHeader = props => (
               props.changeTab(2);
             }}
       >
-            Received
+        Received
       </button>
     </div>
   </div>

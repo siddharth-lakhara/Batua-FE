@@ -2,30 +2,6 @@ import React from 'react';
 import ReactTable from 'react-table';
 import './transactionDisplayer.css';
 
-const TableHead = props => (
-  props.head.map(e => (
-    <th>
-      {e}
-    </th>
-  ))
-);
-
-const TableData = (props) => {
-  const rows = [];
-  for (let i = 0; i < props.data.length; i += 1) {
-    const rowele = [];
-    for (const key in props.data[i]) {
-      if (props.data[i].hasOwnProperty(key)) {
-        const cell = <td> {props.data[i][key]} </td>;
-        rowele.push(cell);
-      }
-    }
-    const row = <tr> {rowele} </tr>;
-    rows.push(row);
-  }
-  return rows;
-};
-
 const TransactionsDisplayer = (props) => {
   const dataAll = [{
     toUser: 'user1',
@@ -34,8 +10,6 @@ const TransactionsDisplayer = (props) => {
     status: 'Sucessfull',
     transactionId: 1234567890,
   }];
-
-  const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id'];
 
   const columnsAll = [{
     Header: 'Sent To',
@@ -92,14 +66,10 @@ const TransactionsDisplayer = (props) => {
   switch (props.displayTab) {
     case 0:
       return (
-        <div>
-          <TableHead
-            head={headAll}
-          />
-          <TableData
-            data={dataAll}
-          />
-        </div>
+        <ReactTable
+          data={dataAll}
+          columns={columnsAll}
+        />
       );
     case 1:
       return (

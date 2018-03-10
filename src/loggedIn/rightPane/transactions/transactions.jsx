@@ -27,9 +27,7 @@ class Transactions extends React.Component {
           displayTab={this.state.displayTab}
           changeTab={this.changeTab}
         />
-        <div>
-          <TransactionsDisplayer displayTab={this.state.displayTab} />
-        </div>
+        <TransactionsDisplayer displayTab={this.state.displayTab} />
       </div>
     );
   }
