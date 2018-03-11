@@ -7,10 +7,14 @@ class Details extends Component {
       <div className="email-main">
         <div className="email">
           <div className="email-logo">
-            <i class="large material-icons">{this.props.icon}</i>
+            <i className="large material-icons">{this.props.icon}</i>
           </div>
           <div className="email-text" >
-            <textarea className="email-textArea" placeholder={this.props.placeholder} />
+            <textarea
+              className="email-textArea"
+              placeholder={this.props.placeholder}
+              value={this.props.value}
+            />
           </div>
         </div>
         <div className="line" />
