@@ -48,8 +48,8 @@ class RequestPage extends React.Component {
           />
         </div>
         <div className="RequestPage-contact">
-          <select onChange={e => this.setState({ toId: Number(e.target.value) })}>
-            <option value="" selected disabled hidden>Choose here</option>
+          <select onChange={e => this.setState({ toId: Number(e.target.value) })} defaultValue={0}>
+            <option value="0" disabled hidden>Choose here</option>
             {this.state.contacts.map(({ id, name }) =>
           (<option key={id} value={id}>{name}</option>))}
           </select>
