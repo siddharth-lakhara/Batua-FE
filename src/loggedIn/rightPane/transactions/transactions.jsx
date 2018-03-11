@@ -1,17 +1,41 @@
 import React from 'react';
 import TransactionsHeader from './transactionHeader';
-// import TransactionsDisplayer from './transactionDisplayer';
+import TransactionsDisplayer from './transactionDisplayer';
 import './transactions.css';
 
-const Transactions = () => (
-  <div className="Transactions2-main">
-    <TransactionsHeader />
-    <div>
+class Transactions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayTab: 0,
+    };
+    this.changeTab = this.changeTab.bind(this);
+  }
 
-      {/* <TransactionsDisplayer /> */}
-    </div>
-  </div>
-);
+  changeTab(newTabValue) {
+    this.setState({
+      displayTab: newTabValue,
+    }, () => {
+      // console.log('new tab: ', this.state.displayTab);
+    });
+  }
+
+  render() {
+    return (
+      <div className="Transactions2-main">
+        <TransactionsHeader
+          displayTab={this.state.displayTab}
+          changeTab={this.changeTab}
+        />
+        <TransactionsDisplayer
+          displayTab={this.state.displayTab}
+          userName={this.props.userName}
+          authToken={this.props.authToken}
+        />
+      </div>
+    );
+  }
+}
 
 export default Transactions;
 
