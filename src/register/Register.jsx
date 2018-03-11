@@ -6,14 +6,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'sid',
-      lastName: '',
-      aadharNo: null,
-      phone: '',
-      accountNo: '',
-      userName: '',
-      password: '',
-      confirmPassword: '',
+      firstName: 'Jane',
+      lastName: 'Doe',
+      aadharNo: 1111111111,
+      phone: '2222222222',
+      accountNo: '3333333333',
+      userName: 'Jane_Doe',
+      password: 'password',
+      confirmPassword: 'password',
     };
     this.registerUser = this.registerUser.bind(this);
   }
@@ -27,12 +27,18 @@ class Login extends Component {
       firstName, lastName, phone, accountNo, userName, password, aadharNo,
     };
 
-    fetch('/user', {
+    fetch('/users', {
       method: 'POST',
       body: JSON.stringify(POSTdata),
     })
       .then(data => data.json())
-      .then((data) => { console.log(data); });
+      .then((data) => {
+        if (data.statusCode === 400) {
+          alert('UserName already taken');
+        } else {
+          alert('UserName successfully created');
+        }
+      });
   }
 
   render() {
