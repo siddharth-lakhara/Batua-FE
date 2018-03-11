@@ -4,13 +4,18 @@ import './details.css';
 class Details extends Component {
   render() {
     return (
-      <div className="email-main">
-        <div className="email">
-          <div className="email-logo">
-            <i class="large material-icons">{this.props.icon}</i>
+      <div className="details-main">
+        <div className="details">
+          <div className="details-logo">
+            <i className="large material-icons">{this.props.icon}</i>
           </div>
-          <div className="email-text" >
-            <textarea className="email-textArea" placeholder={this.props.placeholder} />
+          <div className="details-text" >
+            <input
+              className="details-textArea"
+              type={this.props.type}
+              placeholder={this.props.placeholder}
+              onChange={this.props.change}
+            />
           </div>
         </div>
         <div className="line" />

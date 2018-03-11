@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './register.css';
 import Details from '../details/Details';
 
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <div className="register-main">
@@ -33,4 +33,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
