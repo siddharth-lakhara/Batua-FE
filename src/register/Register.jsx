@@ -27,6 +27,9 @@ class Login extends Component {
       firstName, lastName, phone, accountNo, userName, password, aadharNo,
     };
 
+    if (invalidInput(POSTdata)) {
+      return;
+    }
     fetch('/users', {
       method: 'POST',
       body: JSON.stringify(POSTdata),
@@ -37,6 +40,7 @@ class Login extends Component {
           alert('UserName already taken');
         } else {
           alert('UserName successfully created');
+          // this.props.changeToRegister();
         }
       });
   }
@@ -63,10 +67,7 @@ class Login extends Component {
                 onClick={() => {
                   if (this.state.password !== this.state.confirmPassword) {
                     alert('Passwords don\'t match');
-                  } else {
-                    this.registerUser();
-                    // this.props.changeToRegister();
-                  }
+                  } else { this.registerUser(); }
                 }
               }
               >
