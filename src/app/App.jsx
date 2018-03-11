@@ -29,10 +29,6 @@ class App extends Component {
             authToken={this.state.authToken}
           />
         </div>
-        // <div>
-        // Login page will be displayed here
-        // Token: {this.state.authToken}
-        // </div>
       );
     }
 

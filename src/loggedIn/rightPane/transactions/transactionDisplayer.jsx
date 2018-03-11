@@ -1,6 +1,20 @@
 import React from 'react';
 import './transactionDisplayer.css';
 
+const restructureData = (historyObject) => {
+  const newObject = Object.keys(historyObject).map(index => ({
+    toUser: historyObject[index].toUser,
+    fromUser: historyObject[index].fromUser,
+    amount: historyObject[index].amount,
+    status: historyObject[index].status,
+    transactionId: historyObject[index].transactionId,
+    category: historyObject[index].category,
+    reason: historyObject[index].reason,
+  }));
+
+  return newObject;
+};
+
 const TableHead = (props) => {
   const { head } = props;
 
@@ -26,8 +40,10 @@ const TableHead = (props) => {
 
 const TableData = (props) => {
   const rows = [];
-  const currentUser = 'user1';
-  let { data } = props;
+  const { currentUser } = props;
+  // let { data } = props;
+  let data = restructureData(props.data);
+  // console.log(data);
   if (props.mode === 1) { // display sent transactions
     data = data.filter(row => (row.fromUser === currentUser));
     data = data.map((row) => {
@@ -82,25 +98,13 @@ class TransactionsDisplayer extends React.Component {
   updateHistory(history) {
     this.setState({
       history,
+    }, () => {
+      console.log('history: ', this.state.history);
     });
   }
 
   render() {
-    const dataAll = [{
-      toUser: 'user1',
-      fromUser: 'user2',
-      amount: 5000,
-      status: 'Sucessfull',
-      transactionId: 1234567890,
-    }, {
-      toUser: 'user2',
-      fromUser: 'user1',
-      amount: 5000,
-      status: 'Pending',
-      transactionId: 1234509876,
-    }];
-
-    const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id'];
+    const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
     const headers = (
       <TableHead
         mode={this.props.displayTab}
@@ -110,7 +114,8 @@ class TransactionsDisplayer extends React.Component {
     const allRows = (
       <TableData
         mode={this.props.displayTab}
-        data={dataAll}
+        currentUser={this.props.userName}
+        data={this.state.history}
         // data={this.state.history}
       />
     );
