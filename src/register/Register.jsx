@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import './register.css';
 import Details from '../details/Details';
 
+const validInput = (dataToValidate) => {
+  const values = Object.values(dataToValidate);
+  for (let i = 0; i < values.length; i += 1) {
+    if (values[i] === '') { return false; }
+  }
+
+  return true;
+};
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -27,9 +36,11 @@ class Login extends Component {
       firstName, lastName, phone, accountNo, userName, password, aadharNo,
     };
 
-    if (invalidInput(POSTdata)) {
+    if (!validInput(POSTdata)) {
+      alert('Please fill all the required fields');
       return;
     }
+
     fetch('/users', {
       method: 'POST',
       body: JSON.stringify(POSTdata),
@@ -40,7 +51,7 @@ class Login extends Component {
           alert('UserName already taken');
         } else {
           alert('UserName successfully created');
-          // this.props.changeToRegister();
+          this.props.changeToRegister();
         }
       });
   }
