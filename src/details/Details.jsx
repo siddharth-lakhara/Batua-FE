@@ -14,6 +14,7 @@ class Details extends Component {
               className="email-textArea"
               placeholder={this.props.placeholder}
               value={this.props.value}
+              onChange={this.props.changeHandler}
             />
           </div>
         </div>

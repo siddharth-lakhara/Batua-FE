@@ -6,15 +6,11 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: 'John_Doe',
-      password: 'password',
+      userName: '',
+      password: '',
     };
     this.loginUser = this.loginUser.bind(this);
   }
-
-  // changeHandler() {
-
-  // }
 
   loginUser() {
     const { userName, password } = this.state;
@@ -49,8 +45,18 @@ class Login extends Component {
           Login
           </div>
           <div className="login-details">
-            <Details icon="account_circle" placeholder="Enter E-mail ID" value={this.state.userName} />
-            <Details icon="vpn_key" placeholder="password" value={this.state.password} />
+            <Details
+              icon="account_circle"
+              placeholder="Enter user name"
+              value={this.state.userName}
+              changeHandler={(event) => { this.setState({ userName: event.target.value }); }}
+            />
+            <Details
+              icon="vpn_key"
+              placeholder="password"
+              value={this.state.password}
+              changeHandler={(event) => { this.setState({ password: event.target.value }); }}
+            />
             <div className="forget-password">Forgot Password?</div>
             <div className="login-button-div">
               <button className="login-button" onClick={this.loginUser}>Login</button>
