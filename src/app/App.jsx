@@ -8,6 +8,7 @@ import SendPage from '../components/SendPage';
 import RequestPage from '../components/RequestPage';
 import Sidebar from '../loggedIn/sidebar';
 import RightPane from '../loggedIn/rightPane';
+import TransactionPage from '../components/TransactionPage';
 import './App.css';
 
 class App extends Component {
@@ -47,19 +48,27 @@ class App extends Component {
               { friendId: data.to }, { headers: { Authorization: idToken } },
             ).then((result) => {
               const { userName: friendName } = result.data;
-              const is_accepted = global.confirm(`${friendName} has requested ${data.amount}
+              const isAccepted = global.confirm(`${friendName} has requested ${data.amount}
               \nReason: ${data.reason ? data.reason : 'not given'}.
               \nAccept?`);
+              if (isAccepted) {
+                this.setState({ page: 'approve' });
+              }
             });
           }
         });
 
         this.channel.bind('send-money', (data) => {
-          console.log(data);
           if (userId === data.to) {
-            global.alert(`${userName} has sent ${data.amount}
-              \nReason: ${data.reason ? data.reason : 'not given'}.
-              \nAccept?`);
+            axios.post(
+              '/userName',
+              { friendId: data.from }, { headers: { Authorization: idToken } },
+            ).then((result) => {
+              this.transactions();
+              const { userName: friendName } = result.data;
+              global.alert(`${friendName} has sent ${data.amount}
+              \nReason: ${data.reason ? data.reason : 'not given'}.`);
+            });
           }
         });
       }).catch(err => console.log(err));
@@ -71,6 +80,10 @@ class App extends Component {
 
   request = () => {
     this.setState({ page: 'request' });
+  }
+
+  transactions = () => {
+    this.setState({ page: 'transactions' });
   }
 
   render() {
@@ -111,6 +124,17 @@ class App extends Component {
           <div className="App">
             <Sidebar send={() => this.send()} request={() => this.request()} />
             <RequestPage
+              token={this.state.idToken}
+              userId={this.state.userId}
+            />
+          </div>
+        );
+      }
+      case ('approve'): {
+        return ( // show login page
+          <div className="App">
+            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <TransactionPage
               token={this.state.idToken}
               userId={this.state.userId}
             />
