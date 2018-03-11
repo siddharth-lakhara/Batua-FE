@@ -15,14 +15,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'Jane',
-      lastName: 'Doe',
-      aadharNo: 1111111111,
-      phone: '2222222222',
-      accountNo: '3333333333',
-      userName: 'Jane_Doe',
-      password: 'password',
-      confirmPassword: 'password',
+      firstName: '',
+      lastName: '',
+      aadharNo: '',
+      phone: '',
+      accountNo: '',
+      userName: '',
+      password: '',
+      confirmPassword: '',
     };
     this.registerUser = this.registerUser.bind(this);
   }
