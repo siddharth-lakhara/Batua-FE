@@ -7,6 +7,13 @@
 }
 .UserInfo-social{
     border-radius: 50%;
+   height: 100px;
+    width: 100px;
+}
+.UserInfo-social-img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
 }
 .UserInfo-box {
     background-image: linear-gradient(to left,#05e0fa,#89effa );
