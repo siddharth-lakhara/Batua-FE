@@ -69,7 +69,7 @@ class TransactionsDisplayer extends React.Component {
     fetch('/transactions/history', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoiSm9obl9Eb2UiLCJpYXQiOjE1MjA2NzI1MzQsImV4cCI6MTUyMDY3NjEzNH0.QmfnpDzoGaqRKozsXf2SyxD4Ivwi5Ep4hkIzzddcGvs',
+        Authorization: `Bearer${this.props.authToken}`,
       },
     })
       .then(data => data.json())

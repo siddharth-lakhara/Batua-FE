@@ -4,7 +4,7 @@ import UserInfo from './rightPane/userinfo/userinfo';
 import ContentCard from './rightPane/contentCard';
 import './rightPane.css';
 
-const RightPane = () => (
+const RightPane = props => (
   <div className="rightPane-main">
     <div className="rightPane-headerPane">
       <Header />
@@ -13,7 +13,10 @@ const RightPane = () => (
       <UserInfo />
     </div>
     <div className="rightPane-body">
-      <ContentCard />
+      <ContentCard
+        userName={props.userName}
+        authToken={props.authToken}
+      />
     </div>
   </div>
 );

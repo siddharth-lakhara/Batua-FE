@@ -12,6 +12,7 @@ class App extends Component {
       page: 0,
       authToken: '',
       currentState: 0,
+      userName: '',
     };
   }
 
@@ -19,8 +20,14 @@ class App extends Component {
     if (this.state.currentState) {
       return (
         <div className="app-main">
-          <Sidebar />
-          <RightPane />
+          <Sidebar
+            userName={this.state.userName}
+            authToken={this.state.authToken}
+          />
+          <RightPane
+            userName={this.state.userName}
+            authToken={this.state.authToken}
+          />
         </div>
         // <div>
         // Login page will be displayed here
@@ -35,7 +42,7 @@ class App extends Component {
           <Login
             changeToRegister={() => this.setState({ page: 1 })}
             authToken={this.state.authToken}
-            changePage={(token) => { this.setState({ currentState: 1, authToken: token }); }}
+            changePage={(token, userName) => { this.setState({ currentState: 1, authToken: token, userName }); }}
           />
         </div>
       );

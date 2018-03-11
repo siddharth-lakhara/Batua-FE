@@ -6,8 +6,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
-      password: '',
+      userName: 'John_Doe',
+      password: 'password',
     };
     this.loginUser = this.loginUser.bind(this);
   }
@@ -17,7 +17,7 @@ class Login extends Component {
     const postData = {
       userName, password,
     };
-    console.log(postData);
+    // console.log(postData);
     fetch('/users/login', {
       method: 'POST',
       body: JSON.stringify(postData),
@@ -29,7 +29,7 @@ class Login extends Component {
       .then((data) => {
         if (data) {
           const token = data.data.id_token;
-          this.props.changePage(token);
+          this.props.changePage(token, userName);
         } else {
           alert('Invalid username or password');
         }
