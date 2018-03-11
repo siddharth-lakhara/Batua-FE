@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Pusher from 'pusher-js';
 import PropTypes from 'prop-types';
 
 import './SendPage.css';
@@ -12,42 +11,43 @@ class SendPage extends React.Component {
       amount: 0,
       toId: 0,
       contacts: [],
-      userId: this.props.userId
+      reason: '',
+      balance: this.props.balance,
     };
-
   }
 
   componentDidMount = () => {
     axios('/contacts', { headers: { Authorization: this.props.token } })
       .then(result =>
         this.setState({ contacts: result.data }))
+      .then(() => {
+        axios('/balance', {
+          headers:
+        { Authorization: this.props.token },
+        }).then((result) => {
+          this.setState({ balance: result.data.balance });
+        });
+      })
       .catch(err => console.log(err));
-    
-      const userId = this.state.userId;
-      var pusher = new Pusher('cc03634ec726b20a38bf', {
-        cluster: 'ap2',
-        encrypted: true
-      });
-      var channel = pusher.subscribe('money-channel');
-      channel.bind('send-money', function(data) {
-      if(userId === data.to){
-       alert(JSON.stringify(data));
-      }
-      });
   }
 
-  sendMoney = token => {
-    axios.post('/transaction/send', 
-  { toId: this.state.toId, amount: this.state.amount, reason: 'boo' }, 
-  { headers: { Authorization: token } });
-
+  sendMoney = (token) => {
+    if (this.state.balance > this.state.amount) {
+      axios.post(
+        '/transaction/send',
+        { toId: this.state.toId, amount: this.state.amount, reason: this.state.reason },
+        { headers: { Authorization: token } },
+      ).then(() => this.setState({ balance: this.state.balance - this.state.amount }));
+    }
   };
 
   render() {
     return (
       <div className="SendPage-container">
         <div className="SendPage-text">Send Money</div>
-        <div className="SendPage-current">You have {this.props.amount}</div>
+        <div className="SendPage-current">
+        You have {this.state.balance} left
+        </div>
         <div className="SendPage-amount">
           <input
             type="number"
@@ -58,11 +58,16 @@ class SendPage extends React.Component {
           />
         </div>
         <div className="SendPage-contact">
-          <select onChange={e => this.setState({toId: Number(e.target.value)})}>
-            <option value="" selected disabled hidden>Choose here</option>
+          <select onChange={e => this.setState({ toId: Number(e.target.value) })} defaultValue={0}>
+            <option value="0" disabled hidden>Choose here</option>
             {this.state.contacts.map(({ id, name }) =>
           (<option key={id} value={id}>{name}</option>))}
           </select>
+        </div>
+        <div className="SendPage-reason">
+          <input
+            onChange={e => this.setState({ reason: e.target.value })}
+          />
         </div>
         <div className="SendPage-send-button">
           <button onClick={() => this.sendMoney(this.props.token)}>Send</button>
@@ -72,11 +77,8 @@ class SendPage extends React.Component {
 }
 
 SendPage.propTypes = {
-  userId: PropTypes.number,
-}
-
-SendPage.defaultValues = {
-  userId: 0,
-}
+  token: PropTypes.string.isRequired,
+  balance: PropTypes.number.isRequired,
+};
 
 export default SendPage;

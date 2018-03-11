@@ -5,6 +5,7 @@ import axios from 'axios';
 import Login from '../login/Login';
 import Register from '../register/Register';
 import SendPage from '../components/SendPage';
+import RequestPage from '../components/RequestPage';
 import Sidebar from '../loggedIn/sidebar';
 import RightPane from '../loggedIn/rightPane';
 import './App.css';
@@ -14,21 +15,63 @@ class App extends Component {
     super(props);
     this.state = {
       page: 'login',
-      id_token: '',
+      idToken: '',
       userId: 0,
+      balance: 0,
     };
   }
 
-  decode = (id_token) => jwtDecode(id_token).userId;
+  componentDidMount() {
+    this.pusher = new Pusher('cc03634ec726b20a38bf', {
+      cluster: 'ap2',
+      encrypted: true,
+    });
+    this.channel = this.pusher.subscribe('money-channel');
+  }
+
+  decode = idToken => jwtDecode(idToken).userId;
 
   login = (userName, password) => {
     axios.post('/users/login', { userName, password })
-    .then((result) => {
-      const id_token = result.data.data.id_token;
-      this.setState({page: 'send', id_token, userId: this.decode(id_token)});
-    })
-    .catch(err => console.log(err)); 
-   }
+      .then((result) => {
+        const idToken = result.data.data.id_token;
+        this.setState({ page: 'send', idToken, userId: this.decode(idToken) });
+      })
+      .then(() => {
+        const { userId, idToken } = this.state;
+
+        this.channel.bind('request-money', (data) => {
+          if (userId === data.from) {
+            axios.post(
+              '/userName',
+              { friendId: data.to }, { headers: { Authorization: idToken } },
+            ).then((result) => {
+              const { userName: friendName } = result.data;
+              const is_accepted = global.confirm(`${friendName} has requested ${data.amount}
+              \nReason: ${data.reason ? data.reason : 'not given'}.
+              \nAccept?`);
+            });
+          }
+        });
+
+        this.channel.bind('send-money', (data) => {
+          console.log(data);
+          if (userId === data.to) {
+            global.alert(`${userName} has sent ${data.amount}
+              \nReason: ${data.reason ? data.reason : 'not given'}.
+              \nAccept?`);
+          }
+        });
+      }).catch(err => console.log(err));
+  }
+
+  send = () => {
+    this.setState({ page: 'send' });
+  }
+
+  request = () => {
+    this.setState({ page: 'request' });
+  }
 
   render() {
     switch (this.state.page) {
@@ -54,15 +97,30 @@ class App extends Component {
       case ('send'): {
         return ( // show login page
           <div className="App">
-            <Sidebar />
-            <SendPage token={this.state.id_token} userId={this.state.userId} />
+            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <SendPage
+              token={this.state.idToken}
+              userId={this.state.userId}
+              balance={this.state.balance}
+            />
+          </div>
+        );
+      }
+      case ('request'): {
+        return ( // show login page
+          <div className="App">
+            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <RequestPage
+              token={this.state.idToken}
+              userId={this.state.userId}
+            />
           </div>
         );
       }
       default: {
         return (
           <div className="App">
-            <Sidebar />
+            <Sidebar send={() => this.send()} request={() => this.request()} />
             <RightPane />
           </div>
         );

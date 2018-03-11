@@ -1,10 +1,10 @@
 import React from 'react';
 import './sidebarContents.css';
 
-const Contents = props => (
+const Contents = ({ click, item }) => (
   <div >
-    <button className="sidebar-Contents">
-      {props.item}
+    <button className="sidebar-Contents" onClick={click}>
+      {item}
     </button>
   </div>
 );

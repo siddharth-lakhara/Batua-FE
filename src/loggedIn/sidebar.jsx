@@ -17,8 +17,8 @@ const Sidebar = ({ send, request }) => (
           />
           <div>
             <Content item="All Transactions" />
-            <Content item="Send" />
-            <Content item="Request" />
+            <Content item="Send" click={send} />
+            <Content item="Request" click={request} />
           </div>
         </div>
 
