@@ -1,0 +1,19 @@
+.Logo-icon {
+    /* margin-bottom: 50px; */
+    background-image: url('logo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100px;
+    min-width: 80px;
+}
+.Logo-main{
+display: flex;
+flex-direction: row;
+/* margin-bottom: 60px; */
+margin-top: 60px;
+}
+.Logo-batua{
+    font-size: 1.9rem;
+    padding-top: 20px;
+    font-family: Roboto;
+}

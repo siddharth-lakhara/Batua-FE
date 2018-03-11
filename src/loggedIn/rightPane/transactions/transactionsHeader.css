@@ -1,0 +1,11 @@
+.transactionsHeader-main {
+    display: flex;
+}
+
+.transactionsHeader-button {
+    border: none;
+}
+
+.transactionsHeader-button:focus {
+    outline: 0;
+}

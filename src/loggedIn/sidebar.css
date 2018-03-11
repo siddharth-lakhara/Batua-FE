@@ -6,4 +6,37 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  
+}
+@media only screen and (max-width: 800px) {
+  [className="sidebar-box"]{
+    min-width: 0;
+    min-height: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+/* .sidebar-contacts {
+  margin-left: -10%;
+} */
+.sidebar-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* margin-bottom: 90px; */
+}
+.Sidebar-options{
+  display: flex; 
+ justify-content: space-between;
+  margin-bottom: 200px;
+  flex-direction: column;
+}
+.sidebar-transactions{
+  padding: 30px;
+  margin-top: 40px;
+}
+.sidebar-contacts{
+  padding: 30px;
+  margin-top: 70px;
 }

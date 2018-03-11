@@ -1,0 +1,77 @@
+.UserInfo-main {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: 1;
+}
+.UserInfo-social{
+    border-radius: 50%;
+}
+.UserInfo-box {
+    background-image: linear-gradient(to left,#05e0fa,#89effa );
+    /* min-width: 60%; */
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.UserInfo-Actions {
+    display: flex;
+    background-color: #05e0fa;
+    /* background-color: #73F5FF; */
+    /* min-width: 40%; */
+    flex-grow: 1;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.UserInfo-txn {
+    display: flex;
+    flex-direction: column;
+}
+
+.UserInfo-balance {
+    display: flex;
+    flex-direction: column;
+}
+.UserInfo-totalBalance{
+    font-family: Roboto;
+    padding: 5px;
+    color: white;
+    font-size: 0.8rem;
+}
+.UserInfo-currentBalance{
+    font-family: Roboto;
+    padding: 5px;
+    color: white;
+    font-size: 1.8rem;
+    
+}
+.UserInfo-send-button{
+    border-radius: 0;
+    padding: 10px; 
+    width: 180px;
+    background-color: white;
+    border-color: white;
+    margin: 3px;
+    font-family: Roboto;
+    color: #05e0fa;
+    font-size:1rem;
+}
+.UserInfo-receive-button{
+    border-radius: 0;
+    padding: 10px; 
+    width: 180px;
+    background-color: white;
+    border-color: white;
+    margin: 3px;
+    font-family: Roboto;
+    color: #05e0fa;
+    font-size:1rem;
+}
+.UserInfo-line{
+    width: 1px;
+  min-height: 49.5px;
+  opacity: 0.27;
+  border: solid 1px #ffffff;
+}
