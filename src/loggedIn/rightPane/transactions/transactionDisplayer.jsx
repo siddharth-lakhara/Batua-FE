@@ -98,8 +98,6 @@ class TransactionsDisplayer extends React.Component {
   updateHistory(history) {
     this.setState({
       history,
-    }, () => {
-      console.log('history: ', this.state.history);
     });
   }
 
