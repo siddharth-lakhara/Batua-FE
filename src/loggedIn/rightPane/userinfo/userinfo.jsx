@@ -5,10 +5,13 @@ const UserInfo = props => (
   <div className="UserInfo-main">
     <div className="UserInfo-box">
       <div className="UserInfo-social">
-        <img
-          src="social.jpg"
-          className="UserInfo-social-img"
-        />
+        <div className="UserInfo-user-image">
+          <img
+            src="social.jpg"
+            className="UserInfo-social-img"
+          />
+        </div>
+        <div className="UserInfo-welcome-user">Welcom Back, {props.userName}</div>
       </div>
     </div>
     <div className="UserInfo-Actions">

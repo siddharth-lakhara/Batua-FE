@@ -9,7 +9,7 @@ const ContentPane = props => (
       userName={props.userName}
       authToken={props.authToken}
     />
-    <BottomPane />
+    {/* <BottomPane /> */}
   </div>
 );
 
