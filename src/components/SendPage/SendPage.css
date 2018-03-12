@@ -1,14 +1,24 @@
 .SendPage-container {
+  margin: 5%;
+  width: 90%;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to right, #05e0fa, rgb(2, 189, 242));
+  /* background-image: linear-gradient(to right, #05e0fa, rgb(2, 189, 242)); */
+  text-align: center;
+  justify-content: space-between;
+  height: 60%;
+  flex-grow: 1;
 }
 
 .SendPage-super-container {
+  text-align: center;
+  /* background-image: url(bg.png); */
+  background-size: cover;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: space-between;
 }
 
 .SendPage-text {
@@ -17,10 +27,18 @@
   text-align: center;
 }
 
+.SendPage-inputs {
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  
+}
+
 .SendPage-amount>input{
   align-self: center;
+  width: 80%;
   background: transparent;
-  color: hsl(0, 0%, 100%);
+  /* color: hsl(0, 0%, 100%); */
   border: 0px;
   font-size: 1.1rem;
   padding-left: 30px;
@@ -30,8 +48,9 @@
 
 .SendPage-contact>select{
   align-self: center;
+  width: 80%;
   background: transparent;
-  color: hsl(0, 0%, 100%);
+  /* color: hsl(0, 0%, 100%); */
   border: 0px;
   font-size: 1.1rem;
   padding-left: 30px;
@@ -41,8 +60,9 @@
 
 .SendPage-reason>input{
   align-self: center;
+  width: 80%;
   background: transparent;
-  color: hsl(0, 0%, 100%);
+  /* color: hsl(0, 0%, 100%); */
   border: 0px;
   font-size: 1.1rem;
   padding-left: 30px;
@@ -65,8 +85,9 @@
 }
 
 .line {
-  width: 370px;
+  width: 100%;
   opacity: 0.3;
   border: solid 1px #ffffff;
+  margin-bottom: 10px;
   /* margin-left: 10%; */
 }
