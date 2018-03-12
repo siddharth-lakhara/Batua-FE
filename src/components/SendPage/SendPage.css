@@ -1,6 +1,72 @@
 .SendPage-container {
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
- flex-grow: 1;
+  background-image: linear-gradient(to right, #05e0fa, rgb(2, 189, 242));
+}
+
+.SendPage-super-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.SendPage-text {
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+}
+
+.SendPage-amount>input{
+  align-self: center;
+  background: transparent;
+  color: hsl(0, 0%, 100%);
+  border: 0px;
+  font-size: 1.1rem;
+  padding-left: 30px;
+  resize: none;
+  outline:0px none transparent;
+}
+
+.SendPage-contact>select{
+  align-self: center;
+  background: transparent;
+  color: hsl(0, 0%, 100%);
+  border: 0px;
+  font-size: 1.1rem;
+  padding-left: 30px;
+  resize: none;
+  outline:0px none transparent;
+}
+
+.SendPage-reason>input{
+  align-self: center;
+  background: transparent;
+  color: hsl(0, 0%, 100%);
+  border: 0px;
+  font-size: 1.1rem;
+  padding-left: 30px;
+  resize: none;
+  outline:0px none transparent;
+}
+
+.SendPage-send-button>button{
+  align-self: center;
+  width: 100%;
+  /* min-height: 6vh; */
+  /* height: 50%; */
+  font-size: 1.5rem;
+  text-align: center;
+  /* margin-bottom: 10px; */
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+.line {
+  width: 370px;
+  opacity: 0.3;
+  border: solid 1px #ffffff;
+  /* margin-left: 10%; */
 }
