@@ -29,7 +29,10 @@ const Sidebar = ({
             title="Contacts"
           />
           <div>
-            <Content item="All Contacts" />
+            <div className="Sidebar-add-contact">
+              <i style={{ color: 'white', fontSize: '20px', alignSelf: 'center' }} class="material-icons">control_point</i>
+              <Content item="Add Contact" />
+            </div>
             <Content item="Groups" />
           </div>
         </div>
