@@ -1,7 +1,7 @@
 import React from 'react';
 import './userinfo.css';
 
-const UserInfo = () => (
+const UserInfo = props => (
   <div className="UserInfo-main">
     <div className="UserInfo-box">
       <div className="UserInfo-social">
@@ -14,7 +14,7 @@ const UserInfo = () => (
     <div className="UserInfo-Actions">
       <div className="UserInfo-balance">
         <div className="UserInfo-totalBalance">Total Balance</div>
-        <div className="UserInfo-currentBalance">Rs 3000</div>
+        <div className="UserInfo-currentBalance">Rs {props.balance}</div>
       </div>
       <div className="UserInfo-line" />
       <div className="UserInfo-txn">

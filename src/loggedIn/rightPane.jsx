@@ -10,7 +10,7 @@ const RightPane = props => (
       <Header />
     </div>
     <div className="rightPane-UserInfo">
-      <UserInfo />
+      <UserInfo balance={props.balance} />
     </div>
     <div className="rightPane-body">
       <ContentCard
