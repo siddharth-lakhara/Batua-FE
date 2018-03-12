@@ -16,7 +16,7 @@ class Transactions extends React.Component {
     this.setState({
       displayTab: newTabValue,
     }, () => {
-      console.log('new tab: ', this.state.displayTab);
+      // console.log('new tab: ', this.state.displayTab);
     });
   }
 
@@ -27,9 +27,11 @@ class Transactions extends React.Component {
           displayTab={this.state.displayTab}
           changeTab={this.changeTab}
         />
-        <div>
-          <TransactionsDisplayer displayTab={this.state.displayTab} />
-        </div>
+        <TransactionsDisplayer
+          displayTab={this.state.displayTab}
+          userName={this.props.userName}
+          authToken={this.props.authToken}
+        />
       </div>
     );
   }

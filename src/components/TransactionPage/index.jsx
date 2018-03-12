@@ -19,29 +19,68 @@ class TransactionPage extends React.Component {
       .catch(err => console.log(err));
   }
 
-  approve = (token) => {
-    axios.post(
+  approve = (transactionId, decision) => {
+    axios.patch(
       '/transaction/approve',
       {
-        toId: this.state.toId,
-        amount: this.state.amount,
-        reason: this.state.reason,
+        transactionId,
+        decision,
       },
-      { headers: { Authorization: token } },
+      { headers: { Authorization: this.props.token } },
     );
   };
 
-  pending = () => this.state.history.filter(transaction => transaction.status === 'PENDING');
+  selector = id => (
+    <div>
+      <button onClick={() => this.approve(id, 'YES')}>Yes</button>
+      <button onClick={() => this.approve(id, 'NO')}>No</button>
+    </div>)
 
-  completed = () => this.state.history.filter(transaction => transaction.status === 'completed');
+  filtered = status => this.state.history
+    .filter(transaction => transaction.status === status)
+    .map(item => (
+      <tr className="Transaction-row" key={item.transactionId}>
+        <td>{item.fromId}</td>
+        <td>{item.toId}</td>
+        <td>{item.amount}</td>
+        <td>{item.reason}</td>
+        <td>{item.status === 'PENDING' ? this.selector(item.transactionId) : null}</td>
+      </tr>
+    ))
+
 
   render() {
     return (
       <div className="TransactionPage-container">
         <div className="TransactionPage-pending">Pending Transactions</div>
-        <div className="TransactionPage-pending-list">{JSON.stringify(this.pending())}</div>
+        <div className="TransactionPage-pending-list">
+          <table>
+            <thead className="Transaction-header">
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Reason</th>
+                <th>Accept/Reject</th>
+              </tr>
+            </thead>
+            <tbody>{this.filtered('PENDING')}</tbody>
+          </table>
+        </div>
         <div className="TransactionPage-Completed">Completed Transactions</div>
-        <div className="TransactionPage-completed-list">{JSON.stringify(this.completed())}</div>
+        <div className="TransactionPage-completed-list">
+          <table>
+            <thead className="Transaction-header">
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody>{this.filtered('COMPLETED')}</tbody>
+          </table>
+        </div>
       </div>);
   }
 }

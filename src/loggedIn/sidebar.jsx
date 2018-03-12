@@ -5,7 +5,7 @@ import Head from './sidebar/sidebarHeader';
 import Content from './sidebar/sidebarContents';
 import './sidebar.css';
 
-const Sidebar = ({ send, request }) => (
+const Sidebar = ({ send, request, transaction }) => (
   <div className="sidebar-main">
     <div className="sidebar-box">
       <Logo />
@@ -16,7 +16,7 @@ const Sidebar = ({ send, request }) => (
             title="Transactions"
           />
           <div>
-            <Content item="All Transactions" />
+            <Content item="All Transactions" click={transaction} />
             <Content item="Send" click={send} />
             <Content item="Request" click={request} />
           </div>

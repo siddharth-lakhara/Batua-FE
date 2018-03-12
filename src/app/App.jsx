@@ -52,7 +52,7 @@ class App extends Component {
               \nReason: ${data.reason ? data.reason : 'not given'}.
               \nAccept?`);
               if (isAccepted) {
-                this.setState({ page: 'approve' });
+                this.setState({ page: 'transactions' });
               }
             });
           }
@@ -64,10 +64,10 @@ class App extends Component {
               '/userName',
               { friendId: data.from }, { headers: { Authorization: idToken } },
             ).then((result) => {
-              this.transactions();
               const { userName: friendName } = result.data;
               global.alert(`${friendName} has sent ${data.amount}
               \nReason: ${data.reason ? data.reason : 'not given'}.`);
+              this.transactions();
             });
           }
         });
@@ -110,7 +110,11 @@ class App extends Component {
       case ('send'): {
         return ( // show login page
           <div className="App">
-            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+            />
             <SendPage
               token={this.state.idToken}
               userId={this.state.userId}
@@ -122,7 +126,11 @@ class App extends Component {
       case ('request'): {
         return ( // show login page
           <div className="App">
-            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+            />
             <RequestPage
               token={this.state.idToken}
               userId={this.state.userId}
@@ -130,10 +138,14 @@ class App extends Component {
           </div>
         );
       }
-      case ('approve'): {
+      case ('transactions'): {
         return ( // show login page
           <div className="App">
-            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+            />
             <TransactionPage
               token={this.state.idToken}
               userId={this.state.userId}
@@ -144,7 +156,11 @@ class App extends Component {
       default: {
         return (
           <div className="App">
-            <Sidebar send={() => this.send()} request={() => this.request()} />
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+            />
             <RightPane />
           </div>
         );
