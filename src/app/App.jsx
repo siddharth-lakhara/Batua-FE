@@ -19,6 +19,7 @@ class App extends Component {
       idToken: '',
       userId: 0,
       balance: 0,
+      userName: '',
     };
   }
 
@@ -36,7 +37,9 @@ class App extends Component {
     axios.post('/users/login', { userName, password })
       .then((result) => {
         const idToken = result.data.data.id_token;
-        this.setState({ page: 'home', idToken, userId: this.decode(idToken) });
+        this.setState({
+          page: 'home', idToken, userId: this.decode(idToken), userName,
+        });
       })
       .then(() => {
         const { userId, idToken } = this.state;
@@ -173,7 +176,7 @@ class App extends Component {
               home={() => this.home()}
 
             />
-            <RightPane userName="S" idToken={this.state.idToken} />
+            <RightPane userName={this.state.userName} idToken={this.state.idToken} />
           </div>
         );
       }
