@@ -135,6 +135,7 @@ class App extends Component {
               token={this.state.idToken}
               userId={this.state.userId}
               balance={this.state.balance}
+              userName={this.state.userName}
             />
           </div>
         );
