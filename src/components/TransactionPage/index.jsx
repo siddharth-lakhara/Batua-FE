@@ -81,6 +81,20 @@ class TransactionPage extends React.Component {
             <tbody>{this.filtered('COMPLETED')}</tbody>
           </table>
         </div>
+        <div className="TransactionPage-Failed">Failed Transactions</div>
+        <div className="TransactionPage-Failed-list">
+          <table>
+            <thead className="Transaction-header">
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody>{this.filtered('FAILED')}</tbody>
+          </table>
+        </div>
       </div>);
   }
 }

@@ -15,7 +15,7 @@ const RightPane = props => (
     <div className="rightPane-body">
       <ContentCard
         userName={props.userName}
-        authToken={props.authToken}
+        authToken={props.idToken}
       />
     </div>
   </div>
