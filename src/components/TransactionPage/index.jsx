@@ -37,17 +37,21 @@ class TransactionPage extends React.Component {
 
   selector = id => (
     <div>
-      <button onClick={() => {
-this.approve(id, 'YES');
-this.forceUpdate();
-}}
-      >Yes
-      </button>
-      <button onClick={() => {
-this.approve(id, 'NO');
-this.forceUpdate();
-}}
-      >No
+      <button
+        className="Approve-button yes"
+        onClick={() => {
+          this.approve(id, 'YES');
+          this.forceUpdate();
+        }}
+      >Accept
+      </button>/
+      <button
+        className="Approve-button no"
+        onClick={() => {
+          this.approve(id, 'NO');
+          this.forceUpdate();
+        }}
+      >Reject
       </button>
     </div>)
 
@@ -59,31 +63,31 @@ this.forceUpdate();
         <td>{item.toUser}</td>
         <td>{item.amount}</td>
         <td>{item.reason}</td>
-        <td>{item.status === 'PENDING' ? this.selector(item.transactionId) : null}</td>
+        {item.status === 'PENDING' ? <td>{this.selector(item.transactionId)}</td> : null}
       </tr>
     ))
 
   render() {
     return (
       <div className="TransactionPage-container">
-        <div className="TransactionPage-pending">Pending Transactions</div>
+        <div className="TransactionPage-title pending">Pending Transactions</div>
         <div className="TransactionPage-pending-list">
-          <table>
+          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>
                 <th>To</th>
                 <th>Amount</th>
                 <th>Reason</th>
-                <th>Accept/Reject</th>
+                <th>Request</th>
               </tr>
             </thead>
             <tbody>{this.filtered('PENDING')}</tbody>
           </table>
         </div>
-        <div className="TransactionPage-Completed">Completed Transactions</div>
+        <div className="TransactionPage-title completed">Completed Transactions</div>
         <div className="TransactionPage-completed-list">
-          <table>
+          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>
@@ -95,9 +99,9 @@ this.forceUpdate();
             <tbody>{this.filtered('COMPLETED')}</tbody>
           </table>
         </div>
-        <div className="TransactionPage-Failed">Failed Transactions</div>
+        <div className="TransactionPage-title failed">Failed Transactions</div>
         <div className="TransactionPage-Failed-list">
-          <table>
+          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>
