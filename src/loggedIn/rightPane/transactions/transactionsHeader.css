@@ -4,7 +4,7 @@
     flex-direction: row;
     min-width: 98%;
     /* margin-right: 50px; */
-   justify-content: flex-end;
+   justify-content: space-between;
     /* margin-left: ; */
 }
 
