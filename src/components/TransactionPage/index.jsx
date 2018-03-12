@@ -72,7 +72,7 @@ class TransactionPage extends React.Component {
       <div className="TransactionPage-container">
         <div className="TransactionPage-title pending">Pending Transactions</div>
         <div className="TransactionPage-pending-list">
-          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
+          <table className="TransactionPage-table" cellPadding="0" cellSpacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>
@@ -87,7 +87,7 @@ class TransactionPage extends React.Component {
         </div>
         <div className="TransactionPage-title completed">Completed Transactions</div>
         <div className="TransactionPage-completed-list">
-          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
+          <table className="TransactionPage-table" cellPadding="0" cellSpacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>
@@ -101,7 +101,7 @@ class TransactionPage extends React.Component {
         </div>
         <div className="TransactionPage-title failed">Failed Transactions</div>
         <div className="TransactionPage-Failed-list">
-          <table className="TransactionPage-table" cellpadding="0" cellspacing="0">
+          <table className="TransactionPage-table" cellPadding="0" cellSpacing="0">
             <thead className="Transaction-header">
               <tr>
                 <th>From</th>

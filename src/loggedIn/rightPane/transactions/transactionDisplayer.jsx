@@ -27,14 +27,16 @@ const TableHead = (props) => {
   }
 
   const AllHeadColumns = head.map((e) => {
-    const headColumn = <th>{e}</th>;
+    const headColumn = <th key={e}>{e}</th>;
     return headColumn;
   });
 
   return (
-    <tr className="restructureData-header-row">
-      {AllHeadColumns}
-    </tr>
+    <tbody>
+      <tr className="restructureData-header-row">
+        {AllHeadColumns}
+      </tr>
+    </tbody>
   );
 };
 
@@ -62,11 +64,11 @@ const TableData = (props) => {
     const rowele = [];
     for (const key in data[i]) {
       if (data[i].hasOwnProperty(key)) {
-        const cell = <td>{data[i][key]}</td>;
+        const cell = <td key={key}>{data[i][key]}</td>;
         rowele.push(cell);
       }
     }
-    const row = <tr>{rowele}</tr>;
+    const row = <tr key={data[i].transactionId}>{rowele}</tr>;
     rows.push(row);
   }
   return rows;
@@ -119,7 +121,7 @@ class TransactionsDisplayer extends React.Component {
     );
 
     return (
-      <table width="100%" cellspacing="0" cellpadding="0" className="transactionTable">
+      <table width="100%" cellSpacing="0" cellPadding="0" className="transactionTable">
         {headers}
         <tbody>
           {allRows}

@@ -8,7 +8,7 @@ const Header = props => (
     </div>
     <div className="Header-userinfoPane">
       <div className="Header-infoItems">
-        <i class="material-icons">notifications</i>
+        <i className="material-icons">notifications</i>
       </div>
       {/* <div className="Header-infoItems">
         User photo
