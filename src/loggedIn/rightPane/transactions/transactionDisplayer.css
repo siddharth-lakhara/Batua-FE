@@ -6,13 +6,15 @@ th{
     background-color: #002960;
     color: white;
     border: 0px;
-    border-bottom-color: #002960
+    border-bottom-color: #002960;
+    font-family: roboto;
 }
 tr:nth-child(even){background-color:#b4f3fa85;}
 tr:hover {background-color: #59eafa;}
 td{
   height: 40px;
   text-align: center;
+  font-family: roboto;
 }
 tr{
   margin: 0;

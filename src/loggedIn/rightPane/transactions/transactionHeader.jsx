@@ -10,7 +10,7 @@ const TransactionsHeader = props => (
     <div>
       <button
         className="transactionsHeader-button"
-        style={{ color: props.displayTab === 0 ? '#05e0fa' : 'black' }}
+        style={{ color: props.displayTab === 0 ? '#05e0fa' : 'gray' }}
         onClick={() => {
               props.changeTab(0);
             }}
@@ -20,7 +20,7 @@ const TransactionsHeader = props => (
 
       <button
         className="transactionsHeader-button"
-        style={{ color: props.displayTab === 1 ? '#05e0fa' : 'black' }}
+        style={{ color: props.displayTab === 1 ? '#05e0fa' : 'gray' }}
         onClick={() => {
               props.changeTab(1);
             }}
@@ -30,7 +30,7 @@ const TransactionsHeader = props => (
 
       <button
         className="transactionsHeader-button"
-        style={{ color: props.displayTab === 2 ? '#05e0fa' : 'black' }}
+        style={{ color: props.displayTab === 2 ? '#05e0fa' : 'gray' }}
         onClick={() => {
               props.changeTab(2);
             }}
