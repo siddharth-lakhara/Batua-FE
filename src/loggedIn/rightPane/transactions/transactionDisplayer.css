@@ -1,0 +1,24 @@
+th{
+  padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 5px;
+    text-align: center;
+    background-color: #002960;
+    color: white;
+    border: 0px;
+    border-bottom-color: #002960
+}
+tr:nth-child(even){background-color:#b4f3fa85;}
+tr:hover {background-color: #59eafa;}
+td{
+  height: 40px;
+  text-align: center;
+}
+tr{
+  margin: 0;
+    padding: 0;
+    border: 0;
+}
+.transactionTable{
+  padding: 10px;
+}

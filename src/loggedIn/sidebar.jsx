@@ -6,12 +6,12 @@ import Content from './sidebar/sidebarContents';
 import './sidebar.css';
 
 const Sidebar = ({
-  send, request, transaction, home,
+  send, request, transaction, home, balance,
 }) => (
   <div className="sidebar-main">
     <div className="sidebar-box">
       <Logo />
-      <Home home={home} />
+      <Home home={balance => home(balance)} />
       <div className="Sidebar-options">
         <div className="sidebar-transactions">
           <Head

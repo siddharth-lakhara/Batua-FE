@@ -1,11 +1,23 @@
 .transactionsHeader-main {
     display: flex;
+    /* min-height: 50px; */
 }
 
 .transactionsHeader-button {
     border: none;
+    font-family: roboto;
+    font-size: 1.5rem;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
 }
 
 .transactionsHeader-button:focus {
     outline: 0;
+}
+.TransactionsHeader-recent{
+    font-family: roboto;
+    font-size: 1.5rem;
+    padding: 10px;
 }

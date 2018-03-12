@@ -10,7 +10,12 @@ const RightPane = props => (
       <Header userName={props.userName} />
     </div>
     <div className="rightPane-UserInfo">
-      <UserInfo balance={props.balance} userName={props.userName} />
+      <UserInfo
+        balance={props.balance}
+        userName={props.userName}
+        send={props.send}
+        request={props.request}
+      />
     </div>
     <div className="rightPane-body">
       <ContentCard

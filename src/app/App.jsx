@@ -94,9 +94,11 @@ class App extends Component {
     this.setState({ page: 'transactions' });
   }
 
-  home = () => {
-    this.setState({ page: 'home' });
+  home = (balance) => {
+    this.setState({ page: 'home', balance });
   }
+
+  goHome = () => { this.setState({ page: 'home' }); }
 
   render() {
     switch (this.state.page) {
@@ -126,11 +128,10 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
-              home={() => this.home()}
-
+              home={() => this.goHome()}
             />
             <SendPage
-              home={() => this.home()}
+              home={balance => this.home(balance)}
               token={this.state.idToken}
               userId={this.state.userId}
               balance={this.state.balance}
@@ -145,13 +146,13 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
-              home={() => this.home()}
-
+              home={() => this.goHome()}
             />
             <RequestPage
-              home={() => this.home()}
+              home={balance => this.home(balance)}
               token={this.state.idToken}
               userId={this.state.userId}
+              balance={this.state.balance}
             />
           </div>
         );
@@ -163,8 +164,7 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
-              home={() => this.home()}
-
+              home={() => this.goHome()}
             />
             <TransactionPage
               token={this.state.idToken}
@@ -181,10 +181,11 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
-              home={() => this.home()}
-
+              home={() => this.goHome()}
             />
             <RightPane
+              send={() => this.send()}
+              request={() => this.request()}
               userName={this.state.userName}
               idToken={this.state.idToken}
               balance={this.state.balance}

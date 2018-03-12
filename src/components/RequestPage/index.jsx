@@ -31,7 +31,7 @@ class RequestPage extends React.Component {
         reason: this.state.reason,
       },
       { headers: { Authorization: token } },
-    ).then(() => this.props.home());
+    ).then(() => this.props.home(this.props.balance));
   };
 
   render() {

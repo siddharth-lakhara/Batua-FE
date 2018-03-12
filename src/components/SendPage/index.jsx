@@ -42,7 +42,7 @@ class SendPage extends React.Component {
         { headers: { Authorization: token } },
       ).then(() =>
         this.setState({ balance: this.state.balance - this.state.amount }))
-        .then(() => this.props.home());
+        .then(() => this.props.home(this.state.balance));
     }
   };
 
