@@ -22,7 +22,7 @@ const UserInfo = () => (
           Send
         </button>
         <button className="UserInfo-receive-button">
-          Receive
+          Request
         </button>
       </div>
     </div>

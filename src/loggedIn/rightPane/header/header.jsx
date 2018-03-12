@@ -8,7 +8,7 @@ const Header = () => (
     </div>
     <div className="Header-userinfoPane">
       <div className="Header-infoItems">
-        Notification bell
+        <i class="material-icons">notifications</i>
       </div>
       <div className="Header-infoItems">
         User photo
@@ -16,9 +16,9 @@ const Header = () => (
       <div className="Header-infoItems">
         User Name
       </div>
-      <div className="Header-infoItems">
+      {/* <div className="Header-infoItems">
         Arrow
-      </div>
+      </div> */}
     </div >
 
   </div>
