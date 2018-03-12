@@ -5,11 +5,13 @@ import Head from './sidebar/sidebarHeader';
 import Content from './sidebar/sidebarContents';
 import './sidebar.css';
 
-const Sidebar = ({ send, request, transaction }) => (
+const Sidebar = ({
+  send, request, transaction, home,
+}) => (
   <div className="sidebar-main">
     <div className="sidebar-box">
       <Logo />
-      <Home />
+      <Home home={home} />
       <div className="Sidebar-options">
         <div className="sidebar-transactions">
           <Head

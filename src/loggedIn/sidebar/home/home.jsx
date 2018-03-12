@@ -1,9 +1,9 @@
 import React from 'react';
 import './home.css';
 
-const Home = () => (
+const Home = ({ home }) => (
   <div>
-    <button className="Home-button">
+    <button className="Home-button" onClick={home} >
         My Wallet
     </button>
   </div>

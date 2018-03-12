@@ -86,6 +86,10 @@ class App extends Component {
     this.setState({ page: 'transactions' });
   }
 
+  home = () => {
+    this.setState({ page: 'home' });
+  }
+
   render() {
     switch (this.state.page) {
       case ('login'): {
@@ -114,6 +118,8 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
+              home={() => this.home()}
+
             />
             <SendPage
               token={this.state.idToken}
@@ -130,6 +136,8 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
+              home={() => this.home()}
+
             />
             <RequestPage
               token={this.state.idToken}
@@ -145,6 +153,8 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
+              home={() => this.home()}
+
             />
             <TransactionPage
               token={this.state.idToken}
@@ -160,6 +170,8 @@ class App extends Component {
               send={() => this.send()}
               request={() => this.request()}
               transaction={() => this.transactions()}
+              home={() => this.home()}
+
             />
             <RightPane userName="S" idToken={this.state.idToken} />
           </div>
