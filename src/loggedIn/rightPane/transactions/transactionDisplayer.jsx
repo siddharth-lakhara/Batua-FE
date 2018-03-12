@@ -32,7 +32,7 @@ const TableHead = (props) => {
   });
 
   return (
-    <tr>
+    <tr className="restructureData-header-row">
       {AllHeadColumns}
     </tr>
   );
@@ -119,7 +119,7 @@ class TransactionsDisplayer extends React.Component {
     );
 
     return (
-      <table width="100%" border="1px solid black">
+      <table width="100%" cellspacing="0" cellpadding="0" className="transactionTable">
         {headers}
         <tbody>
           {allRows}
