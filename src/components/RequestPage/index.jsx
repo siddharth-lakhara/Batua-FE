@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import Header from '../../loggedIn/rightPane/header/header';
+import UserInfo from '../../loggedIn/rightPane/userinfo/userinfo';
+
 import './RequestPage.css';
 
 class RequestPage extends React.Component {
@@ -36,33 +39,52 @@ class RequestPage extends React.Component {
 
   render() {
     return (
-      <div className="RequestPage-container">
-        <div className="RequestPage-text">Request Money</div>
-        <div className="RequestPage-amount">
-          <input
-            type="number"
-            min="0"
-            max="100000"
-            step="1"
-            onChange={e => this.setState({ amount: Number(e.target.value) })}
-          />
+      <div className="RequestPage-parent-container">
+        <div className="rightPane-headerPane">
+          <Header />
         </div>
-        <div className="RequestPage-contact">
-          <select onChange={e => this.setState({ toId: Number(e.target.value) })} defaultValue={0}>
-            <option value="0" disabled hidden>Choose here</option>
-            {this.state.contacts.map(({ id, name }) =>
+        <div className="rightPane-UserInfo">
+          <UserInfo balance={this.props.balance} />
+        </div>
+        <div className="RequestPage-container">
+          <div className="RequestPage-text">Request Money</div>
+          {/* <div className="RequestPage-current">
+              You have {this.state.balance} left
+          </div> */}
+          <div className="RequestPage-amount-div">
+            <span className="RequestPage-label">Enter Amount: </span>
+            <input
+              className="RequestPage-amount"
+              type="number"
+              min="0"
+              max="100000"
+              step="1"
+              onChange={e => this.setState({ amount: Number(e.target.value) })}
+            />
+          </div>
+          <div className="rRequestPage-contact-div">
+            <span className="RequestPage-label">Choose Contact: </span>
+
+            <select className="RequestPage-contact" onChange={e => this.setState({ toId: Number(e.target.value) })} defaultValue={0}>
+              <option value="0" disabled hidden>Choose here</option>
+              {this.state.contacts.map(({ id, name }) =>
           (<option key={id} value={id}>{name}</option>))}
-          </select>
+            </select>
+          </div>
+          <div className="RequestPage-reason-div">
+            <span className="RequestPage-label">Enter Reason: </span>
+
+            <input
+              className="RequestPage-reason"
+              onChange={e => this.setState({ reason: e.target.value })}
+            />
+          </div>
+          <div className="RequestPage-send-button-div">
+            <button className="RequestPage-send-button" onClick={() => this.requestMoney(this.props.token)}>Request</button>
+          </div>
         </div>
-        <div className="RequestPage-reason">
-          <input
-            onChange={e => this.setState({ reason: e.target.value })}
-          />
-        </div>
-        <div className="RequestPage-request-button">
-          <button onClick={() => this.requestMoney(this.props.token)}>Request</button>
-        </div>
-      </div>);
+      </div>
+    );
   }
 }
 

@@ -11,7 +11,7 @@ const UserInfo = props => (
             className="UserInfo-social-img"
           />
         </div>
-        <div className="UserInfo-welcome-user">Welcom Back, {props.userName}</div>
+        <div className="UserInfo-welcome-user">Welcome Back, {props.userName}</div>
       </div>
     </div>
     <div className="UserInfo-Actions">
