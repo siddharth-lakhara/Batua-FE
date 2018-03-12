@@ -3,8 +3,8 @@ import './transactionsHeader.css';
 
 const TransactionsHeader = props => (
   <div className="transactionsHeader-main">
-    <div>
-        Recent Transactions
+    <div className="TransactionsHeader-recent">
+        Recent Transactions:
     </div>
 
     <div>
