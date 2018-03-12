@@ -40,7 +40,9 @@ class SendPage extends React.Component {
         '/transaction/send',
         { toId: this.state.toId, amount: this.state.amount, reason: this.state.reason },
         { headers: { Authorization: token } },
-      ).then(() => this.setState({ balance: this.state.balance - this.state.amount }));
+      ).then(() =>
+        this.setState({ balance: this.state.balance - this.state.amount }))
+        .then(() => this.props.home());
     }
   };
 

@@ -43,7 +43,12 @@ class App extends Component {
       })
       .then(() => {
         const { userId, idToken } = this.state;
-
+        axios('/balance', {
+          headers:
+        { Authorization: idToken },
+        }).then((result) => {
+          this.setState({ balance: result.data.balance });
+        });
         this.channel.bind('request-money', (data) => {
           if (userId === data.from) {
             axios.post(
@@ -125,6 +130,7 @@ class App extends Component {
 
             />
             <SendPage
+              home={() => this.home()}
               token={this.state.idToken}
               userId={this.state.userId}
               balance={this.state.balance}
@@ -143,6 +149,7 @@ class App extends Component {
 
             />
             <RequestPage
+              home={() => this.home()}
               token={this.state.idToken}
               userId={this.state.userId}
             />
@@ -162,6 +169,7 @@ class App extends Component {
             <TransactionPage
               token={this.state.idToken}
               userId={this.state.userId}
+              userName={this.state.userName}
             />
           </div>
         );
@@ -176,7 +184,11 @@ class App extends Component {
               home={() => this.home()}
 
             />
-            <RightPane userName={this.state.userName} idToken={this.state.idToken} />
+            <RightPane
+              userName={this.state.userName}
+              idToken={this.state.idToken}
+              balance={this.state.balance}
+            />
           </div>
         );
       }

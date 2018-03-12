@@ -7,10 +7,10 @@ import './rightPane.css';
 const RightPane = props => (
   <div className="rightPane-main">
     <div className="rightPane-headerPane">
-      <Header />
+      <Header userName={props.userName} />
     </div>
     <div className="rightPane-UserInfo">
-      <UserInfo />
+      <UserInfo balance={props.balance} userName={props.userName} />
     </div>
     <div className="rightPane-body">
       <ContentCard

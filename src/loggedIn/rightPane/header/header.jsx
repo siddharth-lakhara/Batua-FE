@@ -1,24 +1,24 @@
 import React from 'react';
 import './header.css';
 
-const Header = () => (
+const Header = props => (
   <div className="Header-main">
     <div className="Header-titleText">
         My Wallet
     </div>
     <div className="Header-userinfoPane">
       <div className="Header-infoItems">
-        Notification bell
+        <i class="material-icons">notifications</i>
       </div>
-      <div className="Header-infoItems">
+      {/* <div className="Header-infoItems">
         User photo
-      </div>
+      </div> */}
       <div className="Header-infoItems">
-        User Name
+        {props.userName}
       </div>
-      <div className="Header-infoItems">
+      {/* <div className="Header-infoItems">
         Arrow
-      </div>
+      </div> */}
     </div >
 
   </div>

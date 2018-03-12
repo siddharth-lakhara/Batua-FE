@@ -6,7 +6,13 @@
     flex-wrap: 1;
 }
 .UserInfo-social{
+    display: flex;
+    flex-direction: row;
+}
+.UserInfo-user-image{
     border-radius: 50%;
+    min-height: 146px;
+    min-width: 150px;
 }
 .UserInfo-box {
     background-image: linear-gradient(to left,#05e0fa,#89effa );
@@ -74,4 +80,14 @@
   min-height: 49.5px;
   opacity: 0.27;
   border: solid 1px #ffffff;
+}
+.UserInfo-welcome-user{
+    text-align: center;
+    min-height: 100%;
+    vertical-align: middle;
+    line-height: 146px;
+    padding-left: 20px;
+    font-family: roboto;
+    color: white;
+    font-size: 1.2rem;
 }

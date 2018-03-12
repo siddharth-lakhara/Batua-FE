@@ -13,9 +13,14 @@ class TransactionPage extends React.Component {
   }
 
   componentDidMount = () => {
+    this.getHistory();
+  }
+
+  getHistory = () => {
     axios('/transactions/history', { headers: { Authorization: this.props.token } })
-      .then(result =>
-        this.setState({ history: result.data.history }))
+      .then((result) => {
+        this.setState({ history: result.data.history });
+      })
       .catch(err => console.log(err));
   }
 
@@ -27,27 +32,36 @@ class TransactionPage extends React.Component {
         decision,
       },
       { headers: { Authorization: this.props.token } },
-    );
+    ).then(() => this.getHistory());
   };
 
   selector = id => (
     <div>
-      <button onClick={() => this.approve(id, 'YES')}>Yes</button>
-      <button onClick={() => this.approve(id, 'NO')}>No</button>
+      <button onClick={() => {
+this.approve(id, 'YES');
+this.forceUpdate();
+}}
+      >Yes
+      </button>
+      <button onClick={() => {
+this.approve(id, 'NO');
+this.forceUpdate();
+}}
+      >No
+      </button>
     </div>)
 
   filtered = status => this.state.history
     .filter(transaction => transaction.status === status)
     .map(item => (
       <tr className="Transaction-row" key={item.transactionId}>
-        <td>{item.fromId}</td>
-        <td>{item.toId}</td>
+        <td>{item.fromUser}</td>
+        <td>{item.toUser}</td>
         <td>{item.amount}</td>
         <td>{item.reason}</td>
         <td>{item.status === 'PENDING' ? this.selector(item.transactionId) : null}</td>
       </tr>
     ))
-
 
   render() {
     return (
