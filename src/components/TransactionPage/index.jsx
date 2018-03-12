@@ -35,25 +35,30 @@ class TransactionPage extends React.Component {
     ).then(() => this.getHistory());
   };
 
-  selector = id => (
-    <div>
-      <button
-        className="Approve-button yes"
-        onClick={() => {
+  selector = (from, id) => {
+    if (this.props.userName !== from) {
+      return (
+        <div>
+          <button
+            className="Approve-button yes"
+            onClick={() => {
           this.approve(id, 'YES');
           this.forceUpdate();
         }}
-      >Accept
-      </button>/
-      <button
-        className="Approve-button no"
-        onClick={() => {
+          >Accept
+          </button>/
+          <button
+            className="Approve-button no"
+            onClick={() => {
           this.approve(id, 'NO');
           this.forceUpdate();
         }}
-      >Reject
-      </button>
-    </div>)
+          >Reject
+          </button>
+        </div>);
+    }
+    return 'Pending';
+  }
 
   filtered = status => this.state.history
     .filter(transaction => transaction.status === status)
@@ -63,7 +68,7 @@ class TransactionPage extends React.Component {
         <td>{item.toUser}</td>
         <td>{item.amount}</td>
         <td>{item.reason}</td>
-        {item.status === 'PENDING' ? <td>{this.selector(item.transactionId)}</td> : null}
+        {item.status === 'PENDING' ? <td>{this.selector(item.fromUser, item.transactionId)}</td> : null}
       </tr>
     ))
 
