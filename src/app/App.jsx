@@ -184,6 +184,8 @@ class App extends Component {
               home={() => this.goHome()}
             />
             <RightPane
+              send={() => this.send()}
+              request={() => this.request()}
               userName={this.state.userName}
               idToken={this.state.idToken}
               balance={this.state.balance}

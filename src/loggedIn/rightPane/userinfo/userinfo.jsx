@@ -21,10 +21,10 @@ const UserInfo = props => (
       </div>
       <div className="UserInfo-line" />
       <div className="UserInfo-txn">
-        <button className="UserInfo-send-button">
+        <button className="UserInfo-send-button" onClick={props.send}>
           Send
         </button>
-        <button className="UserInfo-receive-button">
+        <button className="UserInfo-receive-button" onClick={props.request}>
           Request
         </button>
       </div>
