@@ -6,7 +6,7 @@ import Content from './sidebar/sidebarContents';
 import './sidebar.css';
 
 const Sidebar = ({
-  send, request, transaction, home, balance,
+  send, request, transaction, home, balance, addContact, allContacts,
 }) => (
   <div className="sidebar-main">
     <div className="sidebar-box">
@@ -31,9 +31,9 @@ const Sidebar = ({
           <div>
             <div className="Sidebar-add-contact">
               <i style={{ color: 'white', fontSize: '20px', alignSelf: 'center' }} class="material-icons">control_point</i>
-              <Content item="Add Contact" />
+              <Content item="Add Contact" click={addContact} />
             </div>
-            <Content item="Groups" />
+            <Content item="All contacts" click={allContacts} />
           </div>
         </div>
       </div>

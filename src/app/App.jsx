@@ -6,9 +6,13 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 import SendPage from '../components/SendPage';
 import RequestPage from '../components/RequestPage';
+import AddContact from '../components/AddContact';
 import Sidebar from '../loggedIn/sidebar';
 import RightPane from '../loggedIn/rightPane';
 import TransactionPage from '../components/TransactionPage';
+import ContentCard from '../loggedIn/rightPane/contentCard';
+import AllContacts from '../components/AllContacts';
+import '../loggedIn/rightPane/contentCard.css';
 import './App.css';
 
 class App extends Component {
@@ -98,6 +102,14 @@ class App extends Component {
     this.setState({ page: 'home', balance });
   }
 
+  addContact = () => {
+    this.setState({ page: 'addContact' });
+  }
+
+  allContacts = () => {
+    this.setState({ page: 'allContacts' });
+  }
+
   goHome = () => { this.setState({ page: 'home' }); }
 
   render() {
@@ -129,6 +141,7 @@ class App extends Component {
               request={() => this.request()}
               transaction={() => this.transactions()}
               home={() => this.goHome()}
+              addContact={() => this.addContact()}
             />
             <SendPage
               home={balance => this.home(balance)}
@@ -148,6 +161,8 @@ class App extends Component {
               request={() => this.request()}
               transaction={() => this.transactions()}
               home={() => this.goHome()}
+              addContact={() => this.addContact()}
+              allContacts={() => this.allContacts()}
             />
             <RequestPage
               home={balance => this.home(balance)}
@@ -166,10 +181,61 @@ class App extends Component {
               request={() => this.request()}
               transaction={() => this.transactions()}
               home={() => this.goHome()}
+              addContact={() => this.addContact()}
+              allContacts={() => this.allContacts()}
             />
             <TransactionPage
               token={this.state.idToken}
               userId={this.state.userId}
+              userName={this.state.userName}
+            />
+          </div>
+        );
+      }
+      case ('addContact'): {
+        return ( // show login page
+          <div className="App">
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+              home={() => this.goHome()}
+              addContact={() => this.addContact()}
+              allContacts={() => this.allContacts()}
+            />
+            {/* <div className="App-addContact-Rightpan"> */}
+            <AddContact
+              home={balance => this.home(balance)}
+              token={this.state.idToken}
+              userId={this.state.userId}
+              balance={this.state.balance}
+            />
+            {/* <div className="rightPane-body">
+                <ContentCard
+                  userName={this.state.userName}
+                  authToken={this.state.idToken}
+                />
+              </div> */}
+            {/* </div> */}
+          </div>
+        );
+      }
+      case ('allContacts'): {
+        return ( // show login page
+          <div className="App">
+            <Sidebar
+              send={() => this.send()}
+              request={() => this.request()}
+              transaction={() => this.transactions()}
+              home={() => this.goHome()}
+              addContact={() => this.addContact()}
+              allContacts={() => this.allContacts()}
+            />
+            <AllContacts
+              home={balance => this.home(balance)}
+              token={this.state.idToken}
+              userId={this.state.userId}
+              balance={this.state.balance}
               userName={this.state.userName}
             />
           </div>
@@ -183,6 +249,8 @@ class App extends Component {
               request={() => this.request()}
               transaction={() => this.transactions()}
               home={() => this.goHome()}
+              addContact={() => this.addContact()}
+              allContacts={() => this.allContacts()}
             />
             <RightPane
               send={() => this.send()}

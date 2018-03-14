@@ -1,7 +1,10 @@
 .Transactions2-main {
     margin: 30px;
-    box-shadow: 2px 2px 6px 0px #888888;
-    background: white;
+    box-shadow: 10px 10px 10px 0px #01050c77;
+    /* background-color: #1888e4; */
+    /* background-image: linear-gradient(to left,#06e1fac7,#89effaab ); */
+    /* background: #d6f4f8; */
+    background: #ffffff;
     min-height: 650px;
     flex-direction: column;
     display: flex;

@@ -14,6 +14,7 @@
     min-height: 100px;
     min-width: 100px;
     /* background-color: red; */
+    box-shadow: 5px 5px 5px 0px #01050c62;
 }
 .UserInfo-social-img{
     border-radius: 50%;
@@ -24,14 +25,16 @@
     text-align: center;
     min-height: 100%;
     vertical-align: middle;
-    line-height: 100px;
+    /* line-height: 100px; */
     padding-left: 20px;
     font-family: roboto;
     color: white;
-    font-size: 1.2rem;
+    padding-top: 10px;
+    font-size: 1.3rem;
 }
 .UserInfo-box {
-    background-image: linear-gradient(to left,#05e0fa,#89effa );
+    /* background-image: linear-gradient(to left,#05e0fa,#89effa ); */
+    background-image: linear-gradient(to right, #3388f8, #145dbd);
     /* min-width: 60%; */
     flex-grow: 1;
     padding: 20px;
@@ -39,7 +42,8 @@
 
 .UserInfo-Actions {
     display: flex;
-    background-color: #05e0fa;
+    /* background-color: #05e0fa; */
+    background-color: #145dbd;
     /* background-color: #73F5FF; */
     /* min-width: 40%; */
     flex-grow: 1;
@@ -77,8 +81,9 @@
     border-color: white;
     margin: 3px;
     font-family: Roboto;
-    color: #05e0fa;
+    color: #23263b;
     font-size:1rem;
+    font-weight: bold;
 }
 .UserInfo-receive-button{
     border-radius: 0;
@@ -88,8 +93,9 @@
     border-color: white;
     margin: 3px;
     font-family: Roboto;
-    color: #05e0fa;
+    color: #23263b;
     font-size:1rem;
+    font-weight: bold;
 }
 .UserInfo-line{
     width: 1px;

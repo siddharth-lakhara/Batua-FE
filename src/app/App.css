@@ -17,3 +17,11 @@
     height: 100vh;
     flex-wrap: wrap;
 }
+.App-addContact-Rightpan{
+  display: flex;
+  flex-grow: 1;
+  overflow: scroll;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: linear-gradient(to right, #014194, #24283e);
+}

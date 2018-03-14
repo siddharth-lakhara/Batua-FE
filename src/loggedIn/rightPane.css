@@ -9,4 +9,6 @@
     flex: 1;
     justify-content: space-around;
     flex-direction: column;
+    /* background-color: #02449b; */
+    /* background-image: linear-gradient(to right, #02449b, #393f5e); */
 }

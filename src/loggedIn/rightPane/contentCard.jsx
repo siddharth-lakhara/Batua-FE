@@ -1,16 +1,44 @@
 import React from 'react';
 import RecentTransactions from './transactions/transactions';
-import BottomPane from './bottom/bottom';
 import './contentCard.css';
 
-const ContentPane = props => (
-  <div className="contentCard-main">
-    <RecentTransactions
-      userName={props.userName}
-      authToken={props.authToken}
-    />
-    {/* <BottomPane /> */}
-  </div>
-);
+class ContentPane extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      card: '',
+    };
+  }
+
+  render() {
+    switch (this.state.page) {
+      case ('allContacts'): {
+        return (
+          // <div className="AllContacts-container" />
+          <div className="contentCard-main">
+            <RecentTransactions
+              userName={this.props.userName}
+              authToken={this.props.authToken}
+            />
+            {/* <BottomPane /> */}
+          </div>
+        );
+      }
+
+      default: {
+        return (
+          <div className="contentCard-main">
+            <RecentTransactions
+              userName={this.props.userName}
+              authToken={this.props.authToken}
+            />
+            {/* <BottomPane /> */}
+          </div>
+        );
+      }
+    }
+  }
+}
+
 
 export default ContentPane;

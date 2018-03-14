@@ -1,5 +1,6 @@
 .contentCard-main {
-    background-color: #F5F5F5;
+    /* background-color: #F5F5F5; */
+    background-image: linear-gradient(to right, #014194, #24283e);
     display: flex;
     flex-grow: 1;
     justify-content: space-around;
