@@ -41,9 +41,27 @@ const RenderTabs = (props) => {
 };
 
 const Headers = (props) => {
-  const { type, head } = props;
-  console.log('Head: ', head);
-  return null;
+  const { head } = props;
+  const AllHeadColumns = head.map((e, index) => (<th key={index}>{e}</th>));
+
+  return (
+    <tr className="Table-header">
+      {AllHeadColumns}
+    </tr>
+  );
+};
+
+const RenderTable = (props) => {
+  const { head, data } = props;
+  console.log(head, data);
+  //   const newData = restructuredData(head, data);
+  const rows = Object.keys(data).map((rowIndex) => {
+    const row = Object.keys(data[rowIndex]).map(rowElemIndex => (
+      <td>{data[rowIndex][rowElemIndex]}</td>
+    ));
+    return (<tr>{row}</tr>);
+  });
+  return rows;
 };
 
 class Tables extends React.Component {
@@ -55,29 +73,94 @@ class Tables extends React.Component {
   }
 
   changeTab = (newTab) => {
-    console.log('previous tab: ', this.state.tabState);
     this.setState({ tabState: newTab });
   }
 
   render() {
     if (this.props.tableType === 'transactionType') {
       const tabs = ['All', 'Send', 'Received'];
-      const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
-      const headSend = ['Sent To', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
-      const headReceive = ['Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
-      const headers = <Headers type="transactionType" tab={this.props.currentTab} />;
+
+      let headAll;
+      if (this.state.tabState === 'All') {
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+      } else if (this.state.tabState === 'Send') {
+        headAll = ['Sent To', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+      } else {
+        headAll = ['Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+      }
+      const headers = <Headers head={headAll} />;
+
+      const data = <RenderTable head={headAll} data={this.props.dataAll} />;
+
       return (
-        <div className="tables-main">
+        <div className="tables-div">
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
           {/* <RenderTable headers={headers} data={data} /> */}
-          {/* {<Headers type="transactionType" head={`${'head' + 'All'}`} tab={this.props.currentTab} />} */}
-          {console.log('UserName: ', this.props.currentUser)}
+          <table className="tables-main">
+            <thead>
+              {headers}
+            </thead>
+            <tbody>
+              {data}
+            </tbody>
+            {/* {<Headers head={headAll} tab={this.props.currentTab} />} */}
+          </table>
         </div>
       );
     } else if (this.props.tableType === 'transactionStatus') {
-      return (<div className="tables-main">Table Type: transactionStatus</div>);
+      const tabs = ['Completed', 'Pending', 'Rejected'];
+
+      let headAll;
+      if (this.state.tabState === 'Completed') {
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Category', 'Reason'];
+      } else if (this.state.tabState === 'Pending') {
+        headAll = ['Sent To', 'Amount', 'Transaction Id', 'Category', 'Reason'];
+      } else {
+        headAll = ['Sent By', 'Amount', 'Transaction Id', 'Category', 'Reason'];
+      }
+      const headers = <Headers head={headAll} specialProp="Actions" />;
+
+      const data = <RenderTable head={headAll} data={this.props.dataAll} />;
+
+      return (
+        <div className="tables-main">
+          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
+          <table className="tables-main">
+            <thead>
+              {headers}
+            </thead>
+            <tbody>
+              {data}
+            </tbody>
+          </table>
+        </div>
+      );
     } else if (this.props.tableType === 'contacts') {
-      return (<div className="tables-main">Table Type: contacts</div>);
+      const tabs = ['Send', 'Receive'];
+
+      let headAll;
+      if (this.state.tabState === 'Send') {
+        headAll = ['Transaction Id', 'Amount', 'Category', 'Reason'];
+      } else {
+        headAll = ['Transaction Id', 'Amount', 'Category', 'Reason'];
+      }
+      const headers = <Headers head={headAll} specialProp="Actions" />;
+
+      const data = <RenderTable head={headAll} data={this.props.dataAll} />;
+
+      return (
+        <div className="tables-main">
+          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
+          <table className="tables-main">
+            <thead>
+              {headers}
+            </thead>
+            <tbody>
+              {data}
+            </tbody>
+          </table>
+        </div>
+      );
     }
 
     return (<div>Invalid Table Type</div>);

@@ -32,11 +32,9 @@ const TableHead = (props) => {
   });
 
   return (
-    <tbody>
-      <tr className="restructureData-header-row">
-        {AllHeadColumns}
-      </tr>
-    </tbody>
+    <tr className="restructureData-header-row">
+      {AllHeadColumns}
+    </tr>
   );
 };
 
