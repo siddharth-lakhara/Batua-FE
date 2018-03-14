@@ -15,6 +15,7 @@ class RequestPage extends React.Component {
       toId: 0,
       contacts: [],
       reason: '',
+      balance: this.props.balance,
     };
   }
 
@@ -34,17 +35,25 @@ class RequestPage extends React.Component {
         reason: this.state.reason,
       },
       { headers: { Authorization: token } },
-    ).then(() => this.props.home(this.props.balance));
+    ).then(() => this.props.home(this.state.balance)).then(() => {
+      axios('/balance', {
+        headers:
+      { Authorization: this.props.token },
+      }).then((result) => {
+        this.setState({ balance: result.data.balance });
+      });
+    })
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
       <div className="RequestPage-parent-container">
         <div className="rightPane-headerPane">
-          <Header />
+          <Header userName={this.props.userName} />
         </div>
         <div className="rightPane-UserInfo">
-          <UserInfo balance={this.props.balance} />
+          <UserInfo balance={this.state.balance} userName={this.props.userName} />
         </div>
         <div className="RequestPage-container">
           <div className="RequestPage-text">Request Money</div>

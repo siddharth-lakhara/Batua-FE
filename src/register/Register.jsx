@@ -17,10 +17,10 @@ class Register extends Component {
             <Details icon="account_balance_wallet" placeholder="Account Number" />
             <Details icon="phone_iphone" placeholder="Phone Number" />
             <Details icon="assignment_ind" placeholder="User Name" />
-            <Details icon="vpn_key" placeholder="password" />
-            <Details icon="vpn_key" placeholder="Confirm password" />
+            <Details icon="vpn_key" type="password" placeholder="password" />
+            <Details icon="vpn_key" type="password" placeholder="Confirm password" />
             <div className="register-button-div">
-              <button className="register-button">Register</button>
+              <button className="register-button" onClick={this.props.changeToRegister}>Register</button>
             </div>
           </div>
         </div>
