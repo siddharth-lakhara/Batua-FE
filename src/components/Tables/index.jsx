@@ -25,9 +25,14 @@ import './index.css';
 //     type- contacts => none required
 
 const RenderTabs = (props) => {
-  const { title, tabs } = props;
+  const { title, tabs, tabState } = props;
   const TabComponent = tabs.map((e, index) => (
-    <span className="table-tabs-items-components" onClick={() => { props.changeTab(e); }} key={index}>
+    <span
+      className="table-tabs-items-components"
+      onClick={() => { props.changeTab(e); }}
+      key={index}
+      style={{ background: e === tabState ? '#05e0fa' : 'white' }}
+    >
       {e}
     </span>
   ));
@@ -40,9 +45,14 @@ const RenderTabs = (props) => {
   );
 };
 
+
 const Headers = (props) => {
   const { head } = props;
-  const AllHeadColumns = head.map((e, index) => (<th key={index}>{e}</th>));
+  const AllHeadColumns = head.map((e, index) => (
+    <th key={index}>
+      {e}
+    </th>
+  ));
 
   return (
     <tr className="Table-header">
@@ -51,13 +61,50 @@ const Headers = (props) => {
   );
 };
 
+const restructuredData = (header, data) => {
+  const sequence = header.map((elem) => {
+    // console.log('elem: ', elem);
+    switch (elem) {
+      case 'Sent To':
+        return 'toUser';
+      case 'Sent By':
+        return 'fromUser';
+      case 'Amount':
+        return 'amount';
+      case 'Status':
+        return 'status';
+      case 'Transaction Id':
+        return 'transactionId';
+      case 'Category':
+        return 'category';
+      case 'Reason':
+        return 'reason';
+      default:
+        return null;
+    }
+  });
+
+  //   console.log('sequence: ', sequence);
+  const newData = Object.keys(data).map((rowIndex) => {
+    // console.log(data[rowIndex]);
+    const filteredRow = {};
+    sequence.map((elem) => {
+      filteredRow[elem] = data[rowIndex][elem];
+    });
+    // console.log('filteredRow: ', filteredRow);
+    return filteredRow;
+  });
+  //   return newData;
+  return newData;
+};
+
 const RenderTable = (props) => {
   const { head, data } = props;
-  console.log(head, data);
-  //   const newData = restructuredData(head, data);
-  const rows = Object.keys(data).map((rowIndex) => {
-    const row = Object.keys(data[rowIndex]).map(rowElemIndex => (
-      <td>{data[rowIndex][rowElemIndex]}</td>
+  //   console.log(head, data);
+  const newData = restructuredData(head, data);
+  const rows = Object.keys(newData).map((rowIndex) => {
+    const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
+      <td>{newData[rowIndex][rowElemIndex]}</td>
     ));
     return (<tr>{row}</tr>);
   });
@@ -94,8 +141,7 @@ class Tables extends React.Component {
 
       return (
         <div className="tables-div">
-          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
-          {/* <RenderTable headers={headers} data={data} /> */}
+          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
           <table className="tables-main">
             <thead>
               {headers}
@@ -103,7 +149,6 @@ class Tables extends React.Component {
             <tbody>
               {data}
             </tbody>
-            {/* {<Headers head={headAll} tab={this.props.currentTab} />} */}
           </table>
         </div>
       );
