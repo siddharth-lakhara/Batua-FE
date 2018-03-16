@@ -49,9 +49,11 @@ color: white;
   padding-right: 30px;
 }
 .ContactCard-currentContact-total-sent{
+  font-family: Roboto;
   padding-top: 10px;
 }
 .ContactCard-currentContact-total-received{
+  font-family: Roboto;
   padding-bottom: 10px;
 }
 .ContactCard-currentContact-buttons-div{

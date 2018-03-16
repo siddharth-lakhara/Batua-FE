@@ -34,12 +34,15 @@ class Home extends Component {
   addContact = () => {
     this.setState({ actionCard: 'AddContact' });
   }
+  allContacts = () => {
+    this.setState({ actionCard: 'AllContacts' });
+  }
   renderActionCard = () => {
     switch (this.state.actionCard) {
       case 'nil': return (<div />);
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
-      case 'AllContacts': return (<AllContacts />);
+      case 'AllContacts': return (<AllContacts token={this.state.authToken} userName={this.state.userName} />);
       default: return (<div />);
     }
   }
@@ -47,7 +50,7 @@ class Home extends Component {
   render = () => (
     <div className="Home">
       {/* <NavigationPane /> */}
-      <div className="Home-navigation-pane-temp"><NavigationBar addContact={this.addContact} /></div>
+      <div className="Home-navigation-pane-temp"><NavigationBar addContact={this.addContact} allContacts={this.allContacts} /></div>
       <div className="Home-main-app-area">
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
