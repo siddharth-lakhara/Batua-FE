@@ -2,10 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import Header from '../../loggedIn/rightPane/header/header';
-import UserInfo from '../../loggedIn/rightPane/userinfo/userinfo';
-import ContactCard from '../ContactCard';
-
 import './AllContacts.css';
 
 class AllContacts extends React.Component {
