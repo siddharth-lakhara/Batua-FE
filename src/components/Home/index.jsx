@@ -55,8 +55,8 @@ class Home extends Component {
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
-          <div className="Home-status-bar-temp"><StatusBar /></div>
-          <div className="Home-user-info-temp"><UserInfo /></div>
+          <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
+          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} /></div>
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
