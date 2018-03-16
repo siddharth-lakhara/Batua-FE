@@ -6,6 +6,7 @@ import NavigationBar from '../NavigationBar';
 import StatusBar from '../StatusBar';
 import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
+import AllContacts from '../AllContacts';
 
 import './Home.css';
 
@@ -38,6 +39,7 @@ class Home extends Component {
       case 'nil': return (<div />);
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
+      case 'AllContacts': return (<AllContacts />);
       default: return (<div />);
     }
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import ContactCard from '../ContactCard';
 
 import './AllContacts.css';
 
@@ -50,12 +51,6 @@ class AllContacts extends React.Component {
   render() {
     return (
       <div className="AddContact-parent-container">
-        <div className="rightPane-headerPane">
-          <Header />
-        </div>
-        <div className="rightPane-UserInfo">
-          <UserInfo balance={this.props.balance} />
-        </div>
         <div className="AddContact-box">
           <div className="AllContacts-container">
             {this.showAllContacts()}
