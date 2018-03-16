@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import NavigationBar from '../NavigationBar';
+import StatusBar from '../StatusBar';
+import UserInfo from '../UserInfo';
+import AddContact from '../AddContact';
 
 import './Home.css';
 
@@ -26,10 +30,14 @@ class Home extends Component {
     });
   }
 
+  addContact = () => {
+    this.setState({ actionCard: 'AddContact' });
+  }
   renderActionCard = () => {
     switch (this.state.actionCard) {
       case 'nil': return (<div />);
       // case 'send' return (<Send />);
+      case 'AddContact': return (<AddContact />);
       default: return (<div />);
     }
   }
@@ -37,13 +45,13 @@ class Home extends Component {
   render = () => (
     <div className="Home">
       {/* <NavigationPane /> */}
-      <div className="Home-navigation-pane-temp">this is the navigation pane(temp)</div>
+      <div className="Home-navigation-pane-temp"><NavigationBar addContact={this.addContact} /></div>
       <div className="Home-main-app-area">
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
-          <div className="Home-status-bar-temp">this is the status bar(temp)</div>
-          <div className="Home-user-info-temp">this is the user info(temp)</div>
+          <div className="Home-status-bar-temp"><StatusBar /></div>
+          <div className="Home-user-info-temp"><UserInfo /></div>
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}

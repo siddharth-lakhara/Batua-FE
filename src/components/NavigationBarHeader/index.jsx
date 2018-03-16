@@ -1,5 +1,5 @@
 import React from 'react';
-import './sidebarHeader.css';
+import './NavigationBarHeader.css';
 
 const SidebarHeader = props => (
   <div className="sidebar-Header">

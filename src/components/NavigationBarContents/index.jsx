@@ -1,5 +1,5 @@
 import React from 'react';
-import './sidebarContents.css';
+import './NavigationBarContents.css';
 
 const Contents = ({ click, item }) => (
   <div >

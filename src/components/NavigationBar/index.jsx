@@ -1,9 +1,9 @@
 import React from 'react';
-import Logo from './sidebar/logo/logo';
-import Home from './sidebar/home/home';
-import Head from './sidebar/sidebarHeader';
-import Content from './sidebar/sidebarContents';
-import './sidebar.css';
+import Logo from '../NavigationBarLogo';
+import Home from '../NavigationBarHome';
+import Head from '../NavigationBarHeader';
+import Content from '../NavigationBarContents';
+import './NavigationBar.css';
 
 const Sidebar = ({
   send, request, transaction, home, balance, addContact, allContacts,

@@ -1,5 +1,5 @@
 import React from 'react';
-import './logo.css';
+import './NavigationBarLogo.css';
 
 const Logo = () => (
   <div className="Logo-main">
