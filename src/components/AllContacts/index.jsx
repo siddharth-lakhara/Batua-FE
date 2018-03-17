@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import ContactCard from '../ContactCard';
+import Tables from '../Tables';
 
 import './AllContacts.css';
 
@@ -43,7 +44,22 @@ class AllContacts extends React.Component {
     const contacts = this.state.contacts;
     const contactCards = [];
     for (let i = 0; i < contacts.length; i += 1) {
-      contactCards.push(<ContactCard token={this.props.token} transactions={this.state.transactions} userName={this.props.userName} tableType="contacts" currentContact={contacts[i].name} src={`/images/${i + 1}.jpg`} />);
+      contactCards
+        .push(<div className="AllContacts-contactCard">
+          <ContactCard
+            token={this.props.token}
+            transactions={this.state.transactions}
+            userName={this.props.userName}
+            currentContact={contacts[i].name}
+            src={`/images/${i + 1}.jpg`}
+          />
+          <Tables
+            tableType="contacts"
+            dataAll={this.state.transactions}
+            currentUser={this.props.userName}
+            currentContact={contacts[i].name}
+          />
+        </div>);
     }
     return contactCards;
   }
@@ -54,9 +70,7 @@ class AllContacts extends React.Component {
         <div className="AddContact-box">
           <div className="AllContacts-container">
             {this.showAllContacts()}
-            <div>
-              {/* <Table /> */}
-            </div>
+            <div />
           </div>
         </div>
       </div>

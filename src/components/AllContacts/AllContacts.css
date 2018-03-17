@@ -78,3 +78,10 @@
   font-size: 1.1rem;
   font-family: roboto;
 }
+.AllContacts-contactCard{
+  height: 350px;
+  width: 95%;
+  /* border: 2px solid black; */
+  margin-top: 25px;
+  align-self: center;
+}

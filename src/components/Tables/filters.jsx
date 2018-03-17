@@ -12,7 +12,7 @@ const allFilterFunctions = {
     Received: (row, currentUser) => row.toUser === currentUser,
   },
   contacts: (row, _, currentContact) =>
-    (row.toUser === currentContact || row.fromUser === currentContact),
+    console.log('contact: ', currentContact) || (row.toUser === currentContact || row.fromUser === currentContact),
 };
 
 // *************
@@ -33,8 +33,11 @@ const allFilterFunctions = {
 
 // **************
 
-const functionChooser = (tableType, tableTab) =>
-  (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
+const functionChooser = (tableType, tableTab) => 
+  // console.log(tableType, tableTab);
+   (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType])
+;
+
 
 module.exports = functionChooser;
 

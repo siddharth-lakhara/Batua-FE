@@ -100,7 +100,10 @@ const restructuredData = (header, data) => {
 
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
-  //   console.log(head, data);
+  // console.log('head: ', head);
+  // console.log('data: ', data);
+  // console.log('actionProp: ', actionProp);
+
 
   // write logic to filter data
   // console.log('props: ', props.tableType, props.tableTab, props.currentUser);
@@ -111,10 +114,8 @@ const RenderTable = (props) => {
     data.filter(row => filterFunction(row, props.currentUser, props.currentContact));
   // console.log('filteredData: ', filteredData);
 
-
-  // const newData = restructuredData(head, data);
   const newData = restructuredData(head, filteredData);
-
+  // const newData = restructuredData(head, data);
   // render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
@@ -223,6 +224,7 @@ class Tables extends React.Component {
         data={this.props.dataAll}
         tableType={this.props.tableType}
         currentUser={this.props.currentUser}
+        currentContact={this.props.currentContact}
       />);
 
       return (

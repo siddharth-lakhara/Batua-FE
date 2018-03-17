@@ -48,7 +48,14 @@ class Home extends Component {
   }
   renderActionCard = () => {
     switch (this.state.actionCard) {
-      case 'nil': return (<div />);
+      case 'nil': return (
+        <Tables
+          tableType="transactionType"
+          dataAll={this.state.transactions}
+          currentUser={this.state.userName}
+          currentTab="All"
+        />
+      );
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
       case 'AllContacts': return (<AllContacts token={this.state.authToken} userName={this.state.userName} />);
@@ -69,14 +76,6 @@ class Home extends Component {
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
-          <div>
-            <Tables
-              tableType="transactionType"
-              dataAll={this.state.transactions}
-              currentUser={this.props.userName}
-              currentTab="Send"
-            />
-          </div>
         </div>
       </div>
     </div>
