@@ -7,6 +7,7 @@ import StatusBar from '../StatusBar';
 import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
+import Tables from '../Tables';
 
 import './Home.css';
 
@@ -19,10 +20,18 @@ class Home extends Component {
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
       balance: null,
+      transactions: [],
     };
   }
 
   componentDidMount() {
+    axios('/transactions/history', { headers: { Authorization: this.state.authToken } })
+      .then((result) => {
+        this.setState({ transactions: result.data.history });
+        console.log(result.data);
+      })
+      .catch(err => console.log(err));
+
     axios('/balance', {
       headers:
     { Authorization: this.state.authToken },
@@ -60,7 +69,14 @@ class Home extends Component {
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
-          <div>testing home {this.state.userId} {this.state.userName} {this.state.balance}</div>
+          <div>
+            <Tables
+              tableType="transactionType"
+              dataAll={this.state.transactions}
+              currentUser={this.props.userName}
+              currentTab="Send"
+            />
+          </div>
         </div>
       </div>
     </div>
