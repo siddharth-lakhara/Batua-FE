@@ -29,7 +29,7 @@ const RenderTabs = (props) => {
   const { title, tabs, tabState } = props;
   const TabComponent = tabs.map((e, index) => (
     <span
-      className="table-tabs-items-components"
+      className="tableTabs-items"
       onClick={() => { props.changeTab(e); }}
       key={index}
       style={{ background: e === tabState ? '#05e0fa' : 'white' }}
@@ -39,9 +39,9 @@ const RenderTabs = (props) => {
   ));
 
   return (
-    <div className="table-tabs-main">
+    <div className="tableTabs-main">
       <span>{title}</span>
-      <span className="table-tabs-tabs">{TabComponent}</span>
+      <span className="tableTabs-tabs">{TabComponent}</span>
     </div>
   );
 };
@@ -49,13 +49,13 @@ const RenderTabs = (props) => {
 const Headers = (props) => {
   const { head } = props;
   const AllHeadColumns = head.map((e, index) => (
-    <th key={index}>
+    <th className="Table-header" key={index}>
       {e}
     </th>
   ));
 
   return (
-    <tr className="Table-header">
+    <tr>
       {AllHeadColumns}
     </tr>
   );
