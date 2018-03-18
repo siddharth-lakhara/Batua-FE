@@ -1,0 +1,35 @@
+.Header-main {
+  display: flex;
+  /* background-image: linear-gradient(to right, #02449b, #393f5e); */
+  background-image: linear-gradient(to right, #014194, #24283e);
+  height: 62px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header-titleText {
+  width: 50%;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  padding-left: 20px;
+}
+
+.Header-userinfoPane {
+  display: flex;
+  width: 20%;
+}
+
+.Header-infoItems {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-left: 10px;
+  color: white;
+}
+.Header-infoItems{
+  /* margin-top: 8px; */
+  margin-left: 40px;
+  text-align: center;
+}

@@ -29,7 +29,7 @@ const RenderTabs = (props) => {
   const { title, tabs, tabState } = props;
   const TabComponent = tabs.map((e, index) => (
     <span
-      className="table-tabs-items-components"
+      className="tableTabs-items"
       onClick={() => { props.changeTab(e); }}
       key={index}
       style={{ background: e === tabState ? '#05e0fa' : 'white' }}
@@ -39,9 +39,9 @@ const RenderTabs = (props) => {
   ));
 
   return (
-    <div className="table-tabs-main">
+    <div className="tableTabs-main">
       <span>{title}</span>
-      <span className="table-tabs-tabs">{TabComponent}</span>
+      <span className="tableTabs-tabs">{TabComponent}</span>
     </div>
   );
 };
@@ -49,13 +49,13 @@ const RenderTabs = (props) => {
 const Headers = (props) => {
   const { head } = props;
   const AllHeadColumns = head.map((e, index) => (
-    <th key={index}>
+    <th className="Table-header" key={index}>
       {e}
     </th>
   ));
 
   return (
-    <tr className="Table-header">
+    <tr>
       {AllHeadColumns}
     </tr>
   );
@@ -100,7 +100,10 @@ const restructuredData = (header, data) => {
 
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
-  //   console.log(head, data);
+  // console.log('head: ', head);
+  // console.log('data: ', data);
+  // console.log('actionProp: ', actionProp);
+
 
   // write logic to filter data
   // console.log('props: ', props.tableType, props.tableTab, props.currentUser);
@@ -111,19 +114,19 @@ const RenderTable = (props) => {
     data.filter(row => filterFunction(row, props.currentUser, props.currentContact));
   // console.log('filteredData: ', filteredData);
 
-
-  // const newData = restructuredData(head, data);
   const newData = restructuredData(head, filteredData);
-
+  // const newData = restructuredData(head, data);
   // render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
-      <td key={`${rowIndex}${rowElemIndex}`}>{newData[rowIndex][rowElemIndex]}</td>
+      <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+        {newData[rowIndex][rowElemIndex]}
+      </td>
     ));
     if (actionProp) {
       row.push(<td><span>Accept</span> / <span>Pending</span></td>);
     }
-    return (<tr>{row}</tr>);
+    return (<tr className="tables-row">{row}</tr>);
   });
   return rows;
 };
@@ -213,7 +216,6 @@ class Tables extends React.Component {
         </div>
       );
     } else if (this.props.tableType === 'contacts') {
-      // TODO: verify tabs; restructuring should not be called
       const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
 
       const headers = <Headers head={headAll} specialProp="Actions" />;
@@ -223,19 +225,18 @@ class Tables extends React.Component {
         data={this.props.dataAll}
         tableType={this.props.tableType}
         currentUser={this.props.currentUser}
+        currentContact={this.props.currentContact}
       />);
 
       return (
-        <div className="tables-main">
-          <table className="tables-main">
-            <thead>
-              {headers}
-            </thead>
-            <tbody>
-              {data}
-            </tbody>
-          </table>
-        </div>
+        <table className="tables-main">
+          <thead>
+            {headers}
+          </thead>
+          <tbody>
+            {data}
+          </tbody>
+        </table>
       );
     }
 
