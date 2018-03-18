@@ -33,11 +33,8 @@ const allFilterFunctions = {
 
 // **************
 
-const functionChooser = (tableType, tableTab) => 
+const functionChooser = (tableType, tableTab) =>
   // console.log(tableType, tableTab);
-   (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType])
-;
-
-
+  (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
 module.exports = functionChooser;
 

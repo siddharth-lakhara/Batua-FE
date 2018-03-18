@@ -119,12 +119,14 @@ const RenderTable = (props) => {
   // render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
-      <td key={`${rowIndex}${rowElemIndex}`}>{newData[rowIndex][rowElemIndex]}</td>
+      <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+        {newData[rowIndex][rowElemIndex]}
+      </td>
     ));
     if (actionProp) {
       row.push(<td><span>Accept</span> / <span>Pending</span></td>);
     }
-    return (<tr>{row}</tr>);
+    return (<tr className="tables-row">{row}</tr>);
   });
   return rows;
 };
@@ -214,7 +216,6 @@ class Tables extends React.Component {
         </div>
       );
     } else if (this.props.tableType === 'contacts') {
-      // TODO: verify tabs; restructuring should not be called
       const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
 
       const headers = <Headers head={headAll} specialProp="Actions" />;
@@ -228,16 +229,14 @@ class Tables extends React.Component {
       />);
 
       return (
-        <div className="tables-main">
-          <table className="tables-main">
-            <thead>
-              {headers}
-            </thead>
-            <tbody>
-              {data}
-            </tbody>
-          </table>
-        </div>
+        <table className="tables-main">
+          <thead>
+            {headers}
+          </thead>
+          <tbody>
+            {data}
+          </tbody>
+        </table>
       );
     }
 
