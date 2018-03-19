@@ -8,7 +8,7 @@
 
 /* delete this once actual components in place */
 .Home-navigation-pane-temp {
-  background-color: blue;
+  background-image: linear-gradient(to top, #002960, #24283e);
 }
 
 .Home-status-bar-temp {
@@ -33,4 +33,5 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-image: linear-gradient(to right, #014194, #24283e);
 }
