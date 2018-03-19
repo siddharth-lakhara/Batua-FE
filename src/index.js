@@ -1,3 +1,3 @@
-import render from './main';
+import render from './render';
 
 render();
