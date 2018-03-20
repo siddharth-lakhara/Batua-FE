@@ -31,6 +31,24 @@ class Home extends Component {
     }).then((result) => {
       this.setState({ balance: result.data.balance });
     });
+    this.pusher = new Pusher('cc03634ec726b20a38bf', {
+      cluster: 'ap2',
+      encrypted: true,
+    });
+    this.channel = this.pusher.subscribe('money-channel');
+
+    this.channel.bind('send-money', (data) => {
+      if (this.state.userId === data.to) {
+        axios.post(
+          '/userName',
+          { friendId: data.from }, { headers: { Authorization: this.props.authToken } },
+        ).then((result) => {
+          const { userName: friendName } = result.data;
+          global.alert(`${friendName} has sent ${data.amount}
+          \nReason: ${data.reason ? data.reason : 'not given'}.`);
+        });
+      }
+    });
   }
 
   send = () => this.setState({ actionCard: 'Send' })
@@ -42,14 +60,34 @@ class Home extends Component {
   allContacts = () => {
     this.setState({ actionCard: 'AllContacts' });
   }
+
+  updateBalance = (balance) => {
+    this.setState({ balance });
+    console.log('A');
+    this.forceUpdate();
+  }
+
   renderActionCard = () => {
     switch (this.state.actionCard) {
       case 'nil': return (<div />);
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
-      case 'AllContacts': return (<AllContacts token={this.state.authToken} userName={this.state.userName} />);
-      case 'Send': return (<Payment type="send" />);
-      case 'Request': return (<Payment type="request" />);
+      case 'AllContacts': return (<AllContacts
+        token={this.state.authToken}
+        userName={this.state.userName}
+      />);
+      case 'Send': return (<Payment
+        token={this.state.authToken}
+        type="send"
+        balance={this.state.balance}
+        updateBalance={bal => this.updateBalance(bal)}
+      />);
+      case 'Request': return (<Payment
+        token={this.state.authToken}
+        type="request"
+        balance={this.state.balance}
+        updateBalance={bal => this.updateBalance(bal)}
+      />);
       default: return (<div />);
     }
   }

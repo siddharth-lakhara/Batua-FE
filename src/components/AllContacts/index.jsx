@@ -43,7 +43,7 @@ class AllContacts extends React.Component {
     const { contacts } = this.state;
     const contactCards = [];
     for (let i = 0; i < contacts.length; i += 1) {
-      contactCards.push(<ContactCard token={this.props.token} transactions={this.state.transactions} userName={this.props.userName} tableType="contacts" currentContact={contacts[i].name} src={`/images/${i + 1}.jpg`} />);
+      contactCards.push(<ContactCard token={this.props.token} key={contacts[i].id} transactions={this.state.transactions} userName={this.props.userName} tableType="contacts" currentContact={contacts[i].name} src={`/images/${i + 1}.jpg`} />);
     }
     return contactCards;
   }
