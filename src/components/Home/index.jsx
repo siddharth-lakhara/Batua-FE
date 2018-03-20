@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import Modal from 'react-modal';
+
 import NavigationBar from '../NavigationBar';
 import StatusBar from '../StatusBar';
 import UserInfo from '../UserInfo';
@@ -9,20 +11,24 @@ import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
 import Payment from '../Payment';
 
-
 import './Home.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalIsOpen: false,
       actionCard: 'nil',
       authToken: props.authToken,
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
       balance: null,
+      friendName: null,
+      paymentAmount: 0,
+      paymentReason: null,
     };
   }
+
 
   componentDidMount() {
     axios('/balance', {
@@ -44,12 +50,29 @@ class Home extends Component {
           { friendId: data.from }, { headers: { Authorization: this.props.authToken } },
         ).then((result) => {
           const { userName: friendName } = result.data;
-          global.alert(`${friendName} has sent ${data.amount}
-          \nReason: ${data.reason ? data.reason : 'not given'}.`);
+          this.setState({
+            friendName,
+            paymentAmount: data.amount,
+            paymentReason: data.reason,
+          });
+          this.openModal();
+          this.setState({ balance: this.state.balance + data.amount });
         });
       }
     });
   }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  }
+
+  afterOpenModal = () => {
+  }
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
+
 
   send = () => this.setState({ actionCard: 'Send' })
   request = () => this.setState({ actionCard: 'Request' })
@@ -66,6 +89,17 @@ class Home extends Component {
     console.log('A');
     this.forceUpdate();
   }
+
+  customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
   renderActionCard = () => {
     switch (this.state.actionCard) {
@@ -92,6 +126,7 @@ class Home extends Component {
     }
   }
 
+
   render = () => (
     <div className="Home">
       {/* <NavigationPane /> */}
@@ -112,6 +147,18 @@ class Home extends Component {
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={this.customStyles}
+          >
+            <div>
+              <button onClick={this.closeModal}>x</button>
+              <div>{this.state.friendName} has sent you {this.state.paymentAmount}</div>
+              <div>They have stated the reason for the payment to be</div>{this.state.paymentReason}
+            </div>
+          </Modal>
           <div>testing home {this.state.userId} {this.state.userName} {this.state.balance}</div>
         </div>
       </div>
