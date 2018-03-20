@@ -40,7 +40,7 @@ class AllContacts extends React.Component {
   // };
 
   showAllContacts = () => {
-    const contacts = this.state.contacts;
+    const { contacts } = this.state;
     const contactCards = [];
     for (let i = 0; i < contacts.length; i += 1) {
       contactCards.push(<ContactCard token={this.props.token} transactions={this.state.transactions} userName={this.props.userName} tableType="contacts" currentContact={contacts[i].name} src={`/images/${i + 1}.jpg`} />);
@@ -50,8 +50,8 @@ class AllContacts extends React.Component {
 
   render() {
     return (
-      <div className="AddContact-parent-container">
-        <div className="AddContact-box">
+      <div className="AllContact-parent-container">
+        <div className="AllContact-box">
           <div className="AllContacts-container">
             {this.showAllContacts()}
             <div>

@@ -7,6 +7,8 @@ import StatusBar from '../StatusBar';
 import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
+import Payment from '../Payment';
+
 
 import './Home.css';
 
@@ -31,6 +33,9 @@ class Home extends Component {
     });
   }
 
+  send = () => this.setState({ actionCard: 'Send' })
+  request = () => this.setState({ actionCard: 'Request' })
+
   addContact = () => {
     this.setState({ actionCard: 'AddContact' });
   }
@@ -43,6 +48,8 @@ class Home extends Component {
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
       case 'AllContacts': return (<AllContacts token={this.state.authToken} userName={this.state.userName} />);
+      case 'Send': return (<Payment type="send" />);
+      case 'Request': return (<Payment type="request" />);
       default: return (<div />);
     }
   }
@@ -50,13 +57,20 @@ class Home extends Component {
   render = () => (
     <div className="Home">
       {/* <NavigationPane /> */}
-      <div className="Home-navigation-pane-temp"><NavigationBar addContact={this.addContact} allContacts={this.allContacts} /></div>
+      <div className="Home-navigation-pane-temp">
+        <NavigationBar
+          addContact={this.addContact}
+          allContacts={this.allContacts}
+          send={this.send}
+          request={this.request}
+        />
+      </div>
       <div className="Home-main-app-area">
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
           <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
-          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} /></div>
+          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} /></div>
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}

@@ -1,14 +1,16 @@
 .AllContacts-container{
+
   margin: 50px;
     box-shadow: 10px 10px 10px 0px #01050c77;
     background: #ffffff;
-    min-height: 650px;
+    min-height: 250px;
     flex-direction: column;
     display: flex;
+    overflow: scroll;
     align-items: flex-start;
     /* justify-content: center; */
 }
-.AddContact-box{
+.AllContact-box{
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
@@ -16,14 +18,14 @@
  /* background-image: linear-gradient(to right, #01306e, #24283e); */
  background-image: linear-gradient(to right, #014194, #24283e);
 }
-.AddContact-parent-container {
+.AllContact-parent-container {
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
  flex-grow: 1;
  background-color: #F5F5F5;
 }
-.AddContact-container{
+.AllContact-container{
   
   display: flex;
   /* background-color: #89effa; */
@@ -41,7 +43,7 @@
   box-shadow: 10px 10px 10px 0px #01050c77;
   align-self: center;
 }
-.AddContact-send-button{
+.AllContact-send-button{
   height: 80px;
   width: 250px;
   font-family: roboto;
@@ -51,27 +53,27 @@
   border-radius: 10px;
   border: none;
 }
-.AddContact-amount{
+.AllContact-amount{
   width: 300px;
   height: 50px;
 }
-.AddContact-userName{
+.AllContact-userName{
   width: 200px;
   height: 50px;
 }
-.AddContact-contact{
+.AllContact-contact{
   width: 300px;
   height: 50px;
   font-family: roboto;
   font-size: 1.2rem; 
 }
-.AddContact-text{
+.AllContact-text{
   font-size: 1.6rem;
   font-weight: bold;
   font-family: roboto;
   color: #1b2249;
 }
-.AddContact-label{
+.AllContact-label{
   padding: 10px;
   font-weight: bold;
   color: #1b2249;

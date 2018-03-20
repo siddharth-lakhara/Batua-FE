@@ -9,6 +9,7 @@ const UserInfo = props => (
           <img
             src="/images/5.jpg"
             className="UserInfo-social-img"
+            alt="User profile"
           />
         </div>
         <div className="UserInfo-welcome-user">Welcome Back, {props.userName}</div>

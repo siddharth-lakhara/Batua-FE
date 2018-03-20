@@ -1,76 +1,88 @@
-.ContactCard-container{
+.ContactCard-container {
   height: 150px;
   width: 95%;
-  border: 2px solid black;
-  margin-top: 25px;
-align-self: center;
-background-image: linear-gradient(to right, #024092, #23263b);
-display: flex;
-flex-direction: row;
-color: white;
+  border: 2px solid;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  align-self: center;
+  background-image: linear-gradient(to right, #024092, #23263b);
+  display: flex;
+  flex-direction: row;
+  color: white;
 }
-.ContactCard-contact-image-div{
+
+.ContactCard-contact-image-div {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   margin: 20px;
   box-shadow: 5px 5px 5px 0px #01050c62;
 }
-.ContactCard-contact-image{
+
+.ContactCard-contact-image {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   box-shadow: 5px 5px 5px 0px #01050c62;
 }
-.ContactCard-currentContact-name{
+
+.ContactCard-currentContact-name {
   color: white;
-  padding-top:30px;
-  padding-left:30px;
-  font-family:roboto;
-  font-size:1.3rem;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-family: roboto;
+  font-size: 1.3rem;
   font-weight: bold;
 }
-.ContactCard-currentContact-total-transfer{
+
+.ContactCard-currentContact-total-transfer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding-left: 10px;
   padding-right: 140px;
 }
+
 @media only screen and (max-width: 1130px) {
   .ContactCard-currentContact-total-transfer {
-      padding-right: 60px;
+    padding-right: 60px;
   }
 }
-.ContactCard-currentContact-info-div{
+
+.ContactCard-currentContact-info-div {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
   padding-right: 30px;
 }
-.ContactCard-currentContact-total-sent{
+
+.ContactCard-currentContact-total-sent {
   font-family: Roboto;
   padding-top: 10px;
 }
-.ContactCard-currentContact-total-received{
+
+.ContactCard-currentContact-total-received {
   font-family: Roboto;
   padding-bottom: 10px;
 }
-.ContactCard-currentContact-buttons-div{
+
+.ContactCard-currentContact-buttons-div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding-left: 10px;
   padding-right: 10px;
 }
-.ContactCard-currentContact-button{
+
+.ContactCard-currentContact-button {
   border-radius: 0;
-    padding: 7px; 
-    width: 120px;
-    background-color: white;
-    border-color: white;
-    margin: 3px;
-    font-family: Roboto;
-    color: #23263b;
-    font-size:1rem;
+  padding: 7px;
+  width: 120px;
+  background-color: white;
+  border-color: white;
+  margin: 3px;
+  font-family: Roboto;
+  color: #23263b;
+  font-size: 1rem;
 }
