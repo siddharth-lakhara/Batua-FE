@@ -10,6 +10,7 @@ import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
 import Payment from '../Payment';
+import Notification from '../Notification';
 
 import './Home.css';
 
@@ -33,6 +34,7 @@ class Home extends Component {
 
 
   componentDidMount() {
+    Modal.setAppElement('body');
     this.balance();
     this.pusher = new Pusher('cc03634ec726b20a38bf', {
       cluster: 'ap2',
@@ -190,31 +192,20 @@ class Home extends Component {
 
   render = () => (
     <div className="Home">
-      <div className="Home-Modal">
-        <Modal
+      <div className="Home-Notification">
+        <Notification
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={this.customStyles}
-        >
-          <div>
-            <button onClick={this.closeModal}>x</button>
-            <div>{this.state.friendName} has {this.state.modalType} {this.state.paymentAmount}</div>
-            <div>with reason: {this.state.paymentReason}</div>
-            {
-              (this.state.modalType === 'requested') ?
-                <div>
-                  <button onClick={() => this.approve(this.state.transactionId, 'YES')}>
-                  Accept
-                  </button>
-                  <button onClick={() => this.approve(this.state.transactionId, 'NO')}>
-                  Reject
-                  </button>
-                </div>
-            : null
-            }
-          </div>
-        </Modal>
+          modalType={this.state.modalType}
+          friendName={this.state.friendName}
+          transactionId={this.state.transactionId}
+          paymentAmount={this.state.paymentAmount}
+          paymentReason={this.state.paymentReason}
+          approve={this.approve}
+          openModal={this.openModal}
+          afterOpenModal={this.afterOpenModal}
+          closeModal={this.closeModal}
+          customStyles={this.customStyles}
+        />
       </div>
       {/* <NavigationPane /> */}
       <div className="Home-navigation-pane-temp">
