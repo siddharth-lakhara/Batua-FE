@@ -12,10 +12,6 @@ class AddContact extends React.Component {
   }
 
   componentDidMount = () => {
-    axios('/contacts', { headers: { Authorization: this.props.token } })
-      .then(result =>
-        this.setState({ contacts: result.data }))
-      .catch(err => console.log(err));
   }
 
   addContact = (token) => {

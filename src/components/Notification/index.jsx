@@ -1,6 +1,8 @@
 import Modal from 'react-modal';
 import React from 'react';
 
+import './Notification.css';
+
 const Notification = ({
   isOpen, modalType,
   friendName, paymentAmount, paymentReason, transactionId,
@@ -12,17 +14,19 @@ const Notification = ({
     onRequestClose={closeModal}
     style={customStyles}
   >
-    <div>
-      <button onClick={closeModal}>x</button>
-      <div>{friendName} has {modalType} {paymentAmount}</div>
-      <div>with reason: {paymentReason}</div>
+    <div className="Notification-container">
+      <button className="Notification-close" onClick={closeModal}>x</button>
+      <div className="Notification-payment">
+        {friendName} has {modalType} {paymentAmount}
+      </div>
+      <div className="Notification-reason">with reason: {paymentReason}</div>
       {
               (modalType === 'requested') ?
-                <div>
-                  <button onClick={() => approve(transactionId, 'YES')}>
+                <div clasName="Notification-choose">
+                  <button className="Notification-approve"onClick={() => approve(transactionId, 'YES')}>
                   Accept
                   </button>
-                  <button onClick={() => approve(transactionId, 'NO')}>
+                  <button className="Notification-reject" onClick={() => approve(transactionId, 'NO')}>
                   Reject
                   </button>
                 </div>

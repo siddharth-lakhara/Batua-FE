@@ -22,7 +22,6 @@ class Home extends Component {
       modalType: null,
       modalIsOpen: false,
       actionCard: 'home',
-      authToken: props.authToken,
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
       balance: null,
@@ -86,7 +85,7 @@ class Home extends Component {
           '/userName',
           { friendId: data.to }, {
             headers:
-            { Authorization: this.state.authToken },
+            { Authorization: this.props.authToken },
           },
         ).then((result) => {
           const { userName: friendName } = result.data;
@@ -117,7 +116,7 @@ class Home extends Component {
   balance = () => {
     axios('/balance', {
       headers:
-    { Authorization: this.state.authToken },
+    { Authorization: this.props.authToken },
     }).then((result) => {
       this.setState({ balance: result.data.balance });
     });
@@ -168,19 +167,19 @@ class Home extends Component {
     switch (this.state.actionCard) {
       case 'home': return (<div />);
       // case 'send' return (<Send />);
-      case 'AddContact': return (<AddContact />);
+      case 'AddContact': return (<AddContact token={this.props.authToken} />);
       case 'AllContacts': return (<AllContacts
-        token={this.state.authToken}
+        token={this.props.authToken}
         userName={this.state.userName}
       />);
       case 'Send': return (<Payment
-        token={this.state.authToken}
+        token={this.props.authToken}
         type="send"
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
       />);
       case 'Request': return (<Payment
-        token={this.state.authToken}
+        token={this.props.authToken}
         type="request"
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
