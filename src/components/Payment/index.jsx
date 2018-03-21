@@ -29,11 +29,10 @@ class Payment extends React.Component {
       .catch(err => console.log(err));
   }
 
-  type = (this.props.type[0]).toUpperCase() + this.props.type.slice(1);
+  capitalize = word => (word[0]).toUpperCase() + word.slice(1);
 
   payment = (token) => {
     if (this.state.balance > this.state.amount) {
-      console.log('A');
       axios.post(
         `/transaction/${this.props.type}`,
         {
@@ -56,7 +55,7 @@ class Payment extends React.Component {
     return (
       <div className="Payment-parent-container">
         <div className="Payment-container">
-          <div className="Payment-text">{this.type} Money</div>
+          <div className="Payment-text">{this.capitalize(this.props.type)} Money</div>
           {/* <div className="SendPage-current">
               You have {this.state.balance} left
           </div> */}
@@ -101,7 +100,7 @@ class Payment extends React.Component {
             <button
               className="Payment-button"
               onClick={() => this.payment(this.props.token)}
-            >{this.type}
+            >{this.capitalize(this.props.type)}
             </button>
           </div>
         </div>

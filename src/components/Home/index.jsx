@@ -17,8 +17,10 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      transactionId: null,
+      modalType: null,
       modalIsOpen: false,
-      actionCard: 'nil',
+      actionCard: 'home',
       authToken: props.authToken,
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
@@ -31,12 +33,7 @@ class Home extends Component {
 
 
   componentDidMount() {
-    axios('/balance', {
-      headers:
-    { Authorization: this.state.authToken },
-    }).then((result) => {
-      this.setState({ balance: result.data.balance });
-    });
+    this.balance();
     this.pusher = new Pusher('cc03634ec726b20a38bf', {
       cluster: 'ap2',
       encrypted: true,
@@ -51,12 +48,54 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
+            modalType: 'sent',
             friendName,
             paymentAmount: data.amount,
             paymentReason: data.reason,
           });
           this.openModal();
           this.setState({ balance: this.state.balance + data.amount });
+        });
+      }
+    });
+
+    this.channel.bind('approve-money', (data) => {
+      if (data.from === this.state.userId) {
+        axios.post(
+          '/userName',
+          { friendId: data.to }, { headers: { Authorization: this.props.authToken } },
+        ).then((result) => {
+          const { userName: friendName } = result.data;
+          this.setState({
+            modalType: data.status,
+            friendName,
+            paymentAmount: data.amount,
+            paymentReason: data.reason,
+          });
+          this.openModal();
+          this.balance();
+        });
+      }
+    });
+
+    this.channel.bind('request-money', (data) => {
+      if (this.state.userId === data.from) {
+        axios.post(
+          '/userName',
+          { friendId: data.to }, {
+            headers:
+            { Authorization: this.state.authToken },
+          },
+        ).then((result) => {
+          const { userName: friendName } = result.data;
+          this.setState({
+            modalType: 'requested',
+            transactionId: data.id,
+            friendName,
+            paymentAmount: data.amount,
+            paymentReason: data.reason,
+          });
+          this.openModal();
         });
       }
     });
@@ -73,9 +112,17 @@ class Home extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-
-  send = () => this.setState({ actionCard: 'Send' })
-  request = () => this.setState({ actionCard: 'Request' })
+  balance = () => {
+    axios('/balance', {
+      headers:
+    { Authorization: this.state.authToken },
+    }).then((result) => {
+      this.setState({ balance: result.data.balance });
+    });
+  }
+  send = () => this.setState({ actionCard: 'Send' });
+  request = () => this.setState({ actionCard: 'Request' });
+  home = () => this.setState({ actionCard: 'home' });
 
   addContact = () => {
     this.setState({ actionCard: 'AddContact' });
@@ -86,9 +133,23 @@ class Home extends Component {
 
   updateBalance = (balance) => {
     this.setState({ balance });
-    console.log('A');
     this.forceUpdate();
   }
+
+  approve = (transactionId, decision) => {
+    console.log('APPROVED');
+    axios.patch(
+      '/transaction/approve',
+      {
+        transactionId,
+        decision,
+      },
+      { headers: { Authorization: this.props.authToken } },
+    ).then(() => {
+      this.balance();
+      this.closeModal();
+    });
+  };
 
   customStyles = {
     content: {
@@ -103,7 +164,7 @@ class Home extends Component {
 
   renderActionCard = () => {
     switch (this.state.actionCard) {
-      case 'nil': return (<div />);
+      case 'home': return (<div />);
       // case 'send' return (<Send />);
       case 'AddContact': return (<AddContact />);
       case 'AllContacts': return (<AllContacts
@@ -129,12 +190,39 @@ class Home extends Component {
 
   render = () => (
     <div className="Home">
+      <div className="Home-Modal">
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={this.customStyles}
+        >
+          <div>
+            <button onClick={this.closeModal}>x</button>
+            <div>{this.state.friendName} has {this.state.modalType} {this.state.paymentAmount}</div>
+            <div>with reason: {this.state.paymentReason}</div>
+            {
+              (this.state.modalType === 'requested') ?
+                <div>
+                  <button onClick={() => this.approve(this.state.transactionId, 'YES')}>
+                  Accept
+                  </button>
+                  <button onClick={() => this.approve(this.state.transactionId, 'NO')}>
+                  Reject
+                  </button>
+                </div>
+            : null
+            }
+          </div>
+        </Modal>
+      </div>
       {/* <NavigationPane /> */}
       <div className="Home-navigation-pane-temp">
         <NavigationBar
           addContact={this.addContact}
           allContacts={this.allContacts}
           send={this.send}
+          home={this.home}
           request={this.request}
         />
       </div>
@@ -143,22 +231,10 @@ class Home extends Component {
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
           <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
-          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} /></div>
+          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} send={this.send} request={this.request} /></div>
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={this.customStyles}
-          >
-            <div>
-              <button onClick={this.closeModal}>x</button>
-              <div>{this.state.friendName} has sent you {this.state.paymentAmount}</div>
-              <div>They have stated the reason for the payment to be</div>{this.state.paymentReason}
-            </div>
-          </Modal>
           <div>testing home {this.state.userId} {this.state.userName} {this.state.balance}</div>
         </div>
       </div>

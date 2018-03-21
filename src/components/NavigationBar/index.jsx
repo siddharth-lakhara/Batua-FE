@@ -11,7 +11,7 @@ const Sidebar = ({
   <div className="sidebar-main">
     <div className="sidebar-box">
       <Logo />
-      <Home home={balance => home(balance)} />
+      <Home home={() => home()} />
       <div className="Sidebar-options">
         <div className="sidebar-transactions">
           <Head
@@ -19,8 +19,8 @@ const Sidebar = ({
           />
           <div>
             <Content item="All Transactions" click={transaction} />
-            <Content item="Send" click={send} />
-            <Content item="Request" click={request} />
+            <Content item="Send" click={() => send()} />
+            <Content item="Request" click={() => request()} />
           </div>
         </div>
 
