@@ -2,9 +2,9 @@
 
 const allFilterFunctions = {
   transactionStatus: {
-    Completed: () => true,
-    Pending: row => row.status === 'pending',
-    Rejected: row => row.status === 'rejected',
+    Completed: row => row.status === 'COMPLETED',
+    Pending: row => row.status === 'PENDING',
+    Rejected: row => row.status === 'REJECTED',
   },
   transactionType: {
     All: () => true,

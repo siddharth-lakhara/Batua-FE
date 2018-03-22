@@ -23,7 +23,7 @@ import './index.css';
 // tabs:
 //     type- transactionType => ['All', 'Send', 'Rejected']
 //     type- transactionStatus => ['Completed', 'Pending', 'Received']
-//     type- contacts => none required
+//     type- contacts => ['Send', 'Receive']
 
 const RenderTabs = (props) => {
   const { title, tabs, tabState } = props;
@@ -47,12 +47,17 @@ const RenderTabs = (props) => {
 };
 
 const Headers = (props) => {
-  const { head } = props;
+  const { head, specialProp } = props;
   const AllHeadColumns = head.map((e, index) => (
     <th className="Table-header" key={index}>
       {e}
     </th>
   ));
+
+  // Added to handle transactionStatus Table
+  if (specialProp) {
+    AllHeadColumns.push(<th className="Table-header" key="special">Take Actions</th>);
+  }
 
   return (
     <tr>
@@ -100,23 +105,28 @@ const restructuredData = (header, data) => {
 
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
+  // <span>Accept</span>
+  // <span>Reject</span>
+
   // console.log('head: ', head);
   // console.log('data: ', data);
   // console.log('actionProp: ', actionProp);
 
 
   // write logic to filter data
-  console.log('props: ', props.tableType, props.tableTab, props.currentUser);
+  // console.log('props: ', props.tableType, props.tableTab, props.currentUser);
 
   const filterFunction =
     allFilterFunctions(props.tableType, props.tableTab);
-  console.log(filterFunction);
+  // console.log(filterFunction);
   const filteredData =
     data.filter(row => filterFunction(row, props.currentUser, props.currentContact));
   // console.log('filteredData: ', filteredData);
 
   const newData = restructuredData(head, filteredData);
   // const newData = restructuredData(head, data);
+  // const newData = filteredData;
+
   // render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
@@ -185,14 +195,14 @@ class Tables extends React.Component {
       let actionProp = false;
       let headAll;
       if (this.state.tabState === 'Completed') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
       } else if (this.state.tabState === 'Pending') {
-        headAll = ['Sent To', 'Amount', 'Transaction Id', 'Category', 'Reason', 'Action'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
         actionProp = true;
       } else {
-        headAll = ['Sent By', 'Amount', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
       }
-      const headers = <Headers head={headAll} />;
+      const headers = <Headers head={headAll} specialProp={actionProp} />;
 
       const data = (<RenderTable
         head={headAll}
@@ -220,7 +230,7 @@ class Tables extends React.Component {
       const tabs = ['Send', 'Receive'];
       const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
 
-      const headers = <Headers head={headAll} specialProp="Actions" />;
+      const headers = <Headers head={headAll} />;
 
       const data = (<RenderTable
         head={headAll}
