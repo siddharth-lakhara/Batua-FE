@@ -3,7 +3,7 @@
 const allFilterFunctions = {
   transactionStatus: {
     Completed: () => true,
-    Pending: row => row.status === 'completed',
+    Pending: row => row.status === 'pending',
     Rejected: row => row.status === 'rejected',
   },
   transactionType: {
@@ -11,13 +11,23 @@ const allFilterFunctions = {
     Send: (row, currentUser) => row.fromUser === currentUser,
     Received: (row, currentUser) => row.toUser === currentUser,
   },
-  contacts: (row, _, currentContact) =>
-    console.log('contact: ', currentContact) || (row.toUser === currentContact || row.fromUser === currentContact),
+  contacts: {
+    Send: (row, currentUser, currentContact) => (console.log('contact: ', currentContact) || (row.toUser === currentContact)),
+    Receive: (row, currentUser, currentContact) => (console.log('contact: ', currentContact) || (row.fromUser === currentContact)),
+  },
 };
+
+const functionChooser = (tableType, tableTab) => {
+  console.log('In Filters: ', tableType, tableTab);
+  return (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
+};
+
+module.exports = functionChooser;
+
 
 // *************
 // dummy code to test algorithm
-//
+
 // const somObject = {
 //   transactionStatus: {
 //     completed: value => value,
@@ -32,9 +42,4 @@ const allFilterFunctions = {
 // console.log(returnFunct(1));
 
 // **************
-
-const functionChooser = (tableType, tableTab) =>
-  // console.log(tableType, tableTab);
-  (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
-module.exports = functionChooser;
 

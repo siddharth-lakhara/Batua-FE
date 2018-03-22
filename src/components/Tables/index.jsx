@@ -106,10 +106,11 @@ const RenderTable = (props) => {
 
 
   // write logic to filter data
-  // console.log('props: ', props.tableType, props.tableTab, props.currentUser);
+  console.log('props: ', props.tableType, props.tableTab, props.currentUser);
 
   const filterFunction =
     allFilterFunctions(props.tableType, props.tableTab);
+  console.log(filterFunction);
   const filteredData =
     data.filter(row => filterFunction(row, props.currentUser, props.currentContact));
   // console.log('filteredData: ', filteredData);
@@ -216,6 +217,7 @@ class Tables extends React.Component {
         </div>
       );
     } else if (this.props.tableType === 'contacts') {
+      const tabs = ['Send', 'Receive'];
       const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
 
       const headers = <Headers head={headAll} specialProp="Actions" />;
@@ -224,19 +226,23 @@ class Tables extends React.Component {
         head={headAll}
         data={this.props.dataAll}
         tableType={this.props.tableType}
+        tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
         currentContact={this.props.currentContact}
       />);
 
       return (
-        <table className="tables-main">
-          <thead>
-            {headers}
-          </thead>
-          <tbody>
-            {data}
-          </tbody>
-        </table>
+        <div className="tables-main">
+          <RenderTabs title="Contacts Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
+          <table className="tables-main">
+            <thead>
+              {headers}
+            </thead>
+            <tbody>
+              {data}
+            </tbody>
+          </table>
+        </div>
       );
     }
 

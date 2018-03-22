@@ -55,6 +55,7 @@ class AllContacts extends React.Component {
           />
           <Tables
             tableType="contacts"
+            currentTab="Send"
             dataAll={this.state.transactions}
             currentUser={this.props.userName}
             currentContact={contacts[i].name}
