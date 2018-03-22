@@ -178,7 +178,7 @@ class Tables extends React.Component {
       return (
         <div className="tables-div">
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main">
+          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
             <thead>
               {headers}
             </thead>
@@ -215,7 +215,7 @@ class Tables extends React.Component {
       return (
         <div className="tables-main">
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
-          <table className="tables-main">
+          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
             <thead>
               {headers}
             </thead>
@@ -243,7 +243,7 @@ class Tables extends React.Component {
       return (
         <div className="tables-main">
           <RenderTabs title="Contacts Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main">
+          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
             <thead>
               {headers}
             </thead>

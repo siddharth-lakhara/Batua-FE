@@ -6,9 +6,10 @@
     flex-direction: column;
     display: flex;
     align-items: flex-start;
+    overflow: scroll;
     /* justify-content: center; */
 }
-.AddContact-box{
+.AllContacts-box{
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
@@ -16,12 +17,13 @@
  /* background-image: linear-gradient(to right, #01306e, #24283e); */
  background-image: linear-gradient(to right, #014194, #24283e);
 }
-.AddContact-parent-container {
+.AllContacts-parent-container {
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
  flex-grow: 1;
  background-color: #F5F5F5;
+ /* overflow: scroll; */
 }
 .AddContact-container{
   
@@ -40,6 +42,7 @@
   /* border: 5px solid #24283e; */
   box-shadow: 10px 10px 10px 0px #01050c77;
   align-self: center;
+  
 }
 .AddContact-send-button{
   height: 80px;

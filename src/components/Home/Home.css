@@ -3,6 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  flex-grow: 1;
+  overflow: auto;
 }
 
 
@@ -26,6 +28,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* overflow: scroll; */
 }
 
 .Home-main-app-area-body {
@@ -34,4 +37,5 @@
   flex-direction: column;
   justify-content: flex-start;
   background-image: linear-gradient(to right, #014194, #24283e);
+  /* overflow: scroll; */
 }
