@@ -1,5 +1,8 @@
 import React from 'react';
 import allFilterFunctions from './filters';
+import RenderTabs from './Helpers/RenderTabs';
+import Headers from './Helpers/Headers';
+import restructuredData from './Helpers/restructureData';
 import './index.css';
 
 // Tables
@@ -25,107 +28,19 @@ import './index.css';
 //     type- transactionStatus => ['Completed', 'Pending', 'Received']
 //     type- contacts => ['Send', 'Receive']
 
-const RenderTabs = (props) => {
-  const { title, tabs, tabState } = props;
-  const TabComponent = tabs.map((e, index) => (
-    <span
-      className="tableTabs-items"
-      onClick={() => { props.changeTab(e); }}
-      key={index}
-      style={{ background: e === tabState ? '#05e0fa' : 'white' }}
-    >
-      {e}
-    </span>
-  ));
-
-  return (
-    <div className="tableTabs-main">
-      <span>{title}</span>
-      <span className="tableTabs-tabs">{TabComponent}</span>
-    </div>
-  );
-};
-
-const Headers = (props) => {
-  const { head, specialProp } = props;
-  const AllHeadColumns = head.map((e, index) => (
-    <th className="Table-header" key={index}>
-      {e}
-    </th>
-  ));
-
-  // Added to handle transactionStatus Table
-  if (specialProp) {
-    AllHeadColumns.push(<th className="Table-header" key="special">Take Actions</th>);
-  }
-
-  return (
-    <tr>
-      {AllHeadColumns}
-    </tr>
-  );
-};
-
-const restructuredData = (header, data) => {
-  const sequence = header.map((elem) => {
-    // console.log('elem: ', elem);
-    switch (elem) {
-      case 'Sent To':
-        return 'toUser';
-      case 'Sent By':
-        return 'fromUser';
-      case 'Amount':
-        return 'amount';
-      case 'Status':
-        return 'status';
-      case 'Transaction Id':
-        return 'transactionId';
-      case 'Category':
-        return 'category';
-      case 'Reason':
-        return 'reason';
-      default:
-        return null;
-    }
-  });
-
-  //   console.log('sequence: ', sequence);
-  const newData = Object.keys(data).map((rowIndex) => {
-    // console.log(data[rowIndex]);
-    const filteredRow = {};
-    sequence.map((elem) => {
-      filteredRow[elem] = data[rowIndex][elem];
-    });
-    // console.log('filteredRow: ', filteredRow);
-    return filteredRow;
-  });
-  //   return newData;
-  return newData;
-};
-
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
 
-  // console.log('head: ', head);
-  // console.log('data: ', data);
-  // console.log('actionProp: ', actionProp);
-
-
-  // write logic to filter data
-  // console.log('props: ', props.tableType, props.tableTab, props.currentUser);
-
   const filterFunction =
     allFilterFunctions(props.tableType, props.tableTab);
-  // console.log(filterFunction);
   const filteredData =
     data.filter(row => filterFunction(row, props.currentUser, props.currentContact));
-  // console.log('filteredData: ', filteredData);
 
   const newData = restructuredData(head, filteredData);
   // const newData = restructuredData(head, data);
   // const newData = filteredData;
 
-  // render data
+  // Render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
       <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
