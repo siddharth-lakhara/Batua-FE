@@ -23,8 +23,16 @@ class ContactCard extends React.Component {
             <div className="ContactCard-currentContact-total-received">Total Received:{this.totalReceived}</div>
           </div>
           <div className="ContactCard-currentContact-buttons-div">
-            <button className="ContactCard-currentContact-button">send</button>
-            <button className="ContactCard-currentContact-button">request</button>
+            <button
+              className="ContactCard-currentContact-button"
+              onClick={() => this.props.send(this.props.currentId)}
+            >send
+            </button>
+            <button
+              className="ContactCard-currentContact-button"
+              onClick={() => this.props.request(this.props.currentId)}
+            >request
+            </button>
           </div>
         </div>
       </div>

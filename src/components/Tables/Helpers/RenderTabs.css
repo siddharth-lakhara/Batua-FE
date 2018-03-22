@@ -1,0 +1,25 @@
+.tables-main {
+    width: 100%;
+    max-height: 250px;
+    overflow: scroll;
+}
+
+.tables-div {
+    font-family: 'Roboto';
+    background: white;
+    overflow: scroll;
+    width: 100%;
+}
+
+.tableTabs-main {
+    margin: 20px;
+}
+
+.tableTabs-tabs {
+    padding: 20px;
+    margin: 20px;
+}
+
+.tableTabs-items {
+    padding: 20px;
+}

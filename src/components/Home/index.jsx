@@ -11,6 +11,7 @@ import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
 import Payment from '../Payment';
 import Notification from '../Notification';
+import Tables from '../Tables';
 
 import './Home.css';
 
@@ -28,6 +29,8 @@ class Home extends Component {
       friendName: null,
       paymentAmount: 0,
       paymentReason: null,
+      contactId: 0,
+      transactions: [],
     };
   }
 
@@ -114,6 +117,13 @@ class Home extends Component {
   }
 
   balance = () => {
+    axios('/transactions/history', { headers: { Authorization: this.props.authToken } })
+      .then((result) => {
+        this.setState({ transactions: result.data.history });
+        console.log(result.data);
+      })
+      .catch(err => console.log(err));
+
     axios('/balance', {
       headers:
     { Authorization: this.props.authToken },
@@ -121,9 +131,9 @@ class Home extends Component {
       this.setState({ balance: result.data.balance });
     });
   }
-  send = () => this.setState({ actionCard: 'Send' });
-  request = () => this.setState({ actionCard: 'Request' });
+
   home = () => this.setState({ actionCard: 'home' });
+  transaction = () => this.setState({ actionCard: 'Transactions' })
 
   addContact = () => {
     this.setState({ actionCard: 'AddContact' });
@@ -138,7 +148,6 @@ class Home extends Component {
   }
 
   approve = (transactionId, decision) => {
-    console.log('APPROVED');
     axios.patch(
       '/transaction/approve',
       {
@@ -151,6 +160,9 @@ class Home extends Component {
       this.closeModal();
     });
   };
+
+  sendContact = id => this.setState({ actionCard: 'Send', contactId: id });
+  requestContact = id => this.setState({ actionCard: 'Request', contactId: id });
 
   customStyles = {
     content: {
@@ -166,25 +178,57 @@ class Home extends Component {
 
   renderActionCard = () => {
     switch (this.state.actionCard) {
-      case 'home': return (<div />);
+      case 'home': return (<Tables
+        tableType="transactionType"
+        dataAll={this.state.transactions.slice(0, 5)}
+        currentUser={this.state.userName}
+        currentTab="All"
+        className="Home-white-bg"
+      />);
       // case 'send' return (<Send />);
-      case 'AddContact': return (<AddContact token={this.props.authToken} />);
+      case 'AddContact': return (
+        <div>
+          <AddContact token={this.props.authToken} />
+          <Tables
+            crop="no-crop"
+            tableType="transactionType"
+            dataAll={this.state.transactions.slice(0, 5)}
+            currentUser={this.state.userName}
+            currentTab="All"
+            className="Home-white-bg"
+          />
+        </div>);
       case 'AllContacts': return (<AllContacts
         token={this.props.authToken}
         userName={this.state.userName}
+        send={id => this.sendContact(id)}
+        request={id => this.requestContact(id)}
       />);
+      case 'Transactions':
+        return (<Tables
+          crop="no-crop"
+          tableType="transactionType"
+          dataAll={this.state.transactions}
+          currentUser={this.state.userName}
+          currentTab="All"
+        />);
       case 'Send': return (<Payment
         token={this.props.authToken}
         type="send"
+        contactId={this.state.contactId}
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
       />);
       case 'Request': return (<Payment
         token={this.props.authToken}
+        contactId={this.state.contactId}
         type="request"
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
       />);
+      case 'nil': return (
+        <div />
+      );
       default: return (<div />);
     }
   }
@@ -212,9 +256,10 @@ class Home extends Component {
         <NavigationBar
           addContact={this.addContact}
           allContacts={this.allContacts}
-          send={this.send}
+          send={() => this.sendContact(0)}
           home={this.home}
-          request={this.request}
+          request={() => this.requestContact(0)}
+          transaction={this.transaction}
         />
       </div>
       <div className="Home-main-app-area">
@@ -222,11 +267,10 @@ class Home extends Component {
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
           <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
-          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} send={this.send} request={this.request} /></div>
+          <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} send={() => this.sendContact(0)} request={() => this.requestContact(0)} /></div>
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
-          <div>testing home {this.state.userId} {this.state.userName} {this.state.balance}</div>
         </div>
       </div>
     </div>

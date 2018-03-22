@@ -1,16 +1,4 @@
-.AllContacts-container{
-
-  margin: 50px;
-    box-shadow: 10px 10px 10px 0px #01050c77;
-    background: #ffffff;
-    min-height: 250px;
-    flex-direction: column;
-    display: flex;
-    overflow: scroll;
-    align-items: flex-start;
-    /* justify-content: center; */
-}
-.AllContact-box{
+.AllContacts-box{
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
@@ -18,15 +6,15 @@
  /* background-image: linear-gradient(to right, #01306e, #24283e); */
  background-image: linear-gradient(to right, #014194, #24283e);
 }
-.AllContact-parent-container {
+.AllContacts-parent-container {
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
  flex-grow: 1;
  background-color: #F5F5F5;
+ /* overflow: scroll; */
 }
-.AllContact-container{
-  
+.AllContacts-container{
   display: flex;
   /* background-color: #89effa; */
   /* background-image: linear-gradient(to right, #3388f8, #145dbd); */
@@ -36,14 +24,14 @@
   justify-content: space-around;
   align-items: center;
   flex-grow: 1;
-  margin: 30px;
   width: 100%;
   /* min-width: 650px; */
   /* border: 5px solid #24283e; */
   box-shadow: 10px 10px 10px 0px #01050c77;
   align-self: center;
+  
 }
-.AllContact-send-button{
+.AllContact-send-button {
   height: 80px;
   width: 250px;
   font-family: roboto;
@@ -53,21 +41,23 @@
   border-radius: 10px;
   border: none;
 }
-.AllContact-amount{
+.AllContact-amount {
   width: 300px;
   height: 50px;
 }
-.AllContact-userName{
+.AllContact-userName {
   width: 200px;
   height: 50px;
 }
-.AllContact-contact{
+
+.AllContact-contact {
   width: 300px;
   height: 50px;
   font-family: roboto;
   font-size: 1.2rem; 
 }
-.AllContact-text{
+
+.AllContact-text {
   font-size: 1.6rem;
   font-weight: bold;
   font-family: roboto;
@@ -79,4 +69,14 @@
   color: #1b2249;
   font-size: 1.1rem;
   font-family: roboto;
+}
+.AllContacts-contactCard{
+  height: 350px;
+  width: 95%;
+  /* border: 2px solid black; */
+  align-self: center;
+}
+
+.x {
+  background: firebrick;
 }

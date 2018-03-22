@@ -1,0 +1,11 @@
+.Table-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 5px;
+    text-align: center;
+    background-color: #002960;
+    color: white;
+    border: 0px;
+    border-bottom-color: #002960;
+    font-family: roboto;
+}

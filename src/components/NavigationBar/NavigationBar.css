@@ -1,5 +1,6 @@
 .sidebar-main {
-  width: 250px;
+  /* position: fixed; */
+  min-width: 250px;
   background-image: linear-gradient(to top, #002960, #24283e);
   color: white;
   display: flex;
@@ -7,7 +8,11 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  
+  /* flex-grow: 1; */
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
 }
 @media only screen and (max-width: 1130px) {
   .sidebar-main {
@@ -26,10 +31,13 @@
   margin-left: -10%;
 } */
 .sidebar-box{
+  /* position: fixed; */
+  /* padding: 30px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* margin-bottom: 90px; */
+  /* position: fixed; */
 }
 .Sidebar-options{
   display: flex; 

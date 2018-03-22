@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import ContactCard from '../ContactCard';
+import Tables from '../Tables';
 
 import './AllContacts.css';
 
@@ -43,20 +44,39 @@ class AllContacts extends React.Component {
     const { contacts } = this.state;
     const contactCards = [];
     for (let i = 0; i < contacts.length; i += 1) {
-      contactCards.push(<ContactCard token={this.props.token} key={contacts[i].id} transactions={this.state.transactions} userName={this.props.userName} tableType="contacts" currentContact={contacts[i].name} src={`/images/${i + 1}.jpg`} />);
+      const contact = (
+        <div className="AllContacts-contactCard">
+          <ContactCard
+            token={this.props.token}
+            transactions={this.state.transactions}
+            userName={this.props.userName}
+            currentContact={contacts[i].name}
+            currentId={contacts[i].id}
+            src={`/images/${i + 1}.jpg`}
+            send={id => this.props.send(id)}
+            request={id => this.props.request(id)}
+          />
+          <Tables
+            tableType="contacts"
+            currentTab="Send"
+            dataAll={this.state.transactions}
+            crop="crop"
+            currentUser={this.props.userName}
+            currentContact={contacts[i].name}
+          />
+        </div>);
+      contactCards.push(contact);
     }
     return contactCards;
   }
 
   render() {
     return (
-      <div className="AllContact-parent-container">
-        <div className="AllContact-box">
+      <div className="AllContacts-parent-container">
+        <div className="AllContacts-box">
           <div className="AllContacts-container">
             {this.showAllContacts()}
-            <div>
-              {/* <Table /> */}
-            </div>
+            <div />
           </div>
         </div>
       </div>

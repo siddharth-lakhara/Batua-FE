@@ -10,7 +10,7 @@ class Payment extends React.Component {
     super(props);
     this.state = {
       amount: 0,
-      toId: 0,
+      toId: this.props.contactId,
       contacts: [],
       reason: '',
       balance: this.props.balance,
@@ -32,6 +32,7 @@ class Payment extends React.Component {
   capitalize = word => (word[0]).toUpperCase() + word.slice(1);
 
   payment = (token) => {
+    console.log(this.state.toId);
     if (this.state.balance > this.state.amount) {
       axios.post(
         `/transaction/${this.props.type}`,
@@ -66,7 +67,7 @@ class Payment extends React.Component {
               type="number"
               min="0"
               max="100000"
-              step="1"
+              step=".01"
               onChange={e => this.setState({ amount: Number(e.target.value) })}
             />
           </div>
@@ -76,7 +77,7 @@ class Payment extends React.Component {
             <select
               className="Payment-contact"
               onChange={e => this.setState({ toId: Number(e.target.value) })}
-              defaultValue={0}
+              value={this.props.contactId}
             >
               <option
                 value="0"
