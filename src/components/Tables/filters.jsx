@@ -12,16 +12,14 @@ const allFilterFunctions = {
     Received: (row, currentUser) => row.toUser === currentUser,
   },
   contacts: {
-    Send: (row, currentUser, currentContact) => (console.log('contact: ', currentContact) || (row.toUser === currentContact)),
-    Receive: (row, currentUser, currentContact) => (console.log('contact: ', currentContact) || (row.fromUser === currentContact)),
+    Send: (row, currentUser, currentContact) => (row.toUser === currentContact),
+    Receive: (row, currentUser, currentContact) => (row.fromUser === currentContact),
   },
 };
 
-const functionChooser = (tableType, tableTab) => {
-  console.log('In Filters: ', tableType, tableTab);
-  return (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
-};
-
+const functionChooser = (tableType, tableTab) =>
+  // console.log('In Filters: ', tableType, tableTab);
+  (allFilterFunctions[tableType][tableTab] || allFilterFunctions[tableType]);
 module.exports = functionChooser;
 
 

@@ -105,8 +105,6 @@ const restructuredData = (header, data) => {
 
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
-  // <span>Accept</span>
-  // <span>Reject</span>
 
   // console.log('head: ', head);
   // console.log('data: ', data);
@@ -135,7 +133,7 @@ const RenderTable = (props) => {
       </td>
     ));
     if (actionProp) {
-      row.push(<td><span>Accept</span> / <span>Pending</span></td>);
+      row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
     return (<tr className="tables-row">{row}</tr>);
   });
@@ -211,6 +209,7 @@ class Tables extends React.Component {
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
         actionProp={actionProp}
+        key={this.props.tableType}
       />);
 
       return (
