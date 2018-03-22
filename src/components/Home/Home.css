@@ -39,3 +39,6 @@
   background-image: linear-gradient(to right, #014194, #24283e);
   /* overflow: scroll; */
 }
+.Home-ActionCard{
+  overflow: scroll;
+}

@@ -70,13 +70,17 @@ class Home extends Component {
           <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} /></div>
         </div>
         <div className="Home-main-app-area-body">
-          {this.renderActionCard()}
-          <Tables
-            tableType="transactionType"
-            dataAll={this.state.transactions}
-            currentUser={this.state.userName}
-            currentTab="All"
-          />
+          <div className="Home-ActionCard">
+            {this.renderActionCard()}
+          </div>
+          <div>
+            <Tables
+              tableType="transactionType"
+              dataAll={this.state.transactions}
+              currentUser={this.state.userName}
+              currentTab="All"
+            />
+          </div>
         </div>
       </div>
     </div>
