@@ -66,8 +66,8 @@ class AllContacts extends React.Component {
 
   render() {
     return (
-      <div className="AddContact-parent-container">
-        <div className="AddContact-box">
+      <div className="AllContacts-parent-container">
+        <div className="AllContacts-box">
           <div className="AllContacts-container">
             {this.showAllContacts()}
             <div />

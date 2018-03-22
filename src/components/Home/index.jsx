@@ -49,15 +49,10 @@ class Home extends Component {
   renderActionCard = () => {
     switch (this.state.actionCard) {
       case 'nil': return (
-        <Tables
-          tableType="transactionType"
-          dataAll={this.state.transactions}
-          currentUser={this.state.userName}
-          currentTab="All"
-        />
+        <div />
       );
       // case 'send' return (<Send />);
-      case 'AddContact': return (<AddContact />);
+      case 'AddContact': return (<AddContact token={this.state.authToken} userName={this.state.userName} />);
       case 'AllContacts': return (<AllContacts token={this.state.authToken} userName={this.state.userName} />);
       default: return (<div />);
     }
@@ -76,6 +71,12 @@ class Home extends Component {
         </div>
         <div className="Home-main-app-area-body">
           {this.renderActionCard()}
+          <Tables
+            tableType="transactionType"
+            dataAll={this.state.transactions}
+            currentUser={this.state.userName}
+            currentTab="All"
+          />
         </div>
       </div>
     </div>

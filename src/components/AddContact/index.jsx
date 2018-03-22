@@ -11,12 +11,12 @@ class AddContact extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    axios('/contacts', { headers: { Authorization: this.props.token } })
-      .then(result =>
-        this.setState({ contacts: result.data }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount = () => {
+  //   axios('/contacts', { headers: { Authorization: this.props.authToken } })
+  //     .then(result =>
+  //       this.setState({ contacts: result.data }))
+  //     .catch(err => console.log(err));
+  // }
 
   addContact = (token) => {
     axios.post(
@@ -32,7 +32,7 @@ class AddContact extends React.Component {
     return (
       <div className="AddContact-parent-container">
         <div className="AddContact-box">
-          <div className="AddContact-container">
+          <div className="AddContact-contain">
             <div className="AddContact-text">Add Contact</div>
             <div className="AddContact-reason-div">
               <span className="AddContact-label">Enter UserName: </span>
@@ -43,7 +43,7 @@ class AddContact extends React.Component {
               />
             </div>
             <div className="AddContact-send-button-div">
-              <button className="AddContact-send-button" onClick={() => this.addContact(this.props.token)}>ADD</button>
+              <button className="AddContact-Add-button" onClick={() => this.addContact(this.props.token)}>ADD</button>
             </div>
           </div>
         </div>

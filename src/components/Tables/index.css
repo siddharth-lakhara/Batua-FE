@@ -29,9 +29,9 @@
   font-family: roboto;
 }
 
-.tables-row:nth-child(even){
+/* .tables-row:nth-child(even){
     background-color: #b4f3fa85;
-}
+} */
 
 .tables-row:hover {
     background-color: #59eafa;
