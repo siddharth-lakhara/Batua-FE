@@ -13,6 +13,7 @@ class Payment extends React.Component {
       toId: this.props.contactId,
       contacts: [],
       reason: '',
+      contactId: this.props.contactId,
       balance: this.props.balance,
     };
   }
@@ -76,8 +77,8 @@ class Payment extends React.Component {
 
             <select
               className="Payment-contact"
-              onChange={e => this.setState({ toId: Number(e.target.value) })}
-              value={this.props.contactId}
+              onChange={e => this.setState({ toId: Number(e.target.value), contactId: Number(e.target.value) })}
+              value={this.state.contactId}
             >
               <option
                 value="0"
