@@ -8,10 +8,17 @@ class ForgotPassword extends Component {
     super(props);
     this.state = {
       userName: '',
+      otp: '',
+      setPassword: '',
+      confirmPassword: '',
       page: 'userName',
     };
   }
   onEnter = () => {
+    if (this.state.setPassword !== this.state.confirmPassword) {
+      alert('Password does not match with the confirm password!');
+      return;
+    }
     alert('password changed successfully!');
   }
   render() {
@@ -50,17 +57,17 @@ class ForgotPassword extends Component {
             <InputField
               icon="message"
               placeholder="enter OTP"
-              change={e => this.setState({ userName: e.target.value })}
+              change={e => this.setState({ otp: e.target.value })}
             />
             <InputField
               icon="vpn_key"
               placeholder="set password"
-              change={e => this.setState({ userName: e.target.value })}
+              change={e => this.setState({ setPassword: e.target.value })}
             />
             <InputField
               icon="vpn_key"
               placeholder="confirm password"
-              change={e => this.setState({ userName: e.target.value })}
+              change={e => this.setState({ confirmPassword: e.target.value })}
             />
             <div className="ForgotPassword-button-div">
               <button
