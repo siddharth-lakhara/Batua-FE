@@ -19,9 +19,9 @@ class ForgotPassword extends Component {
     if (this.state.setPassword !== this.state.confirmPassword) {
       alert('Password does not match with the confirm password!');
     }
-    axios.post('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
+    axios.patch('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
       .then((result) => {
-        alert(result);
+        alert(result.data);
       });
   }
 
@@ -43,6 +43,7 @@ class ForgotPassword extends Component {
               <InputField
                 icon="account_circle"
                 placeholder="userName"
+                value={this.state.userName}
                 change={e => this.setState({ userName: e.target.value })}
               />
               <div className="ForgotPassword-button-div">
@@ -67,6 +68,7 @@ class ForgotPassword extends Component {
             <InputField
               icon="message"
               placeholder="enter OTP"
+              value={this.state.otp}
               change={e => this.setState({ otp: e.target.value })}
             />
             <InputField
