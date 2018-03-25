@@ -15,6 +15,7 @@ class ForgotPassword extends Component {
       page: 'userName',
     };
   }
+
   verifyOTP = () => {
     if (this.state.setPassword !== this.state.confirmPassword) {
       alert('Password does not match with the confirm password!');
@@ -24,6 +25,7 @@ class ForgotPassword extends Component {
       axios.patch('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
         .then((result) => {
           alert(result.data);
+          if (result.data === 'Password successfully reset') { this.props.onClick(); }
         });
     }
   }
@@ -34,6 +36,7 @@ class ForgotPassword extends Component {
         alert(result.data);
       });
   }
+
   render() {
     if (this.state.page === 'userName') {
       return (
@@ -87,7 +90,7 @@ class ForgotPassword extends Component {
             <div className="ForgotPassword-button-div">
               <button
                 className="ForgotPassword-button"
-                onClick={() => { this.verifyOTP(); this.props.onClick(this.state.userName, this.state.password); }}
+                onClick={() => { this.verifyOTP(); }}
               >Set
               </button>
             </div>

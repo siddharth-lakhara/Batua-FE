@@ -30,7 +30,7 @@ class Login extends Component {
               type="password"
               change={e => this.setState({ password: e.target.value })}
             />
-            <button className="forget-password" onClick={this.props.onForgotPassword}>Forgot Password?</button>
+            <button className="forget-password" onClick={() => { this.props.onForgotPassword(); }}>Forgot Password?</button>
             <div className="login-button-div">
               <button
                 className="login-button"
