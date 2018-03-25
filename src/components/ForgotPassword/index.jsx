@@ -18,11 +18,14 @@ class ForgotPassword extends Component {
   verifyOTP = () => {
     if (this.state.setPassword !== this.state.confirmPassword) {
       alert('Password does not match with the confirm password!');
+    } else if (this.state.setPassword.length === 0) {
+      alert('Empty passwords not accepted');
+    } else {
+      axios.patch('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
+        .then((result) => {
+          alert(result.data);
+        });
     }
-    axios.patch('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
-      .then((result) => {
-        alert(result.data);
-      });
   }
 
   sendOTP = () => {
