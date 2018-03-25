@@ -179,6 +179,7 @@ class Home extends Component {
   renderActionCard = () => {
     switch (this.state.actionCard) {
       case 'home': return (<Tables
+        authToken={this.props.authToken}
         tableType="transactionType"
         dataAll={this.state.transactions.slice(0, 5)}
         currentUser={this.state.userName}
@@ -190,6 +191,7 @@ class Home extends Component {
         <div>
           <AddContact token={this.props.authToken} />
           <Tables
+            authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
             dataAll={this.state.transactions.slice(0, 5)}
@@ -206,6 +208,7 @@ class Home extends Component {
       />);
       case 'Transactions':
         return (<Tables
+          authToken={this.props.authToken}
           crop="no-crop"
           tableType="transactionType"
           dataAll={this.state.transactions}

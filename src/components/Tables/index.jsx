@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import allFilterFunctions from './filters';
 import RenderTabs from './Helpers/RenderTabs';
 import Headers from './Helpers/Headers';
@@ -30,7 +31,7 @@ import './index.css';
 
 const RenderTable = (props) => {
   const {
-    head, data, actionProp,
+    head, data, actionProp, authToken, currentUser,
   } = props;
 
   const filterFunction =
@@ -41,14 +42,52 @@ const RenderTable = (props) => {
   const newData = restructuredData(head, filteredData);
   // const newData = restructuredData(head, data);
   // const newData = filteredData;
-
+  const handleChange = (event, transactionId) => {
+    axios.patch(
+      '/transactions/category',
+      {
+        category: event.target.value,
+        transactionId,
+      }, { headers: { Authorization: authToken } },
+    );
+    console.log('DONE');
+  };
   // Render data
   const rows = Object.keys(newData).map((rowIndex) => {
-    const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
-      <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
-        {newData[rowIndex][rowElemIndex]}
-      </td>
-    ));
+    const row = Object.keys(newData[rowIndex]).map((rowElemIndex) => {
+      const { transactionId } = newData[rowIndex];
+      if (rowElemIndex === 'category') {
+        if (currentUser === newData[rowIndex].fromUser ||
+            newData[rowIndex].fromUser === undefined) {
+          return (
+            <td>
+              <select
+                onChange={e => handleChange(e, transactionId)}
+                defaultValue={newData[rowIndex].category}
+              >
+                <option value={null}>Select Category</option>
+                <option value="Bills">Bills</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Fuel">Fuel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Investment">Investment</option>
+                <option value="Travel">Travel</option>
+              </select>
+            </td>);
+        } return newData[rowIndex].category ?
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            {newData[rowIndex].category}
+          </td> :
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            null
+          </td>;
+      }
+      return (
+        <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+          {newData[rowIndex][rowElemIndex]}
+        </td>);
+    });
     if (actionProp) {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
@@ -90,6 +129,7 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
+        authToken={this.props.authToken}
       />);
 
       return (
@@ -128,8 +168,7 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
-        actionProp={actionProp}
-        key={this.props.tableType}
+        authToken={this.props.authToken}
       />);
 
       return (
@@ -157,7 +196,7 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
-        currentContact={this.props.currentContact}
+        authToken={this.props.authToken}
       />);
 
       return (
