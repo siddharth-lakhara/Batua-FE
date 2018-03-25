@@ -1,6 +1,7 @@
-
+import axios from 'axios';
 import React, { Component } from 'react';
 import './ForgotPassword.css';
+
 import InputField from '../InputField';
 
 class ForgotPassword extends Component {
@@ -14,12 +15,21 @@ class ForgotPassword extends Component {
       page: 'userName',
     };
   }
-  onEnter = () => {
+  verifyOTP = () => {
     if (this.state.setPassword !== this.state.confirmPassword) {
       alert('Password does not match with the confirm password!');
-      return;
     }
-    alert('password changed successfully!');
+    axios.post('/forgetPassword/verifyOTP', { userName: this.state.userName, otp: this.state.otp, newPassword: this.state.setPassword })
+      .then((result) => {
+        alert(result);
+      });
+  }
+
+  sendOTP = () => {
+    axios.post('/forgetPassword', { userName: this.state.userName })
+      .then((result) => {
+        alert(result.data);
+      });
   }
   render() {
     if (this.state.page === 'userName') {
@@ -38,7 +48,7 @@ class ForgotPassword extends Component {
               <div className="ForgotPassword-button-div">
                 <button
                   className="ForgotPassword-button"
-                  onClick={() => this.setState({ page: 'password' })}
+                  onClick={() => { this.sendOTP(this.props.authToken); this.setState({ page: 'password' }); }}
                 >Enter
                 </button>
               </div>
@@ -72,7 +82,7 @@ class ForgotPassword extends Component {
             <div className="ForgotPassword-button-div">
               <button
                 className="ForgotPassword-button"
-                onClick={() => { this.onEnter(); this.props.onClick(this.state.userName, this.state.password); }}
+                onClick={() => { this.verifyOTP(); this.props.onClick(this.state.userName, this.state.password); }}
               >Set
               </button>
             </div>
