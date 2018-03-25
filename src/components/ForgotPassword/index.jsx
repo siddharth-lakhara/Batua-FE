@@ -79,11 +79,13 @@ class ForgotPassword extends Component {
             />
             <InputField
               icon="vpn_key"
+              type="password"
               placeholder="set password"
               change={e => this.setState({ setPassword: e.target.value })}
             />
             <InputField
               icon="vpn_key"
+              type="password"
               placeholder="confirm password"
               change={e => this.setState({ confirmPassword: e.target.value })}
             />
