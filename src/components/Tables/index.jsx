@@ -97,7 +97,18 @@ const restructuredData = (header, data) => {
   //   return newData;
   return newData;
 };
-
+const getColor = (rowElemIndex, rowIndex, newData) => {
+  if (rowElemIndex === 'status') {
+    if (newData[rowIndex][rowElemIndex] === 'COMPLETED') {
+      return 'green';
+    } else if (newData[rowIndex][rowElemIndex] === 'PENDING') {
+      return 'orange';
+    } else if (newData[rowIndex][rowElemIndex] === 'REJECTED') {
+      return 'red';
+    }
+    return 'black';
+  }
+};
 const RenderTable = (props) => {
   const { head, data, actionProp } = props;
   // console.log('head: ', head);
@@ -119,7 +130,11 @@ const RenderTable = (props) => {
   // render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
-      <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+      <td
+        className="tables-row-element"
+        style={{ color: getColor(rowElemIndex, rowIndex, newData) }}
+        key={`${rowIndex}${rowElemIndex}`}
+      >
         {newData[rowIndex][rowElemIndex]}
       </td>
     ));
