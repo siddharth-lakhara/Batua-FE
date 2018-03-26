@@ -50,7 +50,6 @@ const RenderTable = (props) => {
         transactionId,
       }, { headers: { Authorization: authToken } },
     );
-    console.log('DONE');
   };
   // Render data
   const rows = Object.keys(newData).map((rowIndex) => {
@@ -62,6 +61,7 @@ const RenderTable = (props) => {
           return (
             <td>
               <select
+                className="table-select"
                 onChange={e => handleChange(e, transactionId)}
                 defaultValue={newData[rowIndex].category}
               >
@@ -80,7 +80,7 @@ const RenderTable = (props) => {
             {newData[rowIndex].category}
           </td> :
           <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
-            null
+            Uncategorized
           </td>;
       }
       return (

@@ -33,3 +33,32 @@
     padding: 0;
     border: 0;
 } */
+
+
+.table-select {
+    text-align: center;
+    margin: 0 10% 0 10%;
+    border: 1px solid #111;
+    background: transparent;
+    width: 80%;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  /* CAUTION: IE hackery ahead */
+  .table-select::-ms-expand { 
+      display: none; /* remove default arrow on ie10 and ie11 */
+  }
+  
+  /* target Internet Explorer 9 to undo the custom arrow */
+  @media screen and (min-width:0\0) {
+      .table-select {
+          background:none\9;
+          padding: 5px\9;
+      } 
+  }
