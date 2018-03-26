@@ -133,6 +133,7 @@ class Home extends Component {
   }
 
   home = () => this.setState({ actionCard: 'home' });
+  split = () => this.setState({ actionCard: 'split' });
   transaction = () => this.setState({ actionCard: 'Transactions' })
 
   addContact = () => {
@@ -226,6 +227,14 @@ class Home extends Component {
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
       />);
+      case 'split':
+        return (<Tables
+          crop="no-crop"
+          tableType="split"
+          dataAll={this.state.transactions}
+          currentUser={this.state.userName}
+          currentTab="Send"
+        />);
       case 'nil': return (
         <div />
       );
@@ -259,6 +268,7 @@ class Home extends Component {
           send={() => this.sendContact(0)}
           home={this.home}
           request={() => this.requestContact(0)}
+          split={this.split}
           transaction={this.transaction}
         />
       </div>

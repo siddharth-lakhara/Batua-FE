@@ -15,6 +15,9 @@ const allFilterFunctions = {
     Send: (row, currentUser, currentContact) => (row.toUser === currentContact),
     Receive: (row, currentUser, currentContact) => (row.fromUser === currentContact),
   },
+  split: {
+    Send: (row, currentUser) => row.fromUser === currentUser,
+  },
 };
 
 const functionChooser = (tableType, tableTab) =>

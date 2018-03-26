@@ -52,6 +52,8 @@ const RenderTable = (props) => {
     if (actionProp) {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
+    row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Split</button> </td>);
+
     return (<tr className="tables-row">{row}</tr>);
   });
   return rows;
@@ -163,6 +165,33 @@ class Tables extends React.Component {
       return (
         <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <RenderTabs title="Contacts Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
+          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+            <thead>
+              {headers}
+            </thead>
+            <tbody className="Tables-content">
+              {data}
+            </tbody>
+          </table>
+        </div>
+      );
+    } else if (this.props.tableType === 'split') {
+      // const tabs = ['Send', 'Receive'];
+      const headAll = ['Sent To', 'Amount', 'Transaction Id', 'Category', 'Reason', 'split'];
+
+      const headers = <Headers head={headAll} />;
+
+      const data = (<RenderTable
+        head={headAll}
+        data={this.props.dataAll}
+        tableType={this.props.tableType}
+        tableTab={this.state.tabState}
+        currentUser={this.props.currentUser}
+        currentContact={this.props.currentContact}
+      />);
+
+      return (
+        <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
             <thead>
               {headers}
