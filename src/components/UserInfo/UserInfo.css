@@ -4,6 +4,7 @@
   flex-direction: row;
   flex-grow: 1;
   flex-wrap: 1;
+  /* position: fixed; */
 }
 .UserInfo-social{
   display: flex;

@@ -25,12 +25,14 @@
   justify-content: space-around;
   align-items: center;
   flex-grow: 1;
-  margin: 30px;
+  /* margin: 30px; */
+  margin-bottom: 25px;
+  margin-top: 25px;
   padding: 10px;
   /* margin-left: 20px; */
-  width: 35%;
+  width: 40%;
   /* border: 5px solid #24283e; */
-  box-shadow: 10px 10px 10px 0px #01050c77;
+  /* box-shadow: 10px 10px 10px 0px #01050c77; */
   align-self: center;
 }
 .AddContact-Add-button{
@@ -40,7 +42,7 @@
   font-size: 1.2rem;
   color: white;
   background-color: #0e3368;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   border: none;
   align-self: flex-end;
 }
@@ -50,8 +52,10 @@
 }
 .AddContact-userName{
   width: 200px;
-  height: 50px;
+  height: 40px;
   border-color: #0156c55e;
+  font-size: 1.2rem;
+  font-family: roboto;
 }
 .AddContact-contact{
   width: 300px;

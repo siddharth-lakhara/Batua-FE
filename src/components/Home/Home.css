@@ -17,6 +17,7 @@
 
 .Home-status-bar-temp {
   background-color: yellow;
+  /* position: fixed; */
 }
 
 .Home-user-info-temp {
@@ -40,4 +41,5 @@
   justify-content: flex-start;
   background-image: linear-gradient(to right, #014194, #24283e);
   /* overflow: scroll; */
+  height: 100%;
 }

@@ -2,24 +2,30 @@
     width: 100%;
     max-height: 250px;
     overflow: scroll;
+    /* margin-top: 59px; */
 }
 
 .tables-div {
     font-family: 'Roboto';
-    background: white;
-    overflow: scroll;
+    background: #3388f8;
+    /* overflow: scroll; */
     width: 100%;
 }
 
 .tableTabs-main {
-    margin: 20px;
+    padding: 15px;
+    /* position: fixed; */
+    /* display: flex; */
+    /* flex-grow: 1; */
+    min-width: 100%;
+    background-color:white;
 }
 
 .tableTabs-tabs {
-    padding: 20px;
-    margin: 20px;
+    padding: 15px;
+    margin: 15px;
 }
 
 .tableTabs-items {
-    padding: 20px;
+    padding: 15px;
 }

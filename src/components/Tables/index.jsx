@@ -51,6 +51,18 @@ const RenderTable = (props) => {
       }, { headers: { Authorization: authToken } },
     );
   };
+  const getColor = (rowElemIndex, rowIndex, newData) => {
+    if (rowElemIndex === 'status') {
+      if (newData[rowIndex][rowElemIndex] === 'COMPLETED') {
+        return 'green';
+      } else if (newData[rowIndex][rowElemIndex] === 'PENDING') {
+        return 'orange';
+      } else if (newData[rowIndex][rowElemIndex] === 'REJECTED') {
+        return 'red';
+      }
+      return 'black';
+    }
+  };
   // Render data
   const rows = Object.keys(newData).map((rowIndex) => {
     const row = Object.keys(newData[rowIndex]).map((rowElemIndex) => {
@@ -84,7 +96,11 @@ const RenderTable = (props) => {
           </td>;
       }
       return (
-        <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+        <td
+          className="tables-row-element"
+          style={{ color: getColor(rowElemIndex, rowIndex, newData) }}
+          key={`${rowIndex}${rowElemIndex}`}
+        >
           {newData[rowIndex][rowElemIndex]}
         </td>);
     });
@@ -139,14 +155,16 @@ class Tables extends React.Component {
         }
         >
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <thead>
+                {headers}
+              </thead>
+              <tbody className="Tables-content">
+                {data}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     } else if (this.props.tableType === 'transactionStatus') {
@@ -175,14 +193,20 @@ class Tables extends React.Component {
       return (
         <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <div>
+                <thead>
+                  {headers}
+                </thead>
+              </div>
+              <div>
+                <tbody className="Tables-content">
+                  {data}
+                </tbody>
+              </div>
+            </table>
+          </div>
         </div>
       );
     } else if (this.props.tableType === 'contacts') {
@@ -204,14 +228,16 @@ class Tables extends React.Component {
       return (
         <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <RenderTabs title="Contacts Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <thead>
+                {headers}
+              </thead>
+              <tbody className="Tables-content">
+                {data}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     }

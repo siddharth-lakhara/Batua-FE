@@ -1,8 +1,8 @@
 .ContactCard-container{
   height: 120px;
   /* width: 100%; */
-  border: 2px solid black;
-  margin-top: 25px;
+  /* border: 2px solid black; */
+  /* margin-top: 25px; */
 align-self: center;
 background-image: linear-gradient(to right, #024092, #23263b);
 display: flex;
@@ -66,14 +66,15 @@ color: white;
 .ContactCard-currentContact-buttons-div {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 50px;
 }
 
 .ContactCard-currentContact-button {
   border-radius: 0;
   padding: 7px;
+  margin: 2px;
   width: 120px;
   background-color: white;
   border-color: white;
