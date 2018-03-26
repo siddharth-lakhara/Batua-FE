@@ -34,7 +34,7 @@ class Payment extends React.Component {
 
   payment = (token) => {
     console.log(this.state.toId);
-    if (this.state.balance > this.state.amount) {
+    if (this.state.balance > this.state.amount || this.props.type !== 'send') {
       axios.post(
         `/transaction/${this.props.type}`,
         {
