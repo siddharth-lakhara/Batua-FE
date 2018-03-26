@@ -93,6 +93,7 @@ const RenderTable = (props) => {
     }
     return (<tr className="tables-row">{row}</tr>);
   });
+  console.log(currentUser, props.currentContact);
   return rows;
 };
 
@@ -197,6 +198,7 @@ class Tables extends React.Component {
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
         authToken={this.props.authToken}
+        currentContact={this.props.currentContact}
       />);
 
       return (
