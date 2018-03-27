@@ -35,7 +35,8 @@
 }
 .UserInfo-box {
   /* background-image: linear-gradient(to left,#05e0fa,#89effa ); */
-  background-image: linear-gradient(to right, #3388f8, #145dbd);
+  /* background-image: linear-gradient(to right, #3388f8, #145dbd); */
+  background-image: linear-gradient(to right, rgb(7, 150, 207), #1c5099);
   /* min-width: 60%; */
   flex-grow: 1;
   padding: 20px;
@@ -44,7 +45,8 @@
 .UserInfo-Actions {
   display: flex;
   /* background-color: #05e0fa; */
-  background-color: #145dbd;
+  background-color: #113363;
+  background-image: linear-gradient(to right, #1c5099, #0D274D);
   /* background-color: #73F5FF; */
   /* min-width: 40%; */
   flex-grow: 1;

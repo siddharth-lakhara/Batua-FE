@@ -3,6 +3,7 @@
     flex-direction: column;
     display: flex;
     align-items: flex-start;
+    margin: 30px;
 }
 
 .tables-div-crop {
@@ -11,11 +12,12 @@
     display: flex;
     align-items: flex-start;
     height: 250px;
-    width: 100%;
+    width: 98%;
 }
 .tables-row-element {
   height: 50px;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   font-family: roboto;
 }
 
@@ -39,8 +41,8 @@
     overflow: scroll;
     /* display: flex;
     flex-grow: 1; */
-    width: 100%;
-    background-color: #ddeafa;
+    width: 98%;
+    background-color: white;
   }
 .table-select {
     text-align: center;

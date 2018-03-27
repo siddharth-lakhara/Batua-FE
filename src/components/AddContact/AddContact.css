@@ -4,8 +4,9 @@
   /* height: 100vh; */
  flex-grow: 1;
  /* background-image: linear-gradient(to right, #01306e, #24283e); */
- background-image: linear-gradient(to right, #014194, #24283e);
+ background-color: #052045;
  /* padding: 10px; */
+ 
 }
 .AddContact-parent-container {
   display: flex;
@@ -13,6 +14,7 @@
   /* height: 100vh; */
  /* flex-grow: 1; */
  background-color: #F5F5F5;
+ margin: 30px;
 }
 .AddContact-contain{
   
@@ -41,7 +43,7 @@
   font-family: roboto;
   font-size: 1.2rem;
   color: white;
-  background-color: #0e3368;
+  background-color: #052045;
   /* border-radius: 10px; */
   border: none;
   align-self: flex-end;

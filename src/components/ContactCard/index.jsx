@@ -9,9 +9,33 @@ class ContactCard extends React.Component {
     super(props);
     this.state = {
       contacts: [],
-      transactions: [],
     };
   }
+
+  totalSend = (currentContact, transactions) => {
+    let total = 0;
+    for (let i = 0; i < transactions.length; i += 1) {
+      if (transactions[i].fromUser === this.props.userName && transactions[i].toUser === currentContact && transactions[i].status === 'COMPLETED') {
+        total += transactions[i].amount;
+      }
+    }
+    console.log('tatalSend:', total);
+
+    return total;
+  }
+
+
+  totalReceived = (currentContact, transactions) => {
+    let total = 0;
+    for (let i = 0; i < transactions.length; i += 1) {
+      if (transactions[i].fromUser === currentContact && transactions[i].toUser === this.props.userName && transactions[i].status === 'COMPLETED') {
+        total += transactions[i].amount;
+      }
+    }
+    console.log('tatalRecived:', total);
+    return total;
+  }
+
   render() {
     return (
       <div className="ContactCard-container">
@@ -19,8 +43,8 @@ class ContactCard extends React.Component {
         <div className="ContactCard-currentContact-name">{this.props.currentContact}</div>
         <div className="ContactCard-currentContact-info-div">
           <div className="ContactCard-currentContact-total-transfer">
-            <div className="ContactCard-currentContact-total-sent">Total Sent:{this.totalSend}</div>
-            <div className="ContactCard-currentContact-total-received">Total Received:{this.totalReceived}</div>
+            <div className="ContactCard-currentContact-total-sent">Total Sent : Rs    {this.totalSend(this.props.currentContact, this.props.transactions)}</div>
+            <div className="ContactCard-currentContact-total-received">Total Received : Rs    {this.totalReceived(this.props.currentContact, this.props.transactions)}</div>
           </div>
           <div className="ContactCard-currentContact-buttons-div">
             <button
