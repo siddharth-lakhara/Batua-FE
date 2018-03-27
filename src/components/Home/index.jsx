@@ -216,20 +216,40 @@ class Home extends Component {
           currentUser={this.state.userName}
           currentTab="All"
         />);
-      case 'Send': return (<Payment
+      case 'Send': return (<div><Payment
         token={this.props.authToken}
         type="send"
         contactId={this.state.contactId}
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
-      />);
-      case 'Request': return (<Payment
+      />
+        <Tables
+          authToken={this.props.authToken}
+          crop="no-crop"
+          tableType="transactionType"
+          dataAll={this.state.transactions.slice(0, 5)}
+          currentUser={this.state.userName}
+          currentTab="All"
+          className="Home-white-bg"
+        />
+      </div>);
+      case 'Request': return (<div><Payment
         token={this.props.authToken}
         contactId={this.state.contactId}
         type="request"
         balance={this.state.balance}
         updateBalance={bal => this.updateBalance(bal)}
-      />);
+      />
+        <Tables
+          authToken={this.props.authToken}
+          crop="no-crop"
+          tableType="transactionType"
+          dataAll={this.state.transactions.slice(0, 5)}
+          currentUser={this.state.userName}
+          currentTab="All"
+          className="Home-white-bg"
+        />
+      </div>);
       case 'nil': return (
         <div />
       );
