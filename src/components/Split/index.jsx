@@ -48,7 +48,7 @@ class Split extends React.Component {
         {
           toId: this.state.toId[i],
           amount: this.state.amount[i],
-          reason: 'split',
+          reason: `split - ${this.state.reason}`,
         },
         { headers: { Authorization: token } },
       );
