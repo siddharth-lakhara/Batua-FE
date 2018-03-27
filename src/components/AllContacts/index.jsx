@@ -12,6 +12,8 @@ class AllContacts extends React.Component {
     this.state = {
       contacts: [],
       transactions: [],
+      table: [],
+      showHide: [],
     };
   }
 
@@ -25,7 +27,15 @@ class AllContacts extends React.Component {
 
     axios('/contacts/getAllContacts', { headers: { Authorization: this.props.token } })
       .then((result) => {
-        this.setState({ contacts: result.data });
+        this.setState({ contacts: result.data }, () => {
+          for (let i = 0; i < this.state.contacts.length; i += 1) {
+            const arr = this.state.showHide;
+            arr[i] = 'Show Transaction';
+            const t = this.state.table;
+            t[i] = '';
+            this.setState({ showHide: arr, table: t });
+          }
+        });
         console.log(result.data);
       })
       .catch(err => console.log(err));
@@ -40,6 +50,32 @@ class AllContacts extends React.Component {
   //   ).then(reply => alert(reply.data.message));
   // };
 
+  showTransactions = (contact, index) => {
+    const arr = this.state.table;
+    const a = this.state.showHide;
+    if (this.state.table[index] === '') {
+      arr[index] = (<div className="AllContact-showTransaction-table"><Tables
+        tableType="contacts"
+        currentTab="Send"
+        dataAll={this.state.transactions}
+        crop="crop"
+        currentUser={this.props.userName}
+        currentContact={contact}
+      />
+      </div>);
+      this.setState({
+        table: arr,
+      });
+      a[index] = 'Hide Transaction';
+      this.setState({ showHide: a });
+    } else {
+      arr[index] = '';
+      a[index] = 'Show Transaction';
+      this.setState({
+        table: arr, showHide: a,
+      });
+    }
+  }
   showAllContacts = () => {
     const { contacts } = this.state;
     const contactCards = [];
@@ -56,15 +92,8 @@ class AllContacts extends React.Component {
             send={id => this.props.send(id)}
             request={id => this.props.request(id)}
           />
-          {/* <Tables
-            tableType="contacts"
-            currentTab="Send"
-            dataAll={this.state.transactions}
-            crop="crop"
-            currentUser={this.props.userName}
-            currentContact={contacts[i].name}
-          /> */}
-          <button className="AllContacts-show-transaction-div"> Show Transactions</button>
+          <div>{this.state.table[i]}</div>
+          <button className="AllContacts-show-transaction-div" onClick={() => this.showTransactions(contacts[i].name, i)}>{this.state.showHide[i]}</button>
         </div>);
       contactCards.push(contact);
     }
