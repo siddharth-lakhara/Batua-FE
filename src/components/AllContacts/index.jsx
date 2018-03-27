@@ -56,14 +56,15 @@ class AllContacts extends React.Component {
             send={id => this.props.send(id)}
             request={id => this.props.request(id)}
           />
-          <Tables
+          {/* <Tables
             tableType="contacts"
             currentTab="Send"
             dataAll={this.state.transactions}
             crop="crop"
             currentUser={this.props.userName}
             currentContact={contacts[i].name}
-          />
+          /> */}
+          <button className="AllContacts-show-transaction-div"> Show Transactions</button>
         </div>);
       contactCards.push(contact);
     }
