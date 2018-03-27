@@ -71,7 +71,7 @@ const RenderTable = (props) => {
         if (currentUser === newData[rowIndex].fromUser ||
             newData[rowIndex].fromUser === undefined) {
           return (
-            <td>
+            <td className="table-category-column">
               <select
                 className="table-select"
                 onChange={e => handleChange(e, transactionId)}

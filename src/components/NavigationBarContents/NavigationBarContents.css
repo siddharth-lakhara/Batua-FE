@@ -7,3 +7,7 @@
   background-color: Transparent;
   border: none;
 }
+
+.sidebar-Contents:focus {
+  outline: 0;
+}
