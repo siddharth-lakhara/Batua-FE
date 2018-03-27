@@ -11,3 +11,7 @@
   border: none;
   padding: 30px;
 }
+
+.Home-button:focus {
+  outline: 0;
+}
