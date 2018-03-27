@@ -21,14 +21,10 @@ class Home extends Component {
     this.state = {
       transactionId: null,
       modalType: null,
-      modalIsOpen: false,
       actionCard: 'home',
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
       balance: null,
-      friendName: null,
-      paymentAmount: 0,
-      paymentReason: null,
       contactId: 0,
       transactions: [],
       notifications: [],
@@ -59,12 +55,7 @@ class Home extends Component {
               amount: data.amount,
               reason: data.reason,
             }),
-            modalType: 'sent',
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
           });
-          this.openModal();
           this.setState({ balance: this.state.balance + data.amount });
         });
       }
@@ -84,12 +75,7 @@ class Home extends Component {
               amount: data.amount,
               reason: data.reason,
             }),
-            modalType: data.status,
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
           });
-          this.openModal();
           this.balance();
         });
       }
@@ -113,34 +99,18 @@ class Home extends Component {
               amount: data.amount,
               reason: data.reason,
             }),
-            modalType: 'requested',
-            transactionId: data.id,
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
           });
-          this.openModal();
         });
       }
     });
   }
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal = () => {
-  }
-
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
-  }
 
   balance = () => {
     axios('/transactions/history', { headers: { Authorization: this.props.authToken } })
       .then((result) => {
         this.setState({ transactions: result.data.history });
-        console.log(result.data);
+        // console.log(result.data);
       })
       .catch(err => console.log(err));
 
@@ -182,7 +152,6 @@ class Home extends Component {
       { headers: { Authorization: this.props.authToken } },
     ).then(() => {
       this.balance();
-      this.closeModal();
     });
   };
 

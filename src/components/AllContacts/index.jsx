@@ -21,7 +21,7 @@ class AllContacts extends React.Component {
     axios('/transactions/history', { headers: { Authorization: this.props.token } })
       .then((result) => {
         this.setState({ transactions: result.data.history });
-        console.log(result.data);
+        // console.log(result.data);
       })
       .catch(err => console.log(err));
 
@@ -36,7 +36,7 @@ class AllContacts extends React.Component {
             this.setState({ showHide: arr, table: t });
           }
         });
-        console.log(result.data);
+        // console.log(result.data);
       })
       .catch(err => console.log(err));
   }

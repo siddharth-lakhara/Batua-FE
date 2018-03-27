@@ -25,7 +25,7 @@ class Payment extends React.Component {
     )
       .then((result) => {
         this.setState({ contacts: result.data });
-        console.log(result.data);
+        // console.log(result.data);
       })
       .catch(err => console.log(err));
   }
@@ -33,7 +33,6 @@ class Payment extends React.Component {
   capitalize = word => (word[0]).toUpperCase() + word.slice(1);
 
   payment = (token) => {
-    console.log(this.state.toId);
     if (this.state.balance > this.state.amount || this.props.type !== 'send') {
       axios.post(
         `/transaction/${this.props.type}`,

@@ -5,6 +5,12 @@ import React from 'react';
 import './StatusNotification.css';
 
 class StatusNotification extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: false,
+    };
+  }
   getColor = (type) => {
     const mapping = {
       DECLINED: 'red', sent: 'green', requested: 'orange', APPROVED: 'green',
@@ -12,7 +18,12 @@ class StatusNotification extends React.Component {
     return mapping[type];
   }
 
-  render = () => (
+  approve = (tid, resp) => {
+    this.props.approve(tid, resp);
+    this.setState({ disabled: true });
+  }
+
+  render = () => (this.state.disabled ? null : (
     <div
       // onRequestClose={this.props.closeModal}
       className={this.getColor(this.props.modalType)}
@@ -34,10 +45,10 @@ class StatusNotification extends React.Component {
         {
               (this.props.modalType === 'requested') ?
                 <div className="Notification-choose">
-                  <button className="Notification-approve"onClick={() => this.props.approve(this.props.transactionId, 'YES')}>
+                  <button className="Notification-approve"onClick={() => this.approve(this.props.transactionId, 'YES')}>
                   Accept
                   </button>
-                  <button className="Notification-reject" onClick={() => this.props.approve(this.props.transactionId, 'NO')}>
+                  <button className="Notification-reject" onClick={() => this.approve(this.props.transactionId, 'NO')}>
                   Reject
                   </button>
                 </div>
@@ -45,6 +56,6 @@ class StatusNotification extends React.Component {
             }
       </div>
     </div>
-  );
+  ));
 }
 export default StatusNotification;

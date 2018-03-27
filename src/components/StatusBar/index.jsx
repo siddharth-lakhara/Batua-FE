@@ -14,7 +14,6 @@ class Header extends React.Component {
   }
 
   toggle = () => {
-    console.log('A');
     this.setState({
       isOpen: !this.state.isOpen,
     });
@@ -31,18 +30,20 @@ class Header extends React.Component {
            <div className="Header-dropdown">
              <button className="Header-button" onClick={() => this.toggle()}>
                <i className="material-icons">notifications</i>
-               <span>{this.props.notifications.length}</span>
+               <span className="Header-icon">
+                 {this.props.notifications.length}
+               </span>
              </button>
              {
                 this.state.isOpen ?
-                  <div className="Header-dropdown-content" >{this.props.notifications.map(i => (
+                  <div className="Header-dropdown-content" >{this.props.notifications.map(item => (
                     <div>
                       <StatusNotification
-                        modalType={i.type}
-                        friendName={i.name}
-                        transactionId={i.transactionId}
-                        paymentAmount={i.amount}
-                        paymentReason={i.reason}
+                        modalType={item.type}
+                        friendName={item.name}
+                        transactionId={item.transactionId}
+                        paymentAmount={item.amount}
+                        paymentReason={item.reason}
                         approve={this.props.approve}
                       />
                     </div>))}
