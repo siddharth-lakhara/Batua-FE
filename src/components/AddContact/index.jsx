@@ -30,16 +30,17 @@ class AddContact extends React.Component {
         <div className="AddContact-box">
           <div className="AddContact-contain">
             <div className="AddContact-text">Add Contact</div>
-            <div className="AddContact-reason-div">
-              <span className="AddContact-label">Enter UserName: </span>
-
-              <input
-                className="AddContact-userName"
-                onChange={e => this.setState({ contact: e.target.value })}
-              />
-            </div>
-            <div className="AddContact-send-button-div">
-              <button className="AddContact-Add-button" onClick={() => this.addContact(this.props.token)}>ADD</button>
+            <div className="AddContact-two-div">
+              <div className="AddContact-reason-div">
+                <input
+                  className="AddContact-userName"
+                  placeholder="Enter UserName"
+                  onChange={e => this.setState({ contact: e.target.value })}
+                />
+              </div>
+              <div className="AddContact-send-button-div">
+                <button className="AddContact-Add-button" onClick={() => this.addContact(this.props.token)}>ADD</button>
+              </div>
             </div>
           </div>
         </div>

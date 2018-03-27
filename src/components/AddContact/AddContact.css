@@ -22,9 +22,9 @@
   /* background-image: linear-gradient(to right, #3388f8, #145dbd); */
   background-color: white;
   /* background-image: linear-gradient(to bottom, #00bcd9, #0078ae); */
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
   flex-grow: 1;
   /* margin: 30px; */
   margin-bottom: 25px;
@@ -36,6 +36,13 @@
   /* border: 5px solid #24283e; */
   /* box-shadow: 10px 10px 10px 0px #01050c77; */
   align-self: center;
+  padding: 20px;
+}
+.AddContact-two-div{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .AddContact-Add-button{
   height: 50px;
@@ -48,17 +55,24 @@
   /* border-radius: 10px; */
   border: none;
   align-self: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 .AddContact-amount{
   width: 300px;
   height: 50px;
 }
 .AddContact-userName{
-  width: 200px;
+  width: 300px;
   height: 40px;
   border-color: #0156c55e;
   font-size: 1.2rem;
   font-family: roboto;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  margin-top: 20px;
 }
 .AddContact-contact{
   width: 300px;
@@ -78,4 +92,8 @@
   color: #1b2249;
   font-size: 1.1rem;
   font-family: roboto;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(23, 23, 66, 0.521);
+  opacity: 1; /* Firefox */
 }
