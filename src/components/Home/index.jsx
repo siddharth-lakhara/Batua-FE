@@ -12,6 +12,7 @@ import AllContacts from '../AllContacts';
 import Payment from '../Payment';
 import Notification from '../Notification';
 import Tables from '../Tables';
+import Split from '../Split';
 
 import './Home.css';
 
@@ -105,6 +106,10 @@ class Home extends Component {
     });
   }
 
+  onSplit = (amount, reason) => {
+    this.setState({ actionCard: 'splitOptions', amount, reason });
+  }
+
   openModal = () => {
     this.setState({ modalIsOpen: true });
   }
@@ -119,7 +124,14 @@ class Home extends Component {
   balance = () => {
     axios('/transactions/history', { headers: { Authorization: this.props.authToken } })
       .then((result) => {
+        console.log(result.data);
         this.setState({ transactions: result.data.history });
+      })
+      .catch(err => console.log(err));
+
+    axios('/transactions/history/splitable', { headers: { Authorization: this.props.authToken } })
+      .then((result) => {
+        this.setState({ transactionsSplitable: result.data.history });
         console.log(result.data);
       })
       .catch(err => console.log(err));
@@ -231,9 +243,20 @@ class Home extends Component {
         return (<Tables
           crop="no-crop"
           tableType="split"
-          dataAll={this.state.transactions}
+          dataAll={this.state.transactionsSplitable}
           currentUser={this.state.userName}
           currentTab="Send"
+          onSplit={this.onSplit}
+        />);
+      case 'splitOptions':
+        return (<Split
+          token={this.props.authToken}
+          contactId={[]}
+          type="split"
+          balance={this.state.balance}
+          updateBalance={bal => this.updateBalance(bal)}
+          amount={this.state.amount}
+          reason={this.state.reason}
         />);
       case 'nil': return (
         <div />

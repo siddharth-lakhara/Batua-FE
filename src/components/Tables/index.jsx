@@ -30,7 +30,7 @@ import './index.css';
 
 const RenderTable = (props) => {
   const {
-    head, data, actionProp,
+    head, data, actionProp, tableType,
   } = props;
 
   const filterFunction =
@@ -52,7 +52,10 @@ const RenderTable = (props) => {
     if (actionProp) {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
-    row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Split</button> </td>);
+    if (tableType === 'split') {
+      row.pop();
+      row.push(<td><button onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
+    }
 
     return (<tr className="tables-row">{row}</tr>);
   });
@@ -185,13 +188,14 @@ class Tables extends React.Component {
         head={headAll}
         data={this.props.dataAll}
         tableType={this.props.tableType}
-        tableTab={this.state.tabState}
+        tableTab={this.props.currentTab}
         currentUser={this.props.currentUser}
         currentContact={this.props.currentContact}
+        onSplit={this.props.onSplit}
       />);
 
       return (
-        <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
+        <div className="tables-div">
           <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
             <thead>
               {headers}
