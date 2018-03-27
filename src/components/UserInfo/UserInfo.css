@@ -77,7 +77,7 @@
   
 }
 .UserInfo-send-button{
-  border-radius: 0;
+  border-radius: 3px;
   padding: 10px; 
   width: 180px;
   background-color: white;
@@ -89,7 +89,7 @@
   font-weight: bold;
 }
 .UserInfo-receive-button{
-  border-radius: 0;
+  border-radius: 3px;
   padding: 10px; 
   width: 180px;
   background-color: white;

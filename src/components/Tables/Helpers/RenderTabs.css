@@ -3,6 +3,7 @@
     max-height: 250px;
     overflow: scroll;
     /* margin-top: 59px; */
+    
 }
 
 .tables-div {
@@ -13,6 +14,8 @@
 }
 
 .tableTabs-main {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     padding: 15px;
     /* position: fixed; */
     /* display: flex; */

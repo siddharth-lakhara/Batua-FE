@@ -4,9 +4,11 @@
     display: flex;
     align-items: flex-start;
     margin: 30px;
+    border-radius: 3px;
 }
 
 .tables-div-crop {
+    border-radius: 3px;
     /* overflow: scroll; */
     flex-direction: column;
     display: flex;
@@ -43,6 +45,7 @@
     flex-grow: 1; */
     width: 98%;
     background-color: white;
+    border-radius: 3px;
   }
 .table-select {
     text-align: center;
@@ -79,6 +82,7 @@
   } */
   tbody{
       overflow: scroll;
+      border-radius: 3px;   
       /* display: block; */
       
   }
