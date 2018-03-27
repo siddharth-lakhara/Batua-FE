@@ -11,8 +11,6 @@ const restructuredData = (header, data) => {
         return 'amount';
       case 'Status':
         return 'status';
-      case 'Transaction Id':
-        return 'transactionId';
       case 'Category':
         return 'category';
       case 'Reason':
