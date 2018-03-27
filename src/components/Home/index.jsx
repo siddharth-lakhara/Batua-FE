@@ -10,7 +10,7 @@ import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
 import Payment from '../Payment';
-import Notification from '../Notification';
+// import Notification from '../Notification';
 import Tables from '../Tables';
 
 import './Home.css';
@@ -31,6 +31,7 @@ class Home extends Component {
       paymentReason: null,
       contactId: 0,
       transactions: [],
+      notifications: [],
     };
   }
 
@@ -52,6 +53,12 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
+            notifications: this.state.notifications.concat({
+              type: 'sent',
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
             modalType: 'sent',
             friendName,
             paymentAmount: data.amount,
@@ -71,6 +78,12 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
+            notifications: this.state.notifications.concat({
+              type: data.status,
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
             modalType: data.status,
             friendName,
             paymentAmount: data.amount,
@@ -93,6 +106,13 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
+            notifications: this.state.notifications.concat({
+              transactionId: data.id,
+              type: 'requested',
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
             modalType: 'requested',
             transactionId: data.id,
             friendName,
@@ -142,6 +162,11 @@ class Home extends Component {
     this.setState({ actionCard: 'AllContacts' });
   }
 
+  removeNotifications = () => {
+    this.setState({
+      notifications: [],
+    });
+  }
   updateBalance = (balance) => {
     this.setState({ balance });
     this.forceUpdate();
@@ -216,40 +241,44 @@ class Home extends Component {
           currentUser={this.state.userName}
           currentTab="All"
         />);
-      case 'Send': return (<div><Payment
-        token={this.props.authToken}
-        type="send"
-        contactId={this.state.contactId}
-        balance={this.state.balance}
-        updateBalance={bal => this.updateBalance(bal)}
-      />
-        <Tables
-          authToken={this.props.authToken}
-          crop="no-crop"
-          tableType="transactionType"
-          dataAll={this.state.transactions.slice(0, 5)}
-          currentUser={this.state.userName}
-          currentTab="All"
-          className="Home-white-bg"
-        />
-      </div>);
-      case 'Request': return (<div><Payment
-        token={this.props.authToken}
-        contactId={this.state.contactId}
-        type="request"
-        balance={this.state.balance}
-        updateBalance={bal => this.updateBalance(bal)}
-      />
-        <Tables
-          authToken={this.props.authToken}
-          crop="no-crop"
-          tableType="transactionType"
-          dataAll={this.state.transactions.slice(0, 5)}
-          currentUser={this.state.userName}
-          currentTab="All"
-          className="Home-white-bg"
-        />
-      </div>);
+      case 'Send': return (
+        <div>
+          <Payment
+            token={this.props.authToken}
+            type="send"
+            contactId={this.state.contactId}
+            balance={this.state.balance}
+            updateBalance={bal => this.updateBalance(bal)}
+          />
+          <Tables
+            authToken={this.props.authToken}
+            crop="no-crop"
+            tableType="transactionType"
+            dataAll={this.state.transactions.slice(0, 5)}
+            currentUser={this.state.userName}
+            currentTab="All"
+            className="Home-white-bg"
+          />
+        </div>);
+      case 'Request': return (
+        <div>
+          <Payment
+            token={this.props.authToken}
+            contactId={this.state.contactId}
+            type="request"
+            balance={this.state.balance}
+            updateBalance={bal => this.updateBalance(bal)}
+          />
+          <Tables
+            authToken={this.props.authToken}
+            crop="no-crop"
+            tableType="transactionType"
+            dataAll={this.state.transactions.slice(0, 5)}
+            currentUser={this.state.userName}
+            currentTab="All"
+            className="Home-white-bg"
+          />
+        </div>);
       case 'nil': return (
         <div />
       );
@@ -260,7 +289,7 @@ class Home extends Component {
 
   render = () => (
     <div className="Home">
-      <div className="Home-Notification">
+      {/* <div className="Home-Notification">
         <Notification
           isOpen={this.state.modalIsOpen}
           modalType={this.state.modalType}
@@ -274,7 +303,7 @@ class Home extends Component {
           closeModal={this.closeModal}
           customStyles={this.customStyles}
         />
-      </div>
+      </div> */}
       {/* <NavigationPane /> */}
       <div className="Home-navigation-pane-temp">
         <NavigationBar
@@ -290,7 +319,13 @@ class Home extends Component {
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
-          <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
+          <div className="Home-status-bar-temp"><StatusBar
+            userName={this.state.userName}
+            removeNotifications={() => this.removeNotifications()}
+            notifications={this.state.notifications}
+            approve={this.approve}
+          />
+          </div>
           <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} send={() => this.sendContact(0)} request={() => this.requestContact(0)} /></div>
         </div>
         <div className="Home-main-app-area-body">

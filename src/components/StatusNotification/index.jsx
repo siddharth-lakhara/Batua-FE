@@ -1,11 +1,10 @@
-import Modal from 'react-modal';
 import React from 'react';
 
-import close from './ic-close.png';
+// import close from './ic-close.png';
 
-import './Notification.css';
+import './StatusNotification.css';
 
-class Notification extends React.Component {
+class StatusNotification extends React.Component {
   getColor = (type) => {
     const mapping = {
       DECLINED: 'red', sent: 'green', requested: 'orange', APPROVED: 'green',
@@ -14,23 +13,19 @@ class Notification extends React.Component {
   }
 
   render = () => (
-    <Modal
-      isOpen={this.props.isOpen}
-      onAfterOpen={this.props.afterOpenModal}
-      onRequestClose={this.props.closeModal}
-      style={this.props.customStyles}
-      overlayClassName="Notification-overlay"
+    <div
+      // onRequestClose={this.props.closeModal}
       className={this.getColor(this.props.modalType)}
     >
       <div className="Notification-container">
-        <button onClick={this.props.closeModal} className="Notification-close-button">
+        {/* <button onClick={this.props.close} className="Notification-close-button">
           <img
             src={close}
             className="Notification-close"
             alt="close"
             width="20"
           />
-        </button>
+        </button> */}
         <div className="Notification-payment">
           {this.props.friendName} has {this.props.modalType} ₹ {this.props.paymentAmount}
         </div>
@@ -49,6 +44,7 @@ class Notification extends React.Component {
             : null
             }
       </div>
-    </Modal>);
+    </div>
+  );
 }
-export default Notification;
+export default StatusNotification;
