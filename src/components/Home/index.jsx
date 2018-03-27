@@ -182,6 +182,7 @@ class Home extends Component {
         authToken={this.props.authToken}
         tableType="transactionType"
         dataAll={this.state.transactions.slice(0, 5)}
+        title="Recent Transactions"
         currentUser={this.state.userName}
         currentTab="All"
         className="Home-white-bg"

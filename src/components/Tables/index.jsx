@@ -132,11 +132,11 @@ class Tables extends React.Component {
 
       let headAll;
       if (this.state.tabState === 'All') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       } else if (this.state.tabState === 'Send') {
-        headAll = ['Sent To', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Amount', 'Status', 'Category', 'Reason'];
       } else {
-        headAll = ['Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       }
       const headers = <Headers head={headAll} />;
 
@@ -154,7 +154,7 @@ class Tables extends React.Component {
           (this.props.crop === 'crop') ? 'tables-div-crop' : 'tables-div'
         }
         >
-          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
+          <RenderTabs title={this.props.title || 'All Transactions'} tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
           <div className="Home-scrollBody" >
             <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
               <thead>
@@ -172,12 +172,12 @@ class Tables extends React.Component {
       let actionProp = false;
       let headAll;
       if (this.state.tabState === 'Completed') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       } else if (this.state.tabState === 'Pending') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
         actionProp = true;
       } else {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       }
       const headers = <Headers head={headAll} specialProp={actionProp} />;
 
@@ -211,7 +211,7 @@ class Tables extends React.Component {
       );
     } else if (this.props.tableType === 'contacts') {
       const tabs = ['Send', 'Receive'];
-      const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+      const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
 
       const headers = <Headers head={headAll} />;
 

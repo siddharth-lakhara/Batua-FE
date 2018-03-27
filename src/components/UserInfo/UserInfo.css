@@ -9,6 +9,7 @@
 .UserInfo-social{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .UserInfo-user-image{
   border-radius: 50%;
