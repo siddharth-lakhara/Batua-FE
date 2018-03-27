@@ -7,7 +7,7 @@ const UserInfo = props => (
       <div className="UserInfo-social">
         <div className="UserInfo-user-image">
           <img
-            src="/images/5.jpg"
+            src={`/images/${props.userName}.jpg`}
             className="UserInfo-social-img"
             alt="User profile"
           />

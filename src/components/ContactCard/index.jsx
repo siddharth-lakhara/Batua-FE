@@ -19,7 +19,7 @@ class ContactCard extends React.Component {
         total += transactions[i].amount;
       }
     }
-    console.log('tatalSend:', total);
+    console.log('totalSend:', total);
 
     return total;
   }
@@ -32,7 +32,7 @@ class ContactCard extends React.Component {
         total += transactions[i].amount;
       }
     }
-    console.log('tatalRecived:', total);
+    console.log('totalRecived:', total);
     return total;
   }
 

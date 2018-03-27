@@ -52,7 +52,7 @@ class AllContacts extends React.Component {
             userName={this.props.userName}
             currentContact={contacts[i].name}
             currentId={contacts[i].id}
-            src={`/images/${i + 1}.jpg`}
+            src={`/images/${contacts[i].name}.jpg`}
             send={id => this.props.send(id)}
             request={id => this.props.request(id)}
           />
