@@ -8,7 +8,7 @@ const RenderTabs = (props) => {
       className="tableTabs-items"
       onClick={() => { props.changeTab(e); }}
       key={index}
-      style={{ background: e === tabState ? '#05e0fa' : 'white' }}
+      style={{ background: e === tabState ? 'rgb(7, 150, 207)' : 'white' }}
     >
       {e}
     </span>
