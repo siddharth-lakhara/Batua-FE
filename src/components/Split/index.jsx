@@ -51,7 +51,9 @@ class Split extends React.Component {
           reason: `split - ${this.state.reason}`,
         },
         { headers: { Authorization: token } },
-      );
+      ).then((response) => {
+        console.log(response);
+      });
     }
   };
 
