@@ -5,7 +5,7 @@ import Pusher from 'pusher-js';
 import Login from '../Login';
 import Register from '../Register';
 import Home from '../Home';
-// import Login from '../Login';
+import ForgotPassword from '../ForgotPassword';
 
 import './App.css';
 
@@ -35,6 +35,13 @@ class App extends Component {
         <Login
           className="App-login-page"
           onClick={(userName, password) => { this.loginOnClick(userName, password); }}
+          onForgotPassword={() => { this.setState({ page: 'forgotPassword' }); }}
+        />
+      );
+      case 'forgotPassword': return (
+        <ForgotPassword
+          className="App-ForgotPassword-page"
+          onClick={() => { this.setState({ page: 'login' }); }}
         />
       );
       case 'register': return (
