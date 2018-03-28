@@ -43,17 +43,18 @@ class ContactCard extends React.Component {
         <div className="ContactCard-currentContact-name">{this.props.currentContact}</div>
         <div className="ContactCard-currentContact-info-div">
           <div className="ContactCard-currentContact-total-transfer">
-            <div className="ContactCard-currentContact-total-sent">Total Sent : Rs    {this.totalSend(this.props.currentContact, this.props.transactions)}</div>
-            <div className="ContactCard-currentContact-total-received">Total Received : Rs    {this.totalReceived(this.props.currentContact, this.props.transactions)}</div>
+            <div className="ContactCard-currentContact-total-sent"><div className="ContactCard-amount"> Rs    {this.totalSend(this.props.currentContact, this.props.transactions)}</div><div className="ContactCard-total">Total Sent</div></div>
+            <div className="ContactCard-line" />
+            <div className="ContactCard-currentContact-total-received"><div className="ContactCard-amount"> Rs    {this.totalReceived(this.props.currentContact, this.props.transactions)}</div><div className="ContactCard-total">Total Received</div></div>
           </div>
           <div className="ContactCard-currentContact-buttons-div">
             <button
-              className="ContactCard-currentContact-button"
+              className="ContactCard-currentContact-button-sent"
               onClick={() => this.props.send(this.props.currentId)}
             >send
             </button>
             <button
-              className="ContactCard-currentContact-button"
+              className="ContactCard-currentContact-button-receive"
               onClick={() => this.props.request(this.props.currentId)}
             >request
             </button>
