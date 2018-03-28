@@ -258,7 +258,7 @@ class Home extends Component {
           type="request"
           balance={this.state.balance}
           updateBalance={bal => this.updateBalance(bal)}
-        />);
+        />
           <Tables
             authToken={this.props.authToken}
             crop="no-crop"
@@ -270,24 +270,35 @@ class Home extends Component {
           />
         </div>);
       case 'split':
-        return (<Tables
-          crop="no-crop"
-          tableType="split"
-          dataAll={this.state.transactionsSplitable}
-          currentUser={this.state.userName}
-          currentTab="Send"
-          onSplit={this.onSplit}
-        />);
+        return (
+          <Tables
+            crop="no-crop"
+            tableType="split"
+            dataAll={this.state.transactionsSplitable}
+            currentUser={this.state.userName}
+            currentTab="Send"
+            onSplit={this.onSplit}
+          />);
       case 'splitOptions':
-        return (<Split
-          token={this.props.authToken}
-          contactId={[]}
-          type="split"
-          balance={this.state.balance}
-          updateBalance={bal => this.updateBalance(bal)}
-          amount={this.state.amount}
-          reason={this.state.reason}
-        />);
+        return (
+          <div><Split
+            token={this.props.authToken}
+            contactId={[]}
+            type="split"
+            balance={this.state.balance}
+            updateBalance={bal => this.updateBalance(bal)}
+            amount={this.state.amount}
+            reason={this.state.reason}
+          /> <Tables
+            authToken={this.props.authToken}
+            crop="no-crop"
+            tableType="transactionType"
+            dataAll={this.state.transactions.slice(0, 5)}
+            currentUser={this.state.userName}
+            currentTab="All"
+            className="Home-white-bg"
+          />
+          </div>);
       case 'nil': return (
         <div />
       );
