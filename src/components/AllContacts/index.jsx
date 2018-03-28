@@ -62,7 +62,7 @@ class AllContacts extends React.Component {
         currentUser={this.props.userName}
         currentContact={contact}
       />
-      </div>);
+                    </div>);
       this.setState({
         table: arr,
       });

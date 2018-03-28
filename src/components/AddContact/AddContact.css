@@ -22,7 +22,7 @@
   /* background-image: linear-gradient(to right, #3388f8, #145dbd); */
   background-color: white;
   /* background-image: linear-gradient(to bottom, #00bcd9, #0078ae); */
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: left;
   flex-grow: 1;

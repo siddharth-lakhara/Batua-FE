@@ -53,10 +53,14 @@
     padding-top:50px;
   }
   .forget-password{
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     width: 100%;
-    height: 25px;
-    font-family: SFProText;
+    height: 30px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;      
     font-size: 1.2rem;
     font-weight: normal;
     font-style: normal;
