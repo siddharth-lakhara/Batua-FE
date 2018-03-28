@@ -1,20 +1,25 @@
 .tables-div {
-    overflow: scroll;
+    /* overflow: scroll; */
     flex-direction: column;
     display: flex;
     align-items: flex-start;
+    margin: 30px;
+    border-radius: 3px;
 }
 
 .tables-div-crop {
-    overflow: scroll;
+    border-radius: 3px;
+    /* overflow: scroll; */
     flex-direction: column;
     display: flex;
     align-items: flex-start;
     height: 250px;
+    width: 98%;
 }
 .tables-row-element {
   height: 50px;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   font-family: roboto;
 }
 
@@ -23,7 +28,7 @@
 } */
 
 .tables-row:hover {
-    background-color: #59eafa;
+    background-color: rgb(5, 224, 250);
 }
 
 /* tr:nth-child(even){background-color: #b4f3fa85;}
@@ -33,3 +38,55 @@
     padding: 0;
     border: 0;
 } */
+
+.Home-scrollBody{
+    overflow: scroll;
+    /* display: flex;
+    flex-grow: 1; */
+    width: 98%;
+    background-color: white;
+    border-radius: 3px;
+  }
+.table-select {
+    /* margin: 0 10% 0 10%; */
+    border: 1px solid #111;
+    background: transparent;
+    /* width: 80%; */
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  /* CAUTION: IE hackery ahead */
+  .table-select::-ms-expand { 
+      display: none; /* remove default arrow on ie10 and ie11 */
+  }
+
+  .table-category-column {
+      text-align: left;
+  }
+  
+  /* target Internet Explorer 9 to undo the custom arrow */
+  @media screen and (min-width:0\0) {
+      .table-select {
+          background:none\9;
+          padding: 5px\9;
+      } 
+  }
+  /* .Home{
+      width: 100%;
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+  } */
+  tbody{
+      overflow: scroll;
+      border-radius: 3px;   
+      /* display: block; */
+      
+  }
+  

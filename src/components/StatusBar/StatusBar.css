@@ -1,7 +1,8 @@
 .Header-main {
   display: flex;
   /* background-image: linear-gradient(to right, #02449b, #393f5e); */
-  background-image: linear-gradient(to right, #014194, #24283e);
+  /* background-image: linear-gradient(to right, #014194, #24283e); */
+  background-color: #052045;
   height: 62px;
   justify-content: space-between;
   align-items: center;
@@ -19,6 +20,7 @@
 .Header-userinfoPane {
   display: flex;
   width: 20%;
+  align-items: center;
 }
 
 .Header-infoItems {

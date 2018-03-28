@@ -1,60 +1,96 @@
 .Payment-parent-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
- flex-grow: 1;
- background-color: #F5F5F5;
+ /* flex-grow: 1; */
+ margin: 30px;
+ background-color: #052045;
+ border-radius: 3px;
 }
 .Payment-container{
   display: flex;
+  border-radius: 3px;
   background-color: white;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  align-items: left;
   flex-grow: 1;
-  margin: 60px;
-  width: 70%;
-  /* border: 5px solid #24283e; */
-  box-shadow: 2px 2px 6px 0px #888888;
+  /* margin: 100px; */
+  width: 100%;
   align-self: center;
 }
 .Payment-button{
-  height: 80px;
+  height: 45px;
   width: 250px;
   font-family: roboto;
   font-size: 1.2rem;
   color: white;
-  background-color: #2c3774;
-  border-radius: 10px;
+  margin-left: 40px;
+  margin-top: 20px;
+  background-color: #052045;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  /* border-radius: 10px; */
 }
 .Payment-amount{
-  width: 300px;
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 350px;
   height: 50px;
-  font-size: 30px;
+  font-size: 20px;
   font-family: roboto;
   color: #2c3774;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
 }
 .Payment-reason{
-  width: 300px;
+  width: 1300px;
   height: 50px;
-  font-size: 30px;
+  align-self: center;
+  font-size: 20px;
+  margin-left: 40px;
+  margin-top: 20px;
   font-family: roboto;
   color: #2c3774;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
 }
 .Payment-contact{
-  width: 300px;
+  width: 350px;
   height: 50px;
+  margin-right: 40px;
+  margin-top: 20px;
   font-family: roboto;
   font-size: 1.2rem; 
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 100%;
 }
 .Payment-text{
   font-size: 1.6rem;
   font-family: roboto;
   color: #2c3774;
+  font-weight: bold;
+  padding-left: 40px;
+  margin-top: 20px;
 }
 .Payment-label{
   padding: 10px;
   color: #2c3774;
   font-size: 1.1rem;
   font-family: roboto;
+}
+.payment-amount-contact-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(23, 23, 66, 0.521);
+  opacity: 1; /* Firefox */
 }

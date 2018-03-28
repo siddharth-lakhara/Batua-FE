@@ -1,18 +1,19 @@
 .sidebar-main {
   /* position: fixed; */
-  min-width: 250px;
-  background-image: linear-gradient(to top, #002960, #24283e);
+  min-width: 235px;
+  /* background-image: linear-gradient(to top, #002960, #24283e); */
+  background-image: linear-gradient(to top, rgb(7, 150, 207), rgb(10, 29, 58));
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   /* flex-grow: 1; */
   top: 0;
   left: 0;
   right: 0;
-  overflow: hidden;
+  height: 100vh;
+  overflow-y: scroll;
 }
 @media only screen and (max-width: 1130px) {
   .sidebar-main {
@@ -42,7 +43,6 @@
 .Sidebar-options{
   display: flex; 
  justify-content: space-between;
-  margin-bottom: 200px;
   flex-direction: column;
 }
 .sidebar-transactions{

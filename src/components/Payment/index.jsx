@@ -61,40 +61,39 @@ class Payment extends React.Component {
           {/* <div className="SendPage-current">
               You have {this.state.balance} left
           </div> */}
-          <div className="Payment-amount-div">
-            <span className="Payment-label">Enter Amount: </span>
-            <input
-              className="Payment-amount"
-              type="number"
-              min="0"
-              max="100000"
-              step=".01"
-              onChange={e => this.setState({ amount: Number(e.target.value) })}
-            />
-          </div>
-          <div className="Payment-contact-div">
-            <span className="Payment-label">Choose Contact: </span>
-
-            <select
-              className="Payment-contact"
-              onChange={e => this.setState({ toId: Number(e.target.value), contactId: Number(e.target.value) })}
-              value={this.state.contactId}
-            >
-              <option
-                value="0"
-                disabled
-                hidden
-              >Choose here
-              </option>
-              {this.state.contacts.map(({ id, name }) =>
+          <div className="payment-amount-contact-div">
+            <div className="Payment-amount-div">
+              <input
+                className="Payment-amount"
+                placeholder="Enter Amount"
+                type="number"
+                min="0"
+                max="100000"
+                step=".01"
+                onChange={e => this.setState({ amount: Number(e.target.value) })}
+              />
+            </div>
+            <div className="Payment-contact-div">
+              <select
+                className="Payment-contact"
+                onChange={e => this.setState({ toId: Number(e.target.value), contactId: Number(e.target.value) })}
+                value={this.state.contactId}
+              >
+                <option
+                  value="0"
+                  disabled
+                  hidden
+                >Choose here
+                </option>
+                {this.state.contacts.map(({ id, name }) =>
           (<option key={id} value={id}>{name}</option>))}
-            </select>
+              </select>
+            </div>
           </div>
           <div className="Payment-reason-div">
-            <span className="Payment-label">Enter Reason: </span>
-
             <input
               className="Payment-reason"
+              placeholder="Enter Reason"
               onChange={e => this.setState({ reason: e.target.value })}
             />
           </div>

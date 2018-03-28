@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import allFilterFunctions from './filters';
 import RenderTabs from './Helpers/RenderTabs';
 import Headers from './Helpers/Headers';
@@ -30,7 +31,7 @@ import './index.css';
 
 const RenderTable = (props) => {
   const {
-    head, data, actionProp, tableType,
+    head, data, actionProp, tableType, authToken, currentUser,
   } = props;
 
   const filterFunction =
@@ -41,14 +42,68 @@ const RenderTable = (props) => {
   const newData = restructuredData(head, filteredData);
   // const newData = restructuredData(head, data);
   // const newData = filteredData;
-
+  const handleChange = (event, transactionId) => {
+    axios.patch(
+      '/transactions/category',
+      {
+        category: event.target.value,
+        transactionId,
+      }, { headers: { Authorization: authToken } },
+    );
+  };
+  const getColor = (rowElemIndex, rowIndex, newData) => {
+    if (rowElemIndex === 'status') {
+      if (newData[rowIndex][rowElemIndex] === 'COMPLETED') {
+        return 'green';
+      } else if (newData[rowIndex][rowElemIndex] === 'PENDING') {
+        return 'orange';
+      } else if (newData[rowIndex][rowElemIndex] === 'REJECTED') {
+        return 'red';
+      }
+      return 'black';
+    }
+  };
   // Render data
   const rows = Object.keys(newData).map((rowIndex) => {
-    const row = Object.keys(newData[rowIndex]).map(rowElemIndex => (
-      <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
-        {newData[rowIndex][rowElemIndex]}
-      </td>
-    ));
+    const row = Object.keys(newData[rowIndex]).map((rowElemIndex) => {
+      const { transactionId } = newData[rowIndex];
+      if (rowElemIndex === 'category') {
+        if (currentUser === newData[rowIndex].fromUser ||
+            newData[rowIndex].fromUser === undefined) {
+          return (
+            <td className="table-category-column">
+              <select
+                className="table-select"
+                onChange={e => handleChange(e, transactionId)}
+                defaultValue={newData[rowIndex].category}
+              >
+                <option value={null}>Select Category</option>
+                <option value="Bills">Bills</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Fuel">Fuel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Investment">Investment</option>
+                <option value="Travel">Travel</option>
+              </select>
+            </td>);
+        } return newData[rowIndex].category ?
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            {newData[rowIndex].category}
+          </td> :
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            Uncategorized
+          </td>;
+      }
+      return (
+        <td
+          className="tables-row-element"
+          style={{ color: getColor(rowElemIndex, rowIndex, newData) }}
+          key={`${rowIndex}${rowElemIndex}`}
+        >
+          {newData[rowIndex][rowElemIndex]}
+        </td>);
+    });
     if (actionProp) {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
@@ -59,6 +114,7 @@ const RenderTable = (props) => {
 
     return (<tr className="tables-row">{row}</tr>);
   });
+  console.log(currentUser, props.currentContact);
   return rows;
 };
 
@@ -81,11 +137,11 @@ class Tables extends React.Component {
 
       let headAll;
       if (this.state.tabState === 'All') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       } else if (this.state.tabState === 'Send') {
-        headAll = ['Sent To', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Amount', 'Status', 'Category', 'Reason'];
       } else {
-        headAll = ['Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+        headAll = ['Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       }
       const headers = <Headers head={headAll} />;
 
@@ -95,6 +151,7 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
+        authToken={this.props.authToken}
       />);
 
       return (
@@ -102,15 +159,17 @@ class Tables extends React.Component {
           (this.props.crop === 'crop') ? 'tables-div-crop' : 'tables-div'
         }
         >
-          <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <RenderTabs title={this.props.title || 'All Transactions'} tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <thead>
+                {headers}
+              </thead>
+              <tbody className="Tables-content">
+                {data}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     } else if (this.props.tableType === 'transactionStatus') {
@@ -118,12 +177,12 @@ class Tables extends React.Component {
       let actionProp = false;
       let headAll;
       if (this.state.tabState === 'Completed') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       } else if (this.state.tabState === 'Pending') {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
         actionProp = true;
       } else {
-        headAll = ['Sent To', 'Sent By', 'Amount', 'Transaction Id', 'Status', 'Category', 'Reason'];
+        headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
       }
       const headers = <Headers head={headAll} specialProp={actionProp} />;
 
@@ -133,26 +192,31 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
-        actionProp={actionProp}
-        key={this.props.tableType}
+        authToken={this.props.authToken}
       />);
 
       return (
         <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <RenderTabs title="All Transactions" tabs={tabs} changeTab={this.changeTab} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <div>
+                <thead>
+                  {headers}
+                </thead>
+              </div>
+              <div>
+                <tbody className="Tables-content">
+                  {data}
+                </tbody>
+              </div>
+            </table>
+          </div>
         </div>
       );
     } else if (this.props.tableType === 'contacts') {
       const tabs = ['Send', 'Receive'];
-      const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Transaction Id', 'Category', 'Reason'];
+      const headAll = ['Sent To', 'Sent By', 'Amount', 'Status', 'Category', 'Reason'];
 
       const headers = <Headers head={headAll} />;
 
@@ -162,20 +226,23 @@ class Tables extends React.Component {
         tableType={this.props.tableType}
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
+        authToken={this.props.authToken}
         currentContact={this.props.currentContact}
       />);
 
       return (
         <div className={this.props.crop ? 'tables-div-crop' : 'tables-div'}>
           <RenderTabs title="Contacts Transactions" tabs={tabs} changeTab={this.changeTab} tabState={this.state.tabState} />
-          <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
-            <thead>
-              {headers}
-            </thead>
-            <tbody className="Tables-content">
-              {data}
-            </tbody>
-          </table>
+          <div className="Home-scrollBody" >
+            <table className="tables-main" width="100%" cellSpacing="0" cellPadding="0">
+              <thead>
+                {headers}
+              </thead>
+              <tbody className="Tables-content">
+                {data}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     } else if (this.props.tableType === 'split') {
