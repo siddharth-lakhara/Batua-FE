@@ -16,7 +16,7 @@ class Login extends Component {
       <div className="login-main">
         <div className="loginBox" >
           <div className="login-title">
-          Login
+            Login
           </div>
           <div className="login-InputField">
             <InputField
@@ -30,7 +30,7 @@ class Login extends Component {
               type="password"
               change={e => this.setState({ password: e.target.value })}
             />
-            <div className="forget-password">Forgot Password?</div>
+            <button className="forget-password" onClick={() => { this.props.onForgotPassword(); }}>Forgot Password?</button>
             <div className="login-button-div">
               <button
                 className="login-button"
