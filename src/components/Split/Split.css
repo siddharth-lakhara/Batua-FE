@@ -6,6 +6,62 @@
  background-color: #052045;
  border-radius: 3px;
 }
+.Split-button-div{
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+}
+.Split-add-button-div{
+
+}
+.split-list-head{
+
+}
+.Split-my-amount{
+  /* margin-left: 15px; */
+  margin-top: 20px;
+  width: 350px;
+  height: 50px;
+  font-size: 20px;
+  font-family: roboto;
+  color: #2c3774;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.split-list-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.split-list{
+  width: 95%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 30px;
+}
+.Split-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+.Split-add-button{
+  height: 45px;
+  width: 250px;
+  font-family: roboto;
+  font-size: 1.2rem;
+  color: white;
+  /* margin-left: 40px; */
+  margin-top: 20px;
+  background-color: #0a9ad5;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  /* width: 100%; */
+  align-self: center;
+  /* border-radius: 10px; */
+}
 .Split-container{
   display: flex;
   border-radius: 3px;
@@ -28,6 +84,9 @@
   background-color: #052045;
   margin-bottom: 20px;
   border-radius: 3px;
+  /* width: 100%; */
+  align-self: center;
+  /* margin-right: 30px; */
   /* border-radius: 10px; */
 }
 .Split-amount{

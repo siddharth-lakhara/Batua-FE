@@ -76,11 +76,33 @@ class Split extends React.Component {
     for (let i = 0; i < this.state.num; i += 1) {
       list.push((
         <div className="split-list-item">
-          <span className="Split-label">Choose Contact: </span>
-
-          <select
-            className="Split-contact"
-            onChange={(e) => {
+          <div className="Split-amount-div">
+            <span className="Split-label">Amount: </span>
+            <input
+              className="Split-amount"
+              type="number"
+              min="0"
+              max={this.state.amount[i] + this.state.yourAmount}
+              step=".01"
+              onChange={(e) => {
+                const { amount } = this.state;
+                amount[i] = Number(e.target.value);
+                let totalContactsAmount = 0;
+                for (let j = 0; j < this.state.num; j += 1) {
+                  totalContactsAmount += amount[j];
+                }
+                let yourAmount = this.state.totalAmount - totalContactsAmount;
+                yourAmount = Math.round(yourAmount * 100) / 100;
+                this.setState({ amount, yourAmount });
+              }}
+              value={this.state.amount[i]}
+            />
+          </div>
+          <div>
+            <span className="Split-label">Contact: </span>
+            <select
+              className="Split-contact"
+              onChange={(e) => {
               const { toId, contactId, contacts } = this.state;
               if (toId[i]) {
                 const index = this.state.contactsPrototype.findIndex(x => x.id === toId[i]);
@@ -104,38 +126,17 @@ class Split extends React.Component {
               }
               this.setState({ toId, contactId, contacts });
             }}
-            value={this.state.contactId[i]}
-          >
-            <option
-              value={null}
-              disabled
-              hidden
-              selected
-            >Choose here
-            </option>
-            {this.state.contacts[i].map(({ id, name }) => (<option key={id} value={id}>{name}</option>))}
-          </select>
-          <div className="Split-amount-div">
-            <span className="Split-label">Enter Amount: </span>
-            <input
-              className="Split-amount"
-              type="number"
-              min="0"
-              max={this.state.amount[i] + this.state.yourAmount}
-              step=".01"
-              onChange={(e) => {
-                const { amount } = this.state;
-                amount[i] = Number(e.target.value);
-                let totalContactsAmount = 0;
-                for (let j = 0; j < this.state.num; j += 1) {
-                  totalContactsAmount += amount[j];
-                }
-                let yourAmount = this.state.totalAmount - totalContactsAmount;
-                yourAmount = Math.round(yourAmount * 100) / 100;
-                this.setState({ amount, yourAmount });
-              }}
-              value={this.state.amount[i]}
-            />
+              value={this.state.contactId[i]}
+            >
+              <option
+                value={null}
+                disabled
+                hidden
+                selected
+              >Choose here
+              </option>
+              {this.state.contacts[i].map(({ id, name }) => (<option key={id} value={id}>{name}</option>))}
+            </select>
           </div>
         </div>
       ));
@@ -152,29 +153,31 @@ class Split extends React.Component {
               You have {this.state.balance} left
           </div> */}
           <div className="split-list">
-            <div className="split-list-item">
-              <span className="Split-label">You: </span>
-              <span className="Split-amount">{this.state.yourAmount} </span>
+            <div className="split-list-head">
+              <span className="Split-label">Your Contribution: </span>
+              <span className="Split-my-amount">{this.state.yourAmount} </span>
             </div>
             {this.renderList()}
-            <div className="Split-button-div">
-              <button
-                className="Split-button"
-                onClick={() => this.addContact()}
-              >
+            <div className="Split-buttons">
+              <div className="Split-add-button-div">
+                <button
+                  className="Split-add-button"
+                  onClick={() => this.addContact()}
+                >
                 add
-              </button>
+                </button>
+              </div>
+
+
+              <div className="Split-button-div">
+                <button
+                  className="Split-button"
+                  onClick={() => this.Split(this.props.token)}
+                >
+                  {this.capitalize(this.props.type)}
+                </button>
+              </div>
             </div>
-          </div>
-
-
-          <div className="Split-button-div">
-            <button
-              className="Split-button"
-              onClick={() => this.Split(this.props.token)}
-            >
-              {this.capitalize(this.props.type)}
-            </button>
           </div>
         </div>
       </div>
