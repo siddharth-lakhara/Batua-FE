@@ -10,7 +10,7 @@ import UserInfo from '../UserInfo';
 import AddContact from '../AddContact';
 import AllContacts from '../AllContacts';
 import Payment from '../Payment';
-import Notification from '../Notification';
+// import Notification from '../Notification';
 import Tables from '../Tables';
 import Split from '../Split';
 
@@ -22,16 +22,13 @@ class Home extends Component {
     this.state = {
       transactionId: null,
       modalType: null,
-      modalIsOpen: false,
       actionCard: 'home',
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
       balance: null,
-      friendName: null,
-      paymentAmount: 0,
-      paymentReason: null,
       contactId: 0,
       transactions: [],
+      notifications: [],
     };
   }
 
@@ -53,12 +50,13 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
-            modalType: 'sent',
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
+            notifications: this.state.notifications.concat({
+              type: 'sent',
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
           });
-          this.openModal();
           this.setState({ balance: this.state.balance + data.amount });
         });
       }
@@ -72,12 +70,13 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
-            modalType: data.status,
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
+            notifications: this.state.notifications.concat({
+              type: data.status,
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
           });
-          this.openModal();
           this.balance();
         });
       }
@@ -94,13 +93,14 @@ class Home extends Component {
         ).then((result) => {
           const { userName: friendName } = result.data;
           this.setState({
-            modalType: 'requested',
-            transactionId: data.id,
-            friendName,
-            paymentAmount: data.amount,
-            paymentReason: data.reason,
+            notifications: this.state.notifications.concat({
+              transactionId: data.id,
+              type: 'requested',
+              name: friendName,
+              amount: data.amount,
+              reason: data.reason,
+            }),
           });
-          this.openModal();
         });
       }
     });
@@ -155,6 +155,11 @@ class Home extends Component {
     this.setState({ actionCard: 'AllContacts' });
   }
 
+  removeNotifications = () => {
+    this.setState({
+      notifications: [],
+    });
+  }
   updateBalance = (balance) => {
     this.setState({ balance });
     this.forceUpdate();
@@ -170,7 +175,6 @@ class Home extends Component {
       { headers: { Authorization: this.props.authToken } },
     ).then(() => {
       this.balance();
-      this.closeModal();
     });
   };
 
@@ -294,7 +298,7 @@ class Home extends Component {
 
   render = () => (
     <div className="Home">
-      <div className="Home-Notification">
+      {/* <div className="Home-Notification">
         <Notification
           isOpen={this.state.modalIsOpen}
           modalType={this.state.modalType}
@@ -308,7 +312,7 @@ class Home extends Component {
           closeModal={this.closeModal}
           customStyles={this.customStyles}
         />
-      </div>
+      </div> */}
       {/* <NavigationPane /> */}
       <div className="Home-navigation-pane-temp">
         <NavigationBar
@@ -325,7 +329,13 @@ class Home extends Component {
         <div className="Home-main-app-area-header">
           {/* <StatusBar /> */}
           {/* <UserInfo /> */}
-          <div className="Home-status-bar-temp"><StatusBar userName={this.state.userName} /></div>
+          <div className="Home-status-bar-temp"><StatusBar
+            userName={this.state.userName}
+            removeNotifications={() => this.removeNotifications()}
+            notifications={this.state.notifications}
+            approve={this.approve}
+          />
+          </div>
           <div className="Home-user-info-temp"><UserInfo userName={this.state.userName} balance={this.state.balance} send={() => this.sendContact(0)} request={() => this.requestContact(0)} /></div>
         </div>
         <div className="Home-main-app-area-body">

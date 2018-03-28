@@ -19,7 +19,7 @@ class ContactCard extends React.Component {
         total += transactions[i].amount;
       }
     }
-    console.log('totalSend:', total);
+    // console.log('totalSend:', total);
 
     return total;
   }
@@ -32,7 +32,7 @@ class ContactCard extends React.Component {
         total += transactions[i].amount;
       }
     }
-    console.log('totalRecived:', total);
+    // console.log('totalRecived:', total);
     return total;
   }
 
@@ -43,8 +43,8 @@ class ContactCard extends React.Component {
         <div className="ContactCard-currentContact-name">{this.props.currentContact}</div>
         <div className="ContactCard-currentContact-info-div">
           <div className="ContactCard-currentContact-total-transfer">
-            <div className="ContactCard-currentContact-total-sent">Total Sent : Rs    {this.totalSend(this.props.currentContact, this.props.transactions)}</div>
-            <div className="ContactCard-currentContact-total-received">Total Received : Rs    {this.totalReceived(this.props.currentContact, this.props.transactions)}</div>
+            <div className="ContactCard-currentContact-total-sent">Total Sent : ₹    {this.totalSend(this.props.currentContact, this.props.transactions)}</div>
+            <div className="ContactCard-currentContact-total-received">Total Received : ₹    {this.totalReceived(this.props.currentContact, this.props.transactions)}</div>
           </div>
           <div className="ContactCard-currentContact-buttons-div">
             <button

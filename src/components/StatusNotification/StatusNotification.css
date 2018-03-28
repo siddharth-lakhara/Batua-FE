@@ -10,6 +10,8 @@
 .Notification-container {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  margin: 0 0 10px 0;
 }
 
 .red {
@@ -26,13 +28,13 @@
 
 .Notification-payment {
   font-family: 'Roboto';
-  font-size: 12pt;
+  font-size: 10pt;
   padding: 5px;
 }
 
 .Notification-reason {
  font-family: 'Roboto';
- font-size: 12pt;
+ font-size: 10pt;
  padding: 5px;
 }
 
@@ -50,10 +52,6 @@
   width: 20px;
   border: none;
   background: none;
-}
-
-.Notification-container {
-  padding: 20px;
 }
 
 .Notification-choose {

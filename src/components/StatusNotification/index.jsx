@@ -1,11 +1,16 @@
-import Modal from 'react-modal';
 import React from 'react';
 
-import close from './ic-close.png';
+// import close from './ic-close.png';
 
-import './Notification.css';
+import './StatusNotification.css';
 
-class Notification extends React.Component {
+class StatusNotification extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: false,
+    };
+  }
   getColor = (type) => {
     const mapping = {
       DECLINED: 'red', sent: 'green', requested: 'orange', APPROVED: 'green',
@@ -13,24 +18,25 @@ class Notification extends React.Component {
     return mapping[type];
   }
 
-  render = () => (
-    <Modal
-      isOpen={this.props.isOpen}
-      onAfterOpen={this.props.afterOpenModal}
-      onRequestClose={this.props.closeModal}
-      style={this.props.customStyles}
-      overlayClassName="Notification-overlay"
+  approve = (tid, resp) => {
+    this.props.approve(tid, resp);
+    this.setState({ disabled: true });
+  }
+
+  render = () => (this.state.disabled ? null : (
+    <div
+      // onRequestClose={this.props.closeModal}
       className={this.getColor(this.props.modalType)}
     >
       <div className="Notification-container">
-        <button onClick={this.props.closeModal} className="Notification-close-button">
+        {/* <button onClick={this.props.close} className="Notification-close-button">
           <img
             src={close}
             className="Notification-close"
             alt="close"
             width="20"
           />
-        </button>
+        </button> */}
         <div className="Notification-payment">
           {this.props.friendName} has {this.props.modalType} ₹ {this.props.paymentAmount}
         </div>
@@ -39,16 +45,17 @@ class Notification extends React.Component {
         {
               (this.props.modalType === 'requested') ?
                 <div className="Notification-choose">
-                  <button className="Notification-approve"onClick={() => this.props.approve(this.props.transactionId, 'YES')}>
+                  <button className="Notification-approve"onClick={() => this.approve(this.props.transactionId, 'YES')}>
                   Accept
                   </button>
-                  <button className="Notification-reject" onClick={() => this.props.approve(this.props.transactionId, 'NO')}>
+                  <button className="Notification-reject" onClick={() => this.approve(this.props.transactionId, 'NO')}>
                   Reject
                   </button>
                 </div>
             : null
             }
       </div>
-    </Modal>);
+    </div>
+  ));
 }
-export default Notification;
+export default StatusNotification;

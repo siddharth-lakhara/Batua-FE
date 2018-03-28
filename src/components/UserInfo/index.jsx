@@ -18,7 +18,7 @@ const UserInfo = props => (
     <div className="UserInfo-Actions">
       <div className="UserInfo-balance">
         <div className="UserInfo-totalBalance">Total Balance</div>
-        <div className="UserInfo-currentBalance">Rs {props.balance}</div>
+        <div className="UserInfo-currentBalance">₹ {props.balance}</div>
       </div>
       <div className="UserInfo-line" />
       <div className="UserInfo-txn">

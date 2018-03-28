@@ -32,7 +32,7 @@
 }
 .material-icons{
   font-size: 2.1rem;
-  /* color: white; */
+  color: white;
 }
 ::selection {
   border: 0px;
