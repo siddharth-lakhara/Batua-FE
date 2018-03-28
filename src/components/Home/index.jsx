@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 import NavigationBar from '../NavigationBar';
 import StatusBar from '../StatusBar';
@@ -21,7 +21,7 @@ class Home extends Component {
     super(props);
     this.state = {
       transactionId: null,
-      modalType: null,
+      // modalType: null,
       actionCard: 'home',
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,

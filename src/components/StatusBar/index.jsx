@@ -47,17 +47,18 @@ class Header extends React.Component {
              </button>
              {
                 this.state.isOpen ?
-                  <div className="Header-dropdown-content" >{this.props.notifications.map(item => (
-                    <div>
-                      <StatusNotification
-                        modalType={item.type}
-                        friendName={item.name}
-                        transactionId={item.transactionId}
-                        paymentAmount={item.amount}
-                        paymentReason={item.reason}
-                        approve={this.props.approve}
-                      />
-                    </div>))}
+                  <div className="Header-dropdown-content" >
+                    {this.props.notifications.reverse().map(item => (
+                      <div>
+                        <StatusNotification
+                          modalType={item.type}
+                          friendName={item.name}
+                          transactionId={item.transactionId}
+                          paymentAmount={item.amount}
+                          paymentReason={item.reason}
+                          approve={this.props.approve}
+                        />
+                      </div>))}
                   </div>
               : null
             }

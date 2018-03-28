@@ -50,6 +50,8 @@
 }
 
 .Header-dropdown-content {
+  max-height: 210px;
+  overflow: scroll;
   font-size: 10px;
   margin-left: -150px;
   display: block;
