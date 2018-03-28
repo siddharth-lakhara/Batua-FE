@@ -271,17 +271,19 @@ class Home extends Component {
         </div>);
       case 'split':
         return (
-          <Tables
-            crop="no-crop"
-            tableType="split"
-            dataAll={this.state.transactionsSplitable}
-            currentUser={this.state.userName}
-            currentTab="Send"
-            onSplit={this.onSplit}
-          />);
+          <div className="Home-split">
+            <Tables
+              crop="no-crop"
+              tableType="split"
+              dataAll={this.state.transactionsSplitable}
+              currentUser={this.state.userName}
+              currentTab="Send"
+              onSplit={this.onSplit}
+            />
+          </div>);
       case 'splitOptions':
         return (
-          <div><Split
+          <div className="Home-split"><Split
             token={this.props.authToken}
             contactId={[]}
             type="split"

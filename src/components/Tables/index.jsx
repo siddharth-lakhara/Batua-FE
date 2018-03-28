@@ -112,7 +112,7 @@ const RenderTable = (props) => {
     }
     if (tableType === 'split') {
       row.pop();
-      row.push(<td><button onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
+      row.push(<td><button className="Tables-split-butoon" onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
     }
 
     return (<tr className="tables-row">{row}</tr>);

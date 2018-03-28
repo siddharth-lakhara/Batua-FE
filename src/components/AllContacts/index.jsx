@@ -92,7 +92,7 @@ class AllContacts extends React.Component {
             send={id => this.props.send(id)}
             request={id => this.props.request(id)}
           />
-          <div>{this.state.table[i]}</div>
+          <div className="AllContact-tt">{this.state.table[i]}</div>
           <button className="AllContacts-show-transaction-div" onClick={() => this.showTransactions(contacts[i].name, i)}>{this.state.showHide[i]}</button>
         </div>);
       contactCards.push(contact);

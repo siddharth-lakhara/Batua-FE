@@ -6,6 +6,9 @@
   flex-grow: 1;
   overflow: auto;
 }
+.Home-split{
+  overflow: scroll;
+}
 
 .Home-white-bg {
   background: white;

@@ -10,7 +10,7 @@
     font-family: 'Roboto';
     background: #052045;
     /* overflow: scroll; */
-    width: 98%;
+    /* width: 98%; */
 }
 
 .tableTabs-main {
@@ -20,7 +20,7 @@
     /* position: fixed; */
     /* display: flex; */
     /* flex-grow: 1; */
-    min-width: 96%;
+    min-width: 97.9%;
     background-color:white;
     font-family: 'Roboto';  
 }

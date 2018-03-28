@@ -6,6 +6,9 @@
  /* background-image: linear-gradient(to right, #01306e, #24283e); */
  /* background-image: linear-gradient(to right, #014194, #24283e);  */
 }
+.AllContact-tt{
+  width: 98%;
+}
 .AllContacts-parent-container {
   display: flex;
   flex-direction: column;
@@ -38,7 +41,7 @@
   background-color: white;
   margin-right: 30px;
 margin-left: 30px;
-width: 95.9%;
+width: 95.85%;
 border: 0;
 padding-top:15px;
 padding-bottom: 15px;

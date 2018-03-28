@@ -39,12 +39,25 @@
     padding: 0;
     border: 0;
 } */
-
+.Tables-split-butoon{
+    height: 30px;
+    width: 130px;
+  font-family: roboto;
+  font-size: 1.2rem;
+  color: white;
+  /* margin-left: 40px; */
+  margin-top: 20px;
+  background-color: #0a9ad5;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  /* width: 100%; */
+  align-self: center;
+}
 .Home-scrollBody{
     overflow: scroll;
     /* display: flex;
     flex-grow: 1; */
-    width: 98%;
+    width: 100%;
     background-color: white;
     border-radius: 3px;
   }
