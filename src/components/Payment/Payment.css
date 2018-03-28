@@ -70,6 +70,9 @@
   border-bottom: 1px solid black;
   /* border-radius: 100%; */
 }
+.Payment-button-div{
+  width: 100%;
+}
 .Payment-text{
   font-size: 1.6rem;
   font-family: roboto;
@@ -93,4 +96,75 @@
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgba(23, 23, 66, 0.521);
   opacity: 1; /* Firefox */
+}
+
+
+
+/* Popup container - can be anything you want */
+/* .popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+} */
+
+/* The actual popup */
+.popuptext { 
+  visibility: hidden;
+  width: 500px;
+  background-color: rgba(39, 153, 247, 0.746);
+  background-image: linear-gradient(to right, rgb(171, 250, 220), rgb(76, 252, 184));
+  color: rgb(20, 20, 20);
+  margin-left: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 3px;
+  /* padding-left: 50px;
+  padding-right: 50px; */
+  padding: 13px 50px 13px 50px;
+
+  /* position: absolute; */
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  /* margin-left: -80px; */
+}
+
+/* Popup arrow */
+.popupext::after {
+  content: "";
+  /* position: absolute; */
+  /* top: 100%;
+  left: 50%; */
+  /* margin-left: -50px; */
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent ;
+}
+
+/* Toggle this class - hide and show the popup */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.hide{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1.5s, opacity 1.5s linear;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
