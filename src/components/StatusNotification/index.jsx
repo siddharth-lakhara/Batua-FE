@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import close from './ic-close.png';
+import close from './ic-close.png';
 
 import './StatusNotification.css';
 
@@ -23,20 +23,24 @@ class StatusNotification extends React.Component {
     this.setState({ disabled: true });
   }
 
+  close = () => {
+    this.setState({ disabled: true });
+  }
+
   render = () => (this.state.disabled ? null : (
     <div
       // onRequestClose={this.props.closeModal}
       className={this.getColor(this.props.modalType)}
     >
       <div className="Notification-container">
-        {/* <button onClick={this.props.close} className="Notification-close-button">
+        <button onClick={this.close} className="Notification-close-button">
           <img
             src={close}
             className="Notification-close"
             alt="close"
             width="20"
           />
-        </button> */}
+        </button>
         <div className="Notification-payment">
           {this.props.friendName} has {this.props.modalType} ₹ {this.props.paymentAmount}
         </div>

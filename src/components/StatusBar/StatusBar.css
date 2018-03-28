@@ -69,6 +69,7 @@
   background-color: rgb(13, 156, 212);
   color: #fff;
   border-radius: 8px;
-  padding: 2px 5px;
+  height: 16px;
+  width: 16px;
   font: 8pt 'Roboto';
 }

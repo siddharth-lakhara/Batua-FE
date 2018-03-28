@@ -44,9 +44,8 @@
     overflow: scroll;
     /* display: flex;
     flex-grow: 1; */
-    width: 98%;
+    width: 100%;
     background-color: white;
-    border-radius: 3px;
   }
 .table-select {
     /* margin: 0 10% 0 10%; */
