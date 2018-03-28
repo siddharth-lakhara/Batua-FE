@@ -94,9 +94,10 @@ const RenderTable = (props) => {
           <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
             Uncategorized
           </td>;
-      } else if (rowElemIndex === 'split') {
-        return (<td><button onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
       }
+      // } else if (rowElemIndex === 'split') {
+      //   return (<td><button onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
+      // }
       return (
         <td
           className="tables-row-element"
@@ -110,6 +111,7 @@ const RenderTable = (props) => {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
     if (tableType === 'split') {
+      row.pop();
       row.push(<td><button onClick={() => { props.onSplit(newData[rowIndex].amount, newData[rowIndex].reason); }}>Split</button> </td>);
     }
 
@@ -248,7 +250,7 @@ class Tables extends React.Component {
       );
     } else if (this.props.tableType === 'split') {
       // const tabs = ['Send', 'Receive'];
-      const headAll = ['Sent To', 'Amount', 'Transaction Id', 'Category', 'Reason', 'split'];
+      const headAll = ['Sent To', 'Amount', 'Category', 'Reason', 'split'];
 
       const headers = <Headers head={headAll} />;
 

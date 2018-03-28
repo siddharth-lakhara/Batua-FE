@@ -66,7 +66,8 @@ class Split extends React.Component {
     for (let i = 0; i < num; i += 1) {
       amount[i] = amountPerPerson;
     }
-    const yourAmount = this.state.totalAmount - (num * amountPerPerson);
+    let yourAmount = this.state.totalAmount - (num * amountPerPerson);
+    yourAmount = Math.round(yourAmount * 100) / 100;
     this.setState({ amount, num, yourAmount });
   }
 
@@ -129,7 +130,8 @@ class Split extends React.Component {
                 for (let j = 0; j < this.state.num; j += 1) {
                   totalContactsAmount += amount[j];
                 }
-                const yourAmount = this.state.totalAmount - totalContactsAmount;
+                let yourAmount = this.state.totalAmount - totalContactsAmount;
+                yourAmount = Math.round(yourAmount * 100) / 100;
                 this.setState({ amount, yourAmount });
               }}
               value={this.state.amount[i]}
