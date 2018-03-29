@@ -19,7 +19,7 @@ class Header extends React.Component {
     });
     if (this.state.isOpen) {
       this.props.removeNotifications();
-      this.props.notifications.forEach((transactions) => {
+      this.props.notifications.reverse().forEach((transactions) => {
         axios.patch(
           '/transactions/seen', {
             transactionId:

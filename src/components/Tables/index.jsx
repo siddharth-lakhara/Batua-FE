@@ -31,10 +31,13 @@ import './index.css';
 
 const RenderTable = (props) => {
   const {
-    head, data, actionProp, tableType,
+    head, data, actionProp, tableType, approve,
     authToken, currentUser, transactionsUpdate,
   } = props;
 
+  const interact = (tid, resp) => {
+    approve(tid, resp);
+  };
   const filterFunction =
     allFilterFunctions(props.tableType, props.tableTab);
   const filteredData =
@@ -103,6 +106,18 @@ const RenderTable = (props) => {
       if (rowElemIndex === 'transactionId') {
         return null;
       }
+      if (rowElemIndex === 'status' && newData[rowIndex].status === 'PENDING' && newData[rowIndex].fromUser !== props.currentUser) {
+        console.log('ASASAS ', props.currentUser, ' SDSDSD ', newData[rowIndex].fromUser, ' SD ');
+        return (
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            <button onClick={() => interact(newData[rowIndex].transactionId, 'YES')}>
+            Accept
+            </button>/
+            <button onClick={() => interact(newData[rowIndex].transactionId, 'NO')}>Reject
+            </button>
+          </td>
+        );
+      }
       return (
         <td
           className="tables-row-element"
@@ -161,6 +176,7 @@ class Tables extends React.Component {
         tableTab={this.state.tabState}
         currentUser={this.props.currentUser}
         authToken={this.props.authToken}
+        approve={this.props.approve}
       />);
 
       return (
@@ -203,6 +219,7 @@ class Tables extends React.Component {
         transactionsUpdate={this.props.transactionsUpdate}
         currentUser={this.props.currentUser}
         authToken={this.props.authToken}
+        approve={this.props.approve}
       />);
 
       return (
@@ -239,6 +256,7 @@ class Tables extends React.Component {
         authToken={this.props.authToken}
         transactionsUpdate={this.props.transactionsUpdate}
         currentContact={this.props.currentContact}
+        approve={this.props.approve}
       />);
 
       return (
@@ -271,6 +289,7 @@ class Tables extends React.Component {
         transactionsUpdate={this.props.transactionsUpdate}
         currentContact={this.props.currentContact}
         onSplit={this.props.onSplit}
+        approve={this.props.approve}
       />);
 
       return (

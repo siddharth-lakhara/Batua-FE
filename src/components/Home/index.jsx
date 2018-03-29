@@ -214,6 +214,7 @@ class Home extends Component {
         title="Recent Transactions"
         currentUser={this.state.userName}
         currentTab="All"
+        approve={this.approve}
         className="Home-white-bg"
       />);
       // case 'send' return (<Send />);
@@ -221,6 +222,7 @@ class Home extends Component {
         <div>
           <AddContact token={this.props.authToken} />
           <Tables
+            approve={this.approve}
             transactionsUpdate={() => this.balance()}
             authToken={this.props.authToken}
             crop="no-crop"
@@ -239,6 +241,7 @@ class Home extends Component {
       />);
       case 'Transactions':
         return (<Tables
+          approve={this.approve}
           authToken={this.props.authToken}
           crop="no-crop"
           tableType="transactionType"
@@ -257,6 +260,7 @@ class Home extends Component {
           updateBalance={bal => this.updateBalance(bal)}
         />
           <Tables
+            approve={this.approve}
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
@@ -277,6 +281,7 @@ class Home extends Component {
           updateBalance={bal => this.updateBalance(bal)}
         />
           <Tables
+            approve={this.approve}
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
@@ -291,6 +296,7 @@ class Home extends Component {
         return (
           <div className="Home-split">
             <Tables
+              approve={this.approve}
               crop="no-crop"
               tableType="split"
               transactionsUpdate={() => this.balance()}
@@ -311,6 +317,7 @@ class Home extends Component {
             amount={this.state.amount}
             reason={this.state.reason}
           /> <Tables
+            approve={this.approve}
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
