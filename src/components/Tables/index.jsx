@@ -43,6 +43,7 @@ const RenderTable = (props) => {
   // const newData = restructuredData(head, data);
   // const newData = filteredData;
   const handleChange = (event, transactionId) => {
+    console.log(transactionId);
     axios.patch(
       '/transactions/category',
       {
@@ -95,6 +96,11 @@ const RenderTable = (props) => {
             Uncategorized
           </td>;
       }
+
+      if (rowElemIndex === 'transactionId') {
+        return null;
+      }
+
       return (
         <td
           className="tables-row-element"
@@ -107,6 +113,7 @@ const RenderTable = (props) => {
     if (actionProp) {
       row.push(<td><button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Accept'); }}>Accept</button> / <button onClick={() => { console.log('row: ', newData[rowIndex], 'decision: Rejected'); }}>Reject</button></td>);
     }
+    // console.log('row: ', row);
     return (<tr className="tables-row">{row}</tr>);
   });
   console.log(currentUser, props.currentContact);

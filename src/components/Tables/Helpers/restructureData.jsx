@@ -20,13 +20,15 @@ const restructuredData = (header, data) => {
     }
   });
 
-    //   console.log('sequence: ', sequence);
+  // console.log('sequence: ', sequence);
+  // console.log('data: ', data);
   const newData = Object.keys(data).map((rowIndex) => {
     // console.log(data[rowIndex]);
     const filteredRow = {};
     sequence.map((elem) => {
       filteredRow[elem] = data[rowIndex][elem];
     });
+    filteredRow.transactionId = data[rowIndex].transactionId;
     // console.log('filteredRow: ', filteredRow);
     return filteredRow;
   });
