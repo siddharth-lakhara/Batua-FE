@@ -50,6 +50,8 @@
 }
 
 .Header-dropdown-content {
+  max-height: 210px;
+  overflow: scroll;
   font-size: 10px;
   margin-left: -150px;
   display: block;
@@ -69,6 +71,7 @@
   background-color: rgb(13, 156, 212);
   color: #fff;
   border-radius: 8px;
-  padding: 2px 5px;
+  height: 16px;
+  width: 16px;
   font: 8pt 'Roboto';
 }

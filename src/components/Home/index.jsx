@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 import NavigationBar from '../NavigationBar';
 import StatusBar from '../StatusBar';
@@ -21,7 +21,7 @@ class Home extends Component {
     super(props);
     this.state = {
       transactionId: null,
-      modalType: null,
+      // modalType: null,
       actionCard: 'home',
       userId: jwtDecode(props.authToken).userId,
       userName: jwtDecode(props.authToken).userName,
@@ -34,7 +34,26 @@ class Home extends Component {
 
 
   componentDidMount() {
-    Modal.setAppElement('body');
+    axios.get('/transactions/unseen', { headers: { Authorization: this.props.authToken } }).then((result) => {
+      const { data } = result;
+      const promises = data.map(tr =>
+        axios.post(
+          '/userName',
+          { friendId: tr.name }, {
+            headers:
+            { Authorization: this.props.authToken },
+          },
+        ));
+      Promise.all(promises).then((namesArr) => {
+        const res = data.map((trans, index) => ({
+          ...trans,
+          name: namesArr[index].data.userName,
+        }));
+        this.setState({
+          notifications: res,
+        });
+      });
+    });
     this.balance();
     this.pusher = new Pusher('cc03634ec726b20a38bf', {
       cluster: 'ap2',
@@ -51,6 +70,7 @@ class Home extends Component {
           const { userName: friendName } = result.data;
           this.setState({
             notifications: this.state.notifications.concat({
+              transactionId: data.id,
               type: 'sent',
               name: friendName,
               amount: data.amount,
@@ -71,6 +91,7 @@ class Home extends Component {
           const { userName: friendName } = result.data;
           this.setState({
             notifications: this.state.notifications.concat({
+              transactionId: data.id,
               type: data.status,
               name: friendName,
               amount: data.amount,
@@ -108,17 +129,6 @@ class Home extends Component {
 
   onSplit = (amount, reason) => {
     this.setState({ actionCard: 'splitOptions', amount, reason });
-  }
-
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal = () => {
-  }
-
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
   }
 
   balance = () => {
@@ -344,6 +354,7 @@ class Home extends Component {
           {/* <UserInfo /> */}
           <div className="Home-status-bar-temp"><StatusBar
             userName={this.state.userName}
+            authToken={this.props.authToken}
             removeNotifications={() => this.removeNotifications()}
             notifications={this.state.notifications}
             approve={this.approve}
