@@ -57,6 +57,7 @@
   align-self: flex-end;
   margin-top: 20px;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 .AddContact-amount{
   width: 300px;
@@ -85,6 +86,8 @@
   font-weight: bold;
   font-family: roboto;
   color: #1b2249;
+  width: 200px;
+  align-self: center;
 }
 .AddContact-label{
   padding: 10px;
@@ -92,6 +95,9 @@
   color: #1b2249;
   font-size: 1.1rem;
   font-family: roboto;
+}
+.AddContact-reason-div{
+  padding-bottom: 20px;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgba(23, 23, 66, 0.521);

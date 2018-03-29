@@ -164,7 +164,7 @@ class Split extends React.Component {
                   className="Split-add-button"
                   onClick={() => this.addContact()}
                 >
-                add
+                Add Contact
                 </button>
               </div>
 

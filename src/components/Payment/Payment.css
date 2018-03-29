@@ -16,6 +16,7 @@
   flex-grow: 1;
   /* margin: 100px; */
   align-self: center;
+  width: 100%;
 }
 .Payment-button{
   height: 45px;
