@@ -91,6 +91,6 @@
   width: 100%;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: rgba(23, 23, 66, 0.609);
+  color: rgba(23, 23, 66, 0.521);
   opacity: 1; /* Firefox */
 }
