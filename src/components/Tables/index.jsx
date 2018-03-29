@@ -57,7 +57,7 @@ const RenderTable = (props) => {
         return 'green';
       } else if (newData[rowIndex][rowElemIndex] === 'PENDING') {
         return 'orange';
-      } else if (newData[rowIndex][rowElemIndex] === 'REJECTED') {
+      } else if (newData[rowIndex][rowElemIndex] === 'FAILED') {
         return 'red';
       }
       return 'black';

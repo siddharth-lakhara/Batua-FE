@@ -52,6 +52,8 @@ class Payment extends React.Component {
           this.myFunction();
         }
       });
+    } else {
+      this.lowBalance();
     }
   };
 
@@ -64,62 +66,83 @@ class Payment extends React.Component {
       const p = document.getElementById('myPopup');
       //  p.classList.toggle('show');
       p.classList.add('hide');
+      document.getElementById('amount').value = '';
+      document.getElementById('reason').value = '';
     }, 1000);
   }
+
+  lowBalance = () => {
+    const popup = document.getElementById('pop');
+    popup.classList.remove('show');
+    popup.classList.remove('hide');
+    popup.classList.add('show');
+    setTimeout(() => {
+      const p = document.getElementById('pop');
+      //  p.classList.toggle('show');
+      p.classList.add('hide');
+      document.getElementById('amount').value = '';
+      document.getElementById('reason').value = '';
+    }, 1000);
+  }
+
   render() {
     return (
       <div className="Payment-parent-container">
-       <div className="Payment-container">
-         <div className="Payment-text">{this.capitalize(this.props.type)} Money</div>
-         {/* <div className="SendPage-current">
+        <div className="Payment-container">
+          <div className="Payment-text">{this.capitalize(this.props.type)} Money</div>
+          {/* <div className="SendPage-current">
               You have {this.state.balance} left
           </div> */}
-         <div className="payment-amount-contact-div">
-           <div className="Payment-amount-div">
-             <input
-               className="Payment-amount"
-               placeholder="Enter Amount"
-               type="number"
-               min="0"
-               max="100000"
-               step=".01"
-               onChange={e => this.setState({ amount: Number(e.target.value) })}
-             />
-           </div>
-           <div className="Payment-contact-div">
-             <select
-               className="Payment-contact"
-               onChange={e => this.setState({ toId: Number(e.target.value), contactId: Number(e.target.value) })}
-               value={this.state.contactId}
-             >
-               <option
-                 value="0"
-                 disabled
-                 hidden
-               >Choose here
-               </option>
-               {this.state.contacts.map(({ id, name }) =>
+          <div className="payment-amount-contact-div">
+            <div className="Payment-amount-div">
+              <input
+                className="Payment-amount"
+                id="amount"
+                placeholder="Enter Amount"
+                type="number"
+                min="0"
+                max="100000"
+                step=".01"
+                onChange={e => this.setState({ amount: Number(e.target.value) })}
+              />
+            </div>
+            <div className="Payment-contact-div">
+              <select
+                className="Payment-contact"
+                id="contacts"
+                onChange={e => this.setState({ toId: Number(e.target.value), contactId: Number(e.target.value) })}
+                value={this.state.contactId}
+              >
+                <option
+                  value="0"
+                  disabled
+                  hidden
+                >Choose here
+                </option>
+                {this.state.contacts.map(({ id, name }) =>
           (<option key={id} value={id}>{name}</option>))}
-             </select>
-           </div>
-         </div>
-         <div className="Payment-reason-div">
-           <input
-             className="Payment-reason"
-             placeholder="Enter Reason"
-             onChange={e => this.setState({ reason: e.target.value })}
-           />
-         </div>
-         <div className="Payment-button-div">
-           <button
-             className="Payment-button"
-             onClick={() => this.payment(this.props.token)}
-           >{this.capitalize(this.props.type)}
-           </button>
-           <span className="popuptext" id="myPopup">{this.props.type}ing Successful</span>
-         </div>
-       </div>
-     </div>
+              </select>
+            </div>
+          </div>
+          <div className="Payment-reason-div">
+            <input
+              className="Payment-reason"
+              id="reason"
+              placeholder="Enter Reason"
+              onChange={e => this.setState({ reason: e.target.value })}
+            />
+          </div>
+          <div className="Payment-button-div">
+            <button
+              className="Payment-button"
+              onClick={() => this.payment(this.props.token)}
+            >{this.capitalize(this.props.type)}
+            </button>
+            <span className="popuptext" id="myPopup">{this.props.type}ing Successful</span>
+            <span className="pop" id="pop">Low Balance!</span>
+          </div>
+        </div>
+      </div>
     );
   }
 }

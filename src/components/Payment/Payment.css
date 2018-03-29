@@ -128,6 +128,28 @@
   padding: 13px 50px 13px 50px;
 
   /* position: absolute; */
+  /* z-index: 1; */
+  bottom: 125%;
+  left: 50%;
+  /* margin-left: -80px; */
+}
+
+.pop { 
+  visibility: hidden;
+  width: 500px;
+  background-color: rgba(39, 153, 247, 0.746);
+  background-image: linear-gradient(to right, rgb(252, 197, 215), rgb(250, 132, 172));
+  color: rgb(20, 20, 20);
+  margin-left: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 3px;
+  /* padding-left: 50px;
+  padding-right: 50px; */
+  padding: 13px 50px 13px 50px;
+
+  /* position: absolute; */
   z-index: 1;
   bottom: 125%;
   left: 50%;
