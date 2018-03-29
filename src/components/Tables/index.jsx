@@ -71,6 +71,7 @@ const RenderTable = (props) => {
       if (rowElemIndex === 'category') {
         if (currentUser === newData[rowIndex].fromUser ||
             newData[rowIndex].fromUser === undefined) {
+        // if (newData[rowIndex].status === 'COMPLETED') {
           return (
             <td className="table-category-column">
               <select
@@ -101,6 +102,14 @@ const RenderTable = (props) => {
         return null;
       }
 
+      if (rowElemIndex === 'status' && newData[rowIndex].status === 'PENDING') {
+        return (
+          <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
+            <span onClick={() => { console.log('Accepted with Row: ', newData[rowIndex]); }}>Accept</span>&nbsp;/&nbsp;
+            <span onClick={() => { console.log('Rejected with Row: ', newData[rowIndex]); }}>Reject</span>
+          </td>
+        );
+      }
       return (
         <td
           className="tables-row-element"
