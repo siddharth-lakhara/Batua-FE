@@ -78,6 +78,7 @@ class Home extends Component {
             }),
           });
           this.setState({ balance: this.state.balance + data.amount });
+          this.balance();
         });
       }
     });
@@ -207,6 +208,7 @@ class Home extends Component {
     switch (this.state.actionCard) {
       case 'home': return (<Tables
         authToken={this.props.authToken}
+        transactionsUpdate={() => this.balance()}
         tableType="transactionType"
         dataAll={this.state.transactions.slice(0, 5)}
         title="Recent Transactions"
@@ -219,6 +221,7 @@ class Home extends Component {
         <div>
           <AddContact token={this.props.authToken} />
           <Tables
+            transactionsUpdate={() => this.balance()}
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
@@ -239,6 +242,7 @@ class Home extends Component {
           authToken={this.props.authToken}
           crop="no-crop"
           tableType="transactionType"
+          transactionsUpdate={() => this.balance()}
           dataAll={this.state.transactions}
           currentUser={this.state.userName}
           currentTab="All"
@@ -249,12 +253,14 @@ class Home extends Component {
           type="send"
           contactId={this.state.contactId}
           balance={this.state.balance}
+          transactionsUpdate={() => this.balance()}
           updateBalance={bal => this.updateBalance(bal)}
         />
           <Tables
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
+            transactionsUpdate={() => this.balance()}
             dataAll={this.state.transactions.slice(0, 5)}
             currentUser={this.state.userName}
             currentTab="All"
@@ -267,12 +273,14 @@ class Home extends Component {
           contactId={this.state.contactId}
           type="request"
           balance={this.state.balance}
+          transactionsUpdate={() => this.balance()}
           updateBalance={bal => this.updateBalance(bal)}
         />
           <Tables
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
+            transactionsUpdate={() => this.balance()}
             dataAll={this.state.transactions.slice(0, 5)}
             currentUser={this.state.userName}
             currentTab="All"
@@ -285,6 +293,7 @@ class Home extends Component {
             <Tables
               crop="no-crop"
               tableType="split"
+              transactionsUpdate={() => this.balance()}
               dataAll={this.state.transactionsSplitable}
               currentUser={this.state.userName}
               currentTab="Send"
@@ -305,6 +314,7 @@ class Home extends Component {
             authToken={this.props.authToken}
             crop="no-crop"
             tableType="transactionType"
+            transactionsUpdate={() => this.balance()}
             dataAll={this.state.transactions.slice(0, 5)}
             currentUser={this.state.userName}
             currentTab="All"

@@ -17,8 +17,8 @@ class Header extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen,
     });
-    if (this.state.isOpen) this.props.removeNotifications();
-    if (!this.state.isOpen) {
+    if (this.state.isOpen) {
+      this.props.removeNotifications();
       this.props.notifications.forEach((transactions) => {
         axios.patch(
           '/transactions/seen', {
@@ -48,7 +48,7 @@ class Header extends React.Component {
              {
                 this.state.isOpen ?
                   <div className="Header-dropdown-content" >
-                    {this.props.notifications.reverse().map(item => (
+                    {this.props.notifications.map(item => (
                       <div>
                         <StatusNotification
                           modalType={item.type}

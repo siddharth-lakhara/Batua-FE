@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './Register.css';
 import InputField from '../InputField';
 
@@ -41,11 +42,16 @@ class Register extends Component {
       return;
     }
 
-    fetch('/users', {
-      method: 'POST',
-      body: JSON.stringify(POSTdata),
+    axios.post('/users', {
+      firstName,
+      lastName,
+      phone,
+      accountNo,
+      userName,
+      password,
+      aadharNo,
     })
-      .then(data => data.json())
+      .then(data => data)
       .then((data) => {
         console.log('data', data);
 
