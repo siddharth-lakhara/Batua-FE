@@ -8,8 +8,8 @@
   outline:0px none transparent;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: rgba(250, 250, 250, 0.479);
-  opacity: 1; /* Firefox */
+  color: white;
+  opacity: 1;  /*Firefox */
 }
 .InputField{
   display: flex;

@@ -42,7 +42,7 @@ class Login extends Component {
         </div>
         <div className="newuser-div" >
           <div className="new-user">New User</div>
-          <button href="" className="register-now"><u>Register Now</u></button>
+          <button href="" className="register-now" onClick={() => { this.props.onRegister(); }}><u>Register Now</u></button>
         </div>
       </div>
     );

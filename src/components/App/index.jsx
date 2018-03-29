@@ -36,6 +36,7 @@ class App extends Component {
           className="App-login-page"
           onClick={(userName, password) => { this.loginOnClick(userName, password); }}
           onForgotPassword={() => { this.setState({ page: 'forgotPassword' }); }}
+          onRegister={() => { this.setState({ page: 'register' }); }}
         />
       );
       case 'forgotPassword': return (
@@ -47,7 +48,7 @@ class App extends Component {
       case 'register': return (
         <Register
           className="App-register-page"
-          onClick={() => {}}
+          onClick={() => { this.setState({ page: 'login' }); }}
         />
       );
       case 'home': return (

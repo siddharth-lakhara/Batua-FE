@@ -50,7 +50,7 @@
     text-align: center;
     color: #ffffff;
     padding: 50px;
-    padding-top:55px;
+    padding-top:50px;
   }
   .forget-password{
     font-family: 'Roboto', sans-serif;
@@ -68,10 +68,10 @@
     line-height: normal;
     letter-spacing: normal;
     text-align: left;
-    color: #192442ab;
+    color: #093163bd;
     /* margin-left: 10%; */
     padding: 10px;
-    padding-top: 12px;
+    padding-top: 15px;
     margin-bottom: 12%;
   }
   
