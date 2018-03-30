@@ -28,6 +28,7 @@ const restructuredData = (header, data) => {
       filteredRow[elem] = data[rowIndex][elem];
     });
     // console.log('filteredRow: ', filteredRow);
+    filteredRow.transactionId = data[rowIndex].transactionId;
     return filteredRow;
   });
     //   return newData;

@@ -43,6 +43,7 @@ class Payment extends React.Component {
         },
         { headers: { Authorization: token } },
       ).then(() => {
+        this.props.transactionsUpdate();
         if (this.props.type === 'send') {
           const newBalance = this.state.balance - this.state.amount;
           this.setState({ balance: newBalance });
