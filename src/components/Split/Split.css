@@ -151,3 +151,49 @@
   color: rgba(23, 23, 66, 0.521);
   opacity: 1; /* Firefox */
 }
+.Split-pop { 
+  visibility: hidden;
+  /* width: 200px; */
+  height: 20px;
+  background-color: rgba(39, 153, 247, 0.746);
+  background-image: linear-gradient(to right, rgb(171, 250, 220), rgb(76, 252, 184));
+  color: rgb(20, 20, 20);
+  margin-left: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 3px;
+  /* padding-left: 50px;
+  padding-right: 50px; */
+  padding: 13px 30px 13px 30px;
+margin-top: 20px;
+  /* position: absolute; */
+  z-index: 1;
+  /* bottom: 125%; */
+  left: 50%;
+  /* margin-left: -80px; */
+}
+
+
+/* Toggle this class - hide and show the popup */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.hide{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1.5s, opacity 1.5s linear;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

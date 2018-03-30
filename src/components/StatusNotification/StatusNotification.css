@@ -10,20 +10,25 @@
 .Notification-container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin: 0 0 10px 0;
+  /* padding: 2px; */
+  /* margin: 0 0 2px 0; */
+  border-bottom: 1px solid rgba(45, 89, 146, 0.26);
+}
+.Notification-block{
+  width: 100%;
+  height: 100%;
 }
 
 .red {
-  background-color: rgb(255, 94, 94);
+  background-color: rgb(245, 176, 176);
 }
 
 .green {
- background-color: rgb(215, 255, 154);
+ background-color: rgb(220, 250, 176);
 }
 
 .orange {
- background-color: rgb(255, 189, 66);
+ background-color: rgb(250, 216, 154);
 }
 
 .Notification-payment {
@@ -59,10 +64,12 @@
 }
 
 .Notification-approve {
-  border: none;
-  background: none;
+  border: 1px solid rgb(61, 125, 207);
+  background: rgb(129, 219, 117);
   margin: 5px;
+  padding: 5px;
   font-size: 1em;
+  border-radius: 3px;
 }
 
 .Notification-approve:hover {
@@ -70,10 +77,12 @@
 }
 
 .Notification-reject {
-  border: none;
-  background: none;
+  border: 1px solid rgb(61, 125, 207);
+  background: rgb(250, 139, 139);
   margin: 5px;
+  padding: 5px;
   font-size: 1em;
+  border-radius: 3px;
 }
 
 .Notification-reject:hover {

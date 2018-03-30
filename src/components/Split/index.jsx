@@ -38,6 +38,17 @@ class Split extends React.Component {
       .catch(err => console.log(err));
   }
 
+  myFunction = () => {
+    const popup = document.getElementById('pop');
+    popup.classList.remove('show');
+    popup.classList.remove('hide');
+    popup.classList.add('show');
+    setTimeout(() => {
+      const p = document.getElementById('pop');
+      //  p.classList.toggle('show');
+      p.classList.add('hide');
+    }, 1000);
+  }
   capitalize = word => (word[0]).toUpperCase() + word.slice(1);
 
   Split = (token) => {
@@ -52,6 +63,7 @@ class Split extends React.Component {
         },
         { headers: { Authorization: token } },
       ).then((response) => {
+        this.myFunction();
         console.log(response);
       });
     }
@@ -144,6 +156,7 @@ class Split extends React.Component {
     return list;
   }
 
+
   render() {
     return (
       <div className="Split-parent-container">
@@ -174,9 +187,11 @@ class Split extends React.Component {
                   className="Split-button"
                   onClick={() => this.Split(this.props.token)}
                 >
+
                   {this.capitalize(this.props.type)}
                 </button>
               </div>
+              <span className="Split-pop" id="pop">split successful!</span>
             </div>
           </div>
         </div>

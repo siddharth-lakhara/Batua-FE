@@ -13,7 +13,7 @@ class StatusNotification extends React.Component {
   }
   getColor = (type) => {
     const mapping = {
-      DECLINED: 'red', sent: 'green', requested: 'orange', APPROVED: 'green',
+      DECLINED: '', sent: 'gree', requested: '', APPROVED: '',
     };
     return mapping[type];
   }
@@ -30,7 +30,7 @@ class StatusNotification extends React.Component {
   render = () => (this.state.disabled ? null : (
     <div
       // onRequestClose={this.props.closeModal}
-      className={this.getColor(this.props.modalType)}
+      className="Notification-block"
     >
       <div className="Notification-container">
         <button onClick={this.close} className="Notification-close-button">
