@@ -48,7 +48,7 @@ class Header extends React.Component {
              {
                 this.state.isOpen ?
                   <div className="Header-dropdown-content" >
-                    {this.props.notifications.map(item => (
+                    {this.props.notifications.reverse().map(item => (
                       <div>
                         <StatusNotification
                           modalType={item.type}

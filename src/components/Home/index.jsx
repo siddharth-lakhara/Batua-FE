@@ -124,6 +124,7 @@ class Home extends Component {
             }),
           });
         });
+        this.balance();
       }
     });
   }
