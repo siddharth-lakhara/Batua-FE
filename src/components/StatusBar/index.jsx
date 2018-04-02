@@ -40,7 +40,7 @@ class Header extends React.Component {
          <div className="Header-infoItems">
            <div className="Header-dropdown">
              <button className="Header-button" onClick={() => this.toggle()}>
-               <i className="material-icons">notifications</i>
+               <i className="material-icons" style={{ color: 'white' }}>notifications</i>
 
                {this.props.notifications.length >= 1 ? <span className="Header-icon">&nbsp;</span> : null}
 

@@ -39,6 +39,24 @@
     padding: 0;
     border: 0;
 } */
+.Table-pending-accept{
+    border: 1px solid rgb(61, 125, 207);
+  background: rgb(177, 231, 171);
+  margin-right: 5px;
+  padding: 3px;
+  font-size: 0.7em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.Table-pending-reject{
+    border: 1px solid rgb(61, 125, 207);
+  background: rgb(248, 193, 193);
+  margin-left: 5px;
+  padding: 3px;
+  font-size: 0.7em;
+  border-radius: 3px;
+  cursor: pointer;
+}
 .Tables-split-butoon{
     height: 30px;
     width: 130px;

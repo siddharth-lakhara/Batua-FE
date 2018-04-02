@@ -11,20 +11,32 @@ const Sidebar = ({
   <div className="sidebar-main">
     <div className="sidebar-box">
       <Logo />
-      <Home home={() => home()} />
       <div className="Sidebar-options">
+        <div className="sidebar-home">
+          <Head title="Wallet" />
+          <div>
+            <Content item="My Wallet" click={() => { home(); }} />
+          </div>
+        </div>
         <div className="sidebar-transactions">
           <Head
             title="Transactions"
           />
           <div>
             <Content item="All Transactions" click={() => transaction()} />
-            <Content item="Send" click={() => send()} />
-            <Content item="Request" click={() => request()} />
-            <Content item="Split" click={() => split()} />
           </div>
         </div>
 
+        <div className="sidebar-payments">
+          <Head
+            title="Payments"
+          />
+          <div>
+            <Content item="Send Money" click={() => send()} />
+            <Content item="Request Money" click={() => request()} />
+            <Content item="Split Money" click={() => split()} />
+          </div>
+        </div>
         <div className="sidebar-contacts">
           <Head
             title="Contacts"

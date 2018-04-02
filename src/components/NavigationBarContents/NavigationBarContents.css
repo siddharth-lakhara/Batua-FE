@@ -6,6 +6,7 @@
   color: #ffffff;
   background-color: Transparent;
   border: none;
+  padding: 0;
 }
 
 .sidebar-Contents:focus {

@@ -42,18 +42,24 @@
 }
 .Sidebar-options{
   display: flex; 
- justify-content: space-between;
+  justify-content: space-between;
   flex-direction: column;
 }
 .sidebar-transactions{
   padding: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .sidebar-contacts{
   padding: 30px;
-  margin-top: 70px;
+  margin-top: 20px;
 }
 .Sidebar-add-contact{
   display: flex;
   flex-direction: row;
+}
+.sidebar-home {
+  padding: 30px;
+}
+.sidebar-payments {
+  padding: 30px;
 }

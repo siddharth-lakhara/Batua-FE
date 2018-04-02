@@ -110,10 +110,10 @@ const RenderTable = (props) => {
         console.log('ASASAS ', props.currentUser, ' SDSDSD ', newData[rowIndex].fromUser, ' SD ');
         return (
           <td className="tables-row-element" key={`${rowIndex}${rowElemIndex}`}>
-            <button onClick={() => interact(newData[rowIndex].transactionId, 'YES')}>
+            <button className="Table-pending-accept" onClick={() => interact(newData[rowIndex].transactionId, 'YES')}>
             Accept
             </button>/
-            <button onClick={() => interact(newData[rowIndex].transactionId, 'NO')}>Reject
+            <button className="Table-pending-reject" onClick={() => interact(newData[rowIndex].transactionId, 'NO')}>Reject
             </button>
           </td>
         );
