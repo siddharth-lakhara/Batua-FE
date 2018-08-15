@@ -1,0 +1,13 @@
+.Home-button {
+  width: 128.4px;
+  /* min-height: 25px; */
+  font-family: Roboto;
+  font-size: 0.9rem;
+  line-height: 2.71;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  background-color: Transparent;
+  border: none;
+  padding: 30px;
+}

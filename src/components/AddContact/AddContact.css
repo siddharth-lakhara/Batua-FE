@@ -1,0 +1,74 @@
+.AddContact-box{
+  display: flex;
+  flex-direction: row;
+  /* height: 100vh; */
+ flex-grow: 1;
+ /* background-image: linear-gradient(to right, #01306e, #24283e); */
+ background-image: linear-gradient(to right, #014194, #24283e);
+ /* padding: 10px; */
+}
+.AddContact-parent-container {
+  display: flex;
+  flex-direction: row;
+  /* height: 100vh; */
+ /* flex-grow: 1; */
+ background-color: #F5F5F5;
+}
+.AddContact-contain{
+  
+  display: flex;
+  /* background-color: #89effa; */
+  /* background-image: linear-gradient(to right, #3388f8, #145dbd); */
+  background-color: white;
+  /* background-image: linear-gradient(to bottom, #00bcd9, #0078ae); */
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  margin: 30px;
+  padding: 10px;
+  /* margin-left: 20px; */
+  width: 35%;
+  /* border: 5px solid #24283e; */
+  box-shadow: 10px 10px 10px 0px #01050c77;
+  align-self: center;
+}
+.AddContact-Add-button{
+  height: 50px;
+  width: 200px;
+  font-family: roboto;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #0e3368;
+  border-radius: 10px;
+  border: none;
+  align-self: flex-end;
+}
+.AddContact-amount{
+  width: 300px;
+  height: 50px;
+}
+.AddContact-userName{
+  width: 200px;
+  height: 50px;
+  border-color: #0156c55e;
+}
+.AddContact-contact{
+  width: 300px;
+  height: 50px;
+  font-family: roboto;
+  font-size: 1.2rem; 
+}
+.AddContact-text{
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: roboto;
+  color: #1b2249;
+}
+.AddContact-label{
+  padding: 10px;
+  font-weight: bold;
+  color: #1b2249;
+  font-size: 1.1rem;
+  font-family: roboto;
+}

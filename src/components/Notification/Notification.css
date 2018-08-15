@@ -1,0 +1,83 @@
+.Notification-overlay {
+  position: fixed;
+  top: 85vh;
+  left: 85vw;
+  right: 0;
+  bottom: 0;
+  background: none;
+}
+
+.Notification-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.red {
+  background-color: rgb(255, 94, 94);
+}
+
+.green {
+ background-color: rgb(215, 255, 154);
+}
+
+.orange {
+ background-color: rgb(255, 189, 66);
+}
+
+.Notification-payment {
+  font-family: 'Roboto';
+  font-size: 12pt;
+  padding: 5px;
+}
+
+.Notification-reason {
+ font-family: 'Roboto';
+ font-size: 12pt;
+ padding: 5px;
+}
+
+.Notification-close {
+  align-self: left;
+}
+
+.Notification-close:hover {
+  filter: invert(100%) ;
+  align-self: left;
+}
+
+.Notification-close-button {
+  padding: 5px;
+  width: 20px;
+  border: none;
+  background: none;
+}
+
+.Notification-container {
+  padding: 20px;
+}
+
+.Notification-choose {
+  align-self: flex-end;
+}
+
+.Notification-approve {
+  border: none;
+  background: none;
+  margin: 5px;
+  font-size: 1em;
+}
+
+.Notification-approve:hover {
+  color: rgb(215, 255, 154);
+}
+
+.Notification-reject {
+  border: none;
+  background: none;
+  margin: 5px;
+  font-size: 1em;
+}
+
+.Notification-reject:hover {
+  color: rgb(255, 94, 94);
+}

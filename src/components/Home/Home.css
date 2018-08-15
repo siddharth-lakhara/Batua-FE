@@ -3,12 +3,16 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  flex-grow: 1;
+  overflow: auto;
 }
 
-
+.Home-white-bg {
+  background: white;
+}
 /* delete this once actual components in place */
 .Home-navigation-pane-temp {
-  background-color: blue;
+  background-image: linear-gradient(to top, #002960, #24283e);
 }
 
 .Home-status-bar-temp {
@@ -26,6 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* overflow: scroll; */
 }
 
 .Home-main-app-area-body {
@@ -33,4 +38,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-image: linear-gradient(to right, #014194, #24283e);
+  /* overflow: scroll; */
 }
